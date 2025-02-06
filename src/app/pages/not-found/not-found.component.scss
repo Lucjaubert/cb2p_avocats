@@ -1,0 +1,14 @@
+@use "sass:map";
+@use "../../../styles/_variables.scss" as vars;
+
+.back-to-home {
+  color: map.get(vars.$theme-colors, "blue");
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.back-to-home:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,79 @@
+@use "sass:map";
+@use "../../../styles/_variables.scss" as vars;
+
+.full-screen-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-wrapper {
+  flex: 0 0 auto;
+}
+
+.homepage-wrapper {
+  max-width: 1440px;
+  padding: 0 30px;
+  text-align: left !important;
+  margin-right: 7rem !important;
+
+  .presentation {
+    margin-top: 3rem;
+    margin-left: 8rem;
+  }
+
+  .logo {
+    width: 350px;
+    height: auto;
+    margin-bottom: 2rem;
+  }
+
+  .separator {
+    width: 2px;
+    height: 200px;
+    background-color: white;
+  }
+
+  .office-skill {
+    letter-spacing: 5px;
+  }
+
+  h1 {
+    color: white;
+    text-transform: uppercase;
+  }
+
+  .slogan {
+    h2 {
+      color: white;
+      text-align: center;
+    }
+
+    .col {
+      margin-left: 4rem;
+    }
+  }
+
+  .scroll-indicator img {
+    width: 48px;
+    height: auto;
+  }
+}
+
+@media (min-width: map.get(vars.$breakpoints, "sm")) {
+  .homepage-wrapper {
+    padding: 0 35px !important;
+  }
+}
+
+@media (min-width: map.get(vars.$breakpoints, "md")) {
+  .homepage-wrapper {
+    padding: 0 45px !important;
+  }
+}
+
+@media (min-width: map.get(vars.$breakpoints, "lg")) {
+  .homepage-wrapper {
+    padding: 0 65px !important;
+  }
+}
