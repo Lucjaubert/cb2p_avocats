@@ -3,164 +3,79 @@
 
 .custom-container {
   width: 100%;
-  margin-bottom: 7rem;
+  margin-bottom: 3rem;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 
   a {
-    font-size: map.get(vars.$font-size, "30");
-  }
-
-  @media (max-width: map.get(vars.$breakpoints, "md")) {
-    font-size: map.get(vars.$font-size, "17");
-  }
-
-  @media (max-width: map.get(vars.$breakpoints, "xxl")) {
-    padding-left: 3vw !important;
-    padding-right: 3vw !important;
-  }
-
-  @media (max-width: map.get(vars.$breakpoints, "md")) {
-    padding-left: 5vw !important;
-    padding-right: 5vw !important;
+    color: map.get(vars.$theme-colors, "grey");
+    text-decoration: none;
   }
 
   .custom-navbar {
     position: relative;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: 0;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
 
     &::before {
       content: "";
       position: absolute;
-      top: 0%;
+      top: 0;
       left: 0;
       height: 1px;
       background-color: map.get(vars.$theme-colors, "beige");
       width: 100%;
-      z-index: 2;
+      z-index: 1;
       transform: translateY(-50%);
     }
 
     .navbar-nav {
-      position: relative;
-      width: 100%;
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
+      width: 100%;
+      padding-right: 3vw;
 
       .nav-item {
         opacity: 1;
       }
 
-      .nav-item-bio {
-        display: none !important;
-
-        @media (min-width: map.get(vars.$breakpoints, "md")) {
-          display: block !important;
-        }
-      }
-
       .nav-link {
         color: map.get(vars.$theme-colors, "beige");
-        padding-bottom: 0.5rem;
         position: relative;
-        z-index: 1;
-        font-weight: 400;
+        display: inline-block;
+        padding-bottom: 0.5rem;
+        text-decoration: none;
         transition: color 0.3s ease;
-      }
+        margin-left: 4rem;
+        font-weight: 400;
+        z-index: 2;
 
-      .nav-link-homepage:hover {
-        color: map.get(vars.$theme-colors, "light-blue");
-      }
-
-      .nav-link-skills:hover {
-        color: map.get(vars.$theme-colors, "yellow");
-      }
-
-      .nav-link-team:hover {
-        color: map.get(vars.$theme-colors, "light-green");
-      }
-
-      .nav-link-contact:hover {
-        color: map.get(vars.$theme-colors, "orange");
-      }
-
-      .nav-link-auctions:hover {
-        color: map.get(vars.$theme-colors, "orange");
-      }
-    }
-
-    &.animate {
-      &::before {
-        width: 0%;
-        animation: drawLine 3.5s forwards ease-out;
-      }
-
-      .navbar-nav {
-        .nav-item {
-          opacity: 0;
+        &::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: -2px;
+          width: 0;
+          height: 2px;
+          background-color: map.get(vars.$theme-colors, "grey");
+          transition: width 0.4s ease-in-out;
+          z-index: 3;
         }
 
-        .nav-item-projects {
-          animation: showTextProjets 1s forwards 0.1s;
+        &:hover::after {
+          width: 100%;
         }
 
-        .nav-item-studio {
-          animation: showTextSW 1s forwards 1.5s;
-        }
-
-        .nav-item-bio {
-          animation: showTextBio 1s forwards 0.7s;
-        }
-
-        .nav-item-contact {
-          animation: showTextContact 1s forwards 2.5s;
+        &.active::after,
+        &:focus::after {
+          width: 100%;
         }
       }
     }
-  }
-}
-
-@keyframes drawLine {
-  0% {
-    width: 0%;
-  }
-  100% {
-    width: 100%;
-  }
-}
-
-@keyframes showTextProjets {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes showTextSW {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes showTextBio {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes showTextContact {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
   }
 }

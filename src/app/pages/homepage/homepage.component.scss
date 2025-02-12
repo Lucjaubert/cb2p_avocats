@@ -2,7 +2,6 @@
 @use "../../../styles/_variables.scss" as vars;
 
 .full-screen-container {
-  height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -12,67 +11,164 @@
 }
 
 .homepage-wrapper {
-  padding: 0 30px;
-  text-align: left !important;
-  margin-right: 7rem !important;
 
-  .presentation {
-    margin-top: 3rem;
-    margin-left: 8rem;
-  }
+  .first-section {
+    min-height: 100vh;
 
-  .logo {
-    width: 23vw;
-    height: auto;
-    margin-bottom: 2rem;
-  }
+    .presentation {
+      margin-top: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-  .separator {
-    width: 2px;
-    height: 200px;
-    background-color: map.get(vars.$theme-colors, "grey");
-  }
+    .logo {
+      width: 20vw;
+      height: auto;
+      margin-bottom: 2rem;
+    }
 
-  .office-skill {
-    letter-spacing: 5px;
-  }
+    .separator {
+      width: 2px;
+      height: 280px;
+      background-color: #fff;
+      flex: 0 0 auto;
+      margin: 0 1rem;
+    }
 
-  h1 {
-    color: map.get(vars.$theme-colors, "grey");
-    text-transform: uppercase;
-  }
-
-  .slogan {
-    h2 {
+    .office-skill {
+      letter-spacing: 5px;
       color: map.get(vars.$theme-colors, "grey");
+      text-transform: uppercase;
+    }
+
+    .slogan {
+      h2 {
+        color: map.get(vars.$theme-colors, "grey");
+      }
+    }
+
+    .scroll-indicator img {
+      width: 40px;
+      height: auto;
+    }
+  }
+
+  .second-section {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    background: url("/assets/img/homepage/office-wall.webp") no-repeat center center;
+    background-size: cover;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: map.get(vars.$theme-colors, "dark-grey");
+      opacity: 0.7;
+      z-index: 1;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    h2 {
+      color: map.get(vars.$theme-colors, "white");
+    }
+
+    .title-skills {
+      margin-left: 10vw;
+      margin-right: 10vw;
+    }
+
+    .skills {
+      text-transform: uppercase;
+    }
+
+    p {
+      color: map.get(vars.$theme-colors, "white");
+    }
+
+    .indicator-arrow-down img {
+      width: 28px;
+      height: auto;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+
+      img {
+        width: 40px;
+        height: auto;
+      }
+    }
+  }
+
+  .third-section {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background-color: map.get(vars.$theme-colors, "gold");
+
+    .container {
+      position: relative;
+      z-index: 2;
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    .title-skills {
+      margin-left: 10vw;
+      margin-right: 10vw;
       text-align: center;
+
+      h3 {
+        color: map.get(vars.$theme-colors, "white");
+      }
     }
 
-    .col {
-      margin-left: 4rem;
+    .row.gy-4 {
+      margin-top: 2rem;
+
+      img {
+        width: auto;
+        height: 50vh;
+        object-fit: cover;
+        display: block;
+        margin: 0 auto;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+      }
+    }
+
+    .indicator-arrow-down {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 28px;
+        height: auto;
+        margin-left: 0.5rem;
+      }
+    }
+
+    p {
+      color: map.get(vars.$theme-colors, "white");
     }
   }
-
-  .scroll-indicator img {
-    width: 48px;
-    height: auto;
-  }
 }
 
-@media (min-width: map.get(vars.$breakpoints, "sm")) {
-  .homepage-wrapper {
-    padding: 0 35px !important;
-  }
-}
-
-@media (min-width: map.get(vars.$breakpoints, "md")) {
-  .homepage-wrapper {
-    padding: 0 45px !important;
-  }
-}
-
-@media (min-width: map.get(vars.$breakpoints, "lg")) {
-  .homepage-wrapper {
-    padding: 0 65px !important;
-  }
-}

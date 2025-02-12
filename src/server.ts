@@ -1,65 +1,38 @@
-import { APP_BASE_HREF } from '@angular/common';
-import { CommonEngine, isMainModule } from '@angular/ssr/node';
-import express from 'express';
-import { dirname, join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import 'zone.js/node';
+import express, { Request, Response } from 'express';
+import { join } from 'path';
+import { CommonEngine } from '@angular/ssr';
 import bootstrap from './main.server';
-
-const serverDistFolder = dirname(fileURLToPath(import.meta.url));
-const browserDistFolder = resolve(serverDistFolder, '../browser');
-const indexHtml = join(serverDistFolder, 'index.server.html');
+import { APP_BASE_HREF } from '@angular/common';
 
 const app = express();
-const commonEngine = new CommonEngine();
 
-/**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
- *
- * Example:
- * ```ts
- * app.get('/api/**', (req, res) => {
- *   // Handle API request
- * });
- * ```
- */
+const DIST_FOLDER = join(process.cwd(), 'cb2p-avocats');
 
-/**
- * Serve static files from /browser
- */
 app.get(
-  '**',
-  express.static(browserDistFolder, {
+  '*.*',
+  express.static(DIST_FOLDER, {
     maxAge: '1y',
-    index: 'index.html'
-  }),
+  })
 );
 
-/**
- * Handle all other requests by rendering the Angular application.
- */
-app.get('**', (req, res, next) => {
-  const { protocol, originalUrl, baseUrl, headers } = req;
-
-  commonEngine
+app.get('*', (req: Request, res: Response) => {
+  const engine = new CommonEngine();
+  engine
     .render({
       bootstrap,
-      documentFilePath: indexHtml,
-      url: `${protocol}://${headers.host}${originalUrl}`,
-      publicPath: browserDistFolder,
-      providers: [{ provide: APP_BASE_HREF, useValue: baseUrl }],
+      documentFilePath: join(DIST_FOLDER, 'index.html'),
+      url: req.originalUrl,
+      publicPath: DIST_FOLDER,
+      providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }],
     })
-    .then((html) => res.send(html))
-    .catch((err) => next(err));
+    .then((html) => res.status(200).send(html))
+    .catch((err) => {
+      console.error('Erreur lors du rendu SSR', err);
+      res.status(500).send('Une erreur est survenue');
+    });
 });
 
-/**
- * Start the server if this module is the main entry point.
- * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
- */
-if (isMainModule(import.meta.url)) {
-  const port = process.env['PORT'] || 4000;
-  app.listen(port, () => {
-    console.log(`Node Express server listening on http://localhost:${port}`);
-  });
-}
+app.listen(4000, () => {
+  console.log(`Serveur Node écoutant sur http://localhost:4000`);
+});

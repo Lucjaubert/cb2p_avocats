@@ -42,7 +42,7 @@ body::-webkit-scrollbar {
   font-family: 'Work Sans', sans-serif;
   font-weight: normal;
   font-style: normal;
-  color: map.get(vars.$theme-colors, "white");
+  color: map.get(vars.$theme-colors, "grey");
   margin: 0;
   padding: 0;
   min-height: 100%;
@@ -52,7 +52,7 @@ body::-webkit-scrollbar {
     font-family: inherit;
     font-weight: 600;
     font-style: normal;
-    color: map.get(vars.$theme-colors, "beige");
+    color: map.get(vars.$theme-colors, "grey");
     font-size: clamp(40px, 6vw, 80px);
   }
 
@@ -60,7 +60,7 @@ body::-webkit-scrollbar {
     font-family: inherit;
     font-weight: 300;
     font-style: normal;
-    color: map.get(vars.$theme-colors, "blue");
+    color: map.get(vars.$theme-colors, "grey");
     margin-top: -1rem;
     font-size: clamp(32px, 5vw, 64px);
   }
@@ -69,8 +69,8 @@ body::-webkit-scrollbar {
     font-family: inherit;
     font-weight: 400;
     font-style: normal;
-    text-transform: uppercase;
-    color: map.get(vars.$theme-colors, "blue");
+    text-transform: normal;
+    color: map.get(vars.$theme-colors, "grey");
     font-size: clamp(28px, 4vw, 48px);
   }
 
@@ -78,7 +78,7 @@ body::-webkit-scrollbar {
     font-family: inherit;
     font-weight: 600;
     font-style: normal;
-    color: map.get(vars.$theme-colors, "blue");
+    color: map.get(vars.$theme-colors, "grey");
     font-size: clamp(24px, 3.5vw, 40px);
   }
 
@@ -86,19 +86,15 @@ body::-webkit-scrollbar {
     font-family: inherit;
     font-weight: 100;
     font-style: normal;
-    color: map.get(vars.$theme-colors, "orange") !important;
+    color: map.get(vars.$theme-colors, "grey") !important;
     font-size: clamp(26px, 4.5vw, 56px);
-
-    &:hover {
-      color: map.get(vars.$theme-colors, "light-orange") !important;
-    }
   }
 
   h6 {
     font-family: inherit;
     font-weight: normal;
     font-style: normal;
-    color: map.get(vars.$theme-colors, "blue");
+    color: map.get(vars.$theme-colors, "grey");
     font-size: clamp(20px, 3vw, 36px);
   }
 
@@ -113,6 +109,7 @@ body::-webkit-scrollbar {
     padding: 0;
     margin: 0;
     font-size: 14px;
+    color: map.get(vars.$theme-colors, "grey");
   }
 }
 

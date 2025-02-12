@@ -1,41 +1,70 @@
-@import "../../../../styles/_variables.scss";
+@use "sass:map";
+@use "../../../../styles/_variables.scss" as vars;
 
-.footer-section {
-  background-color: map-get($theme-colors, "dark-black");
+.site-footer {
+  background-color: map.get(vars.$theme-colors, "dark-blue");
+  color: map.get(vars.$theme-colors, "white");
 
-  .copyright {
-    font-size: 1rem;
-    font-weight: 300;
-    margin-top: 2rem;
-    opacity: 0; 
-    transform: translateY(20px);
-    transition: transform 0.8s ease-out, opacity 0.8s ease-out, color 0.5s ease;
-
-    // Ne pas définir de couleur ici
-    // color: map-get($theme-colors, "light-blue");
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
-  &.animate {
-    .contact-item,
-    .copyright {
-      opacity: 1;
-      transform: translateY(0); 
+  .footer-logo {
+    width: 150px;
+    height: auto;
+  }
+
+  .footer-menu {
+    margin: 0;
+    padding: 0;
+    li {
+      margin-bottom: 0.5rem;
+      a {
+        color: map.get(vars.$theme-colors, "white");
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
   }
-}
 
-.color-light-blue {
-  color: map-get($theme-colors, "light-blue");
-}
+  .linkedin-link {
+    display: inline-block;
+    .linkedin-icon {
+      width: 24px;
+      height: auto;
+    }
+  }
 
-.color-light-green {
-  color: map-get($theme-colors, "light-green");
-}
+  .vertical-separator {
+    width: 1px;
+    height: 200px;
+    background-color: map.get(vars.$theme-colors, "gold");
+    flex: 0 0 auto;
+    margin: 0 1rem;
+  }
 
-.color-yellow {
-  color: map-get($theme-colors, "yellow");
-}
+  .footer-address {
+    margin: 0;
+    a {
+      color: map.get(vars.$theme-colors, "white");
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
 
-.color-orange {
-  color: map-get($theme-colors, "orange");
+  .footer-mention {
+    margin: 0;
+    a {
+      color: map.get(vars.$theme-colors, "white");
+      text-decoration: underline;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
 }
