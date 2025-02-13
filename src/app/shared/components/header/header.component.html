@@ -1,23 +1,68 @@
 <div class="custom-container container-fluid mt-2">
   <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
-    <ul class="navbar-nav d-flex justify-content-end align-items-center">
-      <li class="nav-item nav-item-homepage">
-        <a class="nav-link nav-link-homepage" [routerLink]="['']" routerLinkActive="active" fragment="homepage">Accueil</a>  </li>
-      <li class="nav-item nav-item-office">
-        <a class="nav-link nav-link-office" [routerLink]="['/office']" routerLinkActive="active" fragment="office">Le cabinet</a>
-      </li>
-      <li class="nav-item nav-item-skills">
-        <a class="nav-link nav-link-skills" [routerLink]="['/skills']" routerLinkActive="active" fragment="skills">Compétences</a>
-      </li>
-      <li class="nav-item nav-item-team">
-        <a class="nav-link nav-link-team" [routerLink]="['/team']" routerLinkActive="active" fragment="team">Équipe</a>
-      </li>
-      <li class="nav-item nav-item-contact">
-        <a class="nav-link nav-link-contact" [routerLink]="['/contact']" routerLinkActive="active" fragment="contact">Contactez-nous</a>
-      </li>
-      <li class="nav-item nav-item-auctions">
-        <a class="nav-link nav-link-auctions" [routerLink]="['/auctions']" routerLinkActive="active" fragment="auctions">Ventes aux enchères</a>
-      </li>
-    </ul>
+    <div class="ms-auto d-flex">
+      <ul class="navbar-nav d-flex justify-content-end align-items-center">
+        <li class="nav-item nav-item-homepage">
+          <a
+            class="nav-link nav-link-homepage"
+            [routerLink]="['']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Accueil
+          </a>
+        </li>
+        <li class="nav-item nav-item-office">
+          <a
+            class="nav-link nav-link-office"
+            [routerLink]="['/le-cabinet']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Le cabinet
+          </a>
+        </li>
+        <li class="nav-item nav-item-skills">
+          <a
+            class="nav-link nav-link-skills"
+            [routerLink]="['/competences']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Compétences
+          </a>
+        </li>
+        <li class="nav-item nav-item-team">
+          <a
+            class="nav-link nav-link-team"
+            [routerLink]="['/equipe']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Équipe
+          </a>
+        </li>
+        <li class="nav-item nav-item-contact">
+          <a
+            class="nav-link nav-link-contact"
+            [routerLink]="['/contact']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Contactez-nous
+          </a>
+        </li>
+        <li class="nav-item nav-item-auctions">
+          <a
+            class="nav-link nav-link-auctions"
+            [routerLink]="['/ventes-aux-encheres']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Ventes aux enchères
+          </a>
+        </li>
+      </ul>
+    </div>
   </nav>
 </div>
