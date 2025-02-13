@@ -3,6 +3,14 @@
 @use "bootstrap/scss/bootstrap";
 @use "../assets/fonts/fonts.scss" as fonts;
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 body, html {
   margin: 0;
   padding: 0;
@@ -11,6 +19,7 @@ body, html {
   -ms-overflow-style: none;
   scrollbar-width: none;
   background-color: map.get(vars.$theme-colors, "blue") !important;
+  overflow-x: hidden;
 }
 
 body::-webkit-scrollbar {
@@ -22,10 +31,14 @@ body::-webkit-scrollbar {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 #page {
   flex: 1;
+  width: 100vw;
+  overflow-x: hidden;
 }
 
 .page-content {
@@ -36,6 +49,10 @@ body::-webkit-scrollbar {
 .container-fluid {
   padding-left: 0 !important;
   padding-right: 0 !important;
+}
+
+.container-fluid {
+  width: 100vw !important;
 }
 
 .app-root {
@@ -53,7 +70,7 @@ body::-webkit-scrollbar {
     font-weight: 600;
     font-style: normal;
     color: map.get(vars.$theme-colors, "grey");
-    font-size: clamp(40px, 6vw, 80px);
+    font-size: clamp(2rem, 2vw, 4.5rem);
   }
 
   h2 {
@@ -62,7 +79,7 @@ body::-webkit-scrollbar {
     font-style: normal;
     color: map.get(vars.$theme-colors, "grey");
     margin-top: -1rem;
-    font-size: clamp(32px, 5vw, 64px);
+    font-size: clamp(1.75rem, 4vw, 3.75rem);
   }
 
   h3 {
@@ -71,7 +88,7 @@ body::-webkit-scrollbar {
     font-style: normal;
     text-transform: normal;
     color: map.get(vars.$theme-colors, "grey");
-    font-size: clamp(28px, 4vw, 48px);
+    font-size: clamp(1.5rem, 3.5vw, 3rem);
   }
 
   h4 {
@@ -79,7 +96,7 @@ body::-webkit-scrollbar {
     font-weight: 600;
     font-style: normal;
     color: map.get(vars.$theme-colors, "grey");
-    font-size: clamp(24px, 3.5vw, 40px);
+    font-size: clamp(1.375rem, 3vw, 2.5rem);
   }
 
   h5 {
@@ -87,7 +104,7 @@ body::-webkit-scrollbar {
     font-weight: 100;
     font-style: normal;
     color: map.get(vars.$theme-colors, "grey") !important;
-    font-size: clamp(26px, 4.5vw, 56px);
+    font-size: clamp(1.25rem, 2.5vw, 2.25rem);
   }
 
   h6 {
@@ -95,7 +112,7 @@ body::-webkit-scrollbar {
     font-weight: normal;
     font-style: normal;
     color: map.get(vars.$theme-colors, "grey");
-    font-size: clamp(20px, 3vw, 36px);
+    font-size: clamp(1.125rem, 2vw, 2rem);
   }
 
   ul,
@@ -108,7 +125,7 @@ body::-webkit-scrollbar {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    font-size: 14px;
+    font-size: clamp(0.875rem, 2vw, 1.125rem);
     color: map.get(vars.$theme-colors, "grey");
   }
 }
@@ -144,6 +161,3 @@ body::-webkit-scrollbar {
   opacity: 1;
   visibility: visible;
 }
-
-
-

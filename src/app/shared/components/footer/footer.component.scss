@@ -6,12 +6,12 @@
   color: map.get(vars.$theme-colors, "white");
 
   .container {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
   }
 
   .footer-logo {
-    width: 150px;
+    width: 11vw;
     height: auto;
   }
 
@@ -30,6 +30,11 @@
     }
   }
 
+  .footer-menu-large {
+    margin: 1vw;
+    font-size: 0.8rem !important;
+  }
+
   .linkedin-link {
     display: inline-block;
     .linkedin-icon {
@@ -38,16 +43,9 @@
     }
   }
 
-  .vertical-separator {
-    width: 1px;
-    height: 200px;
-    background-color: map.get(vars.$theme-colors, "gold");
-    flex: 0 0 auto;
-    margin: 0 1rem;
-  }
-
   .footer-address {
-    margin: 0;
+    margin: 3vw;
+    font-size: 0.8rem !important;
     a {
       color: map.get(vars.$theme-colors, "white");
       text-decoration: underline;
@@ -59,12 +57,26 @@
 
   .footer-mention {
     margin: 0;
+    font-size: 0.8rem !important;
+
     a {
       color: map.get(vars.$theme-colors, "white");
       text-decoration: underline;
+
       &:hover {
         text-decoration: none;
       }
     }
   }
+
+
+
+  .vertical-separator {
+    width: 1px;
+    height: 220px;
+    background-color: map.get(vars.$theme-colors, "gold");
+    flex: 0 0 auto;
+    margin: 0 1rem;
+  }
+
 }

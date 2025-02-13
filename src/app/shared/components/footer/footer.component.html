@@ -1,26 +1,29 @@
-<footer class="site-footer py-5">
+<footer class="site-footer py-3">
   <div class="container">
-    <div class="row align-items-center py-4">
-      <div class="col-md-2 text-center text-md-start mb-4 mb-md-0">
+    <div class="row g-5 align-items-center py-4">
+      <div class="col-md-2 text-center text-md-start mb-4 mb-md-0 px-4">
         <img
           src="assets/img/homepage/logo-ss-fd-cb2p.webp"
           alt="CB2P Avocats"
           class="footer-logo mb-3"
         />
       </div>
-      <div class="col-md-2 text-center text-md-start mb-4 mb-md-0">
+
+      <div class="footer-menu-large col-md-3 text-center text-md-start mb-4 mt-5 mb-md-0">
         <ul class="footer-menu list-unstyled mb-3">
           <li><a routerLink="/">Accueil</a></li>
           <li><a routerLink="/le-cabinet">Le cabinet</a></li>
-          <li><a routerLink="/competences">Compétences</a></li>
-          <li><a routerLink="/equipe">Équipe</a></li>
+          <li><a routerLink="/comptétences">Compétences</a></li>
+          <li><a routerLink="/équipe">Équipe</a></li>
           <li><a routerLink="/contact">Contactez-nous</a></li>
         </ul>
+
         <a
-          href="https://www.linkedin.com/"
+          href="https://www.linkedin.com/company/cb2pavocats/"
           target="_blank"
           rel="noopener noreferrer"
           class="linkedin-link"
+          (click)="openLinkedIn($event)"
         >
           <img
             src="assets/icons/linkedin.webp"
@@ -30,11 +33,11 @@
         </a>
       </div>
 
-      <div class="col-2 d-none d-md-flex justify-content-center">
+      <div class="col-auto d-none d-md-flex justify-content-center px-0">
         <div class="vertical-separator"></div>
       </div>
 
-      <div class="col-md-2 text-center text-md-start mb-4 mb-md-0">
+      <div class="col-md-3 text-center text-md-start mb-4 mb-md-0 pe-0">
         <p class="footer-address">
           <strong>Adresse Bordeaux :</strong><br />
           14, rue de la Verrerie<br />
@@ -45,11 +48,11 @@
         </p>
       </div>
 
-      <div class="col-2 d-none d-md-flex justify-content-center">
+      <div class="col-auto d-none d-md-flex justify-content-center px-0">
         <div class="vertical-separator"></div>
       </div>
 
-      <div class="col-md-2 text-center text-md-start">
+      <div class="col-md-3 text-center text-md-start pe-0">
         <p class="footer-address">
           <strong>Adresse Bazas :</strong><br />
           3, place de la Cathédrale<br />
@@ -61,7 +64,7 @@
       </div>
     </div>
 
-    <div class="row pt-4">
+    <div class="row pt-1">
       <div class="col text-center">
         <p class="footer-mention">
           Site web par LJ Studio Web |

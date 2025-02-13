@@ -13,7 +13,6 @@
   }
 
   .custom-navbar {
-    position: relative;
     margin-left: auto;
     margin-right: 0;
     display: flex;
@@ -54,28 +53,45 @@
         margin-left: 4rem;
         font-weight: 400;
         z-index: 2;
+        overflow: hidden; 
 
         &::after {
           content: "";
           position: absolute;
           left: 0;
-          bottom: -2px;
+          bottom: 0; 
           width: 0;
           height: 2px;
           background-color: map.get(vars.$theme-colors, "grey");
           transition: width 0.4s ease-in-out;
-          z-index: 3;
         }
 
-        &:hover::after {
-          width: 100%;
-        }
-
-        &.active::after,
-        &:focus::after {
+        &:hover::after,
+        &.active::after {
           width: 100%;
         }
       }
+
     }
+  }
+}
+
+@media (max-width: 1024px) {
+  .custom-navbar {
+    padding-right: 2vw;
+  }
+
+  .navbar-nav {
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+  }
+
+  .nav-item {
+    white-space: nowrap;
+  }
+
+  .nav-link {
+    font-size: 0.85rem;
+    margin-left: 1rem;
   }
 }

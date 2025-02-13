@@ -21,4 +21,19 @@ export class FooterComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
   }
+
+  openLinkedIn(event: MouseEvent) {
+    event.preventDefault();
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    if (isMobile) {
+      window.location.href = 'linkedin://company/cb2pavocats';
+
+      setTimeout(() => {
+        window.open('https://www.linkedin.com/company/cb2pavocats/', '_blank');
+      }, 800);
+    } else {
+      window.open('https://www.linkedin.com/company/cb2pavocats/', '_blank');
+    }
+  }
 }

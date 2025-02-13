@@ -9,7 +9,7 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'auctions',
+    path: 'ventes-aux-enchères',
     loadComponent: () =>
       import('./pages/auctions/auctions.component').then((m) => m.AuctionsComponent),
     title: 'Ventes aux enchères'
@@ -21,31 +21,31 @@ export const routes: Routes = [
     title: 'Contact'
   },
   {
-    path: 'infos-auction',
+    path: 'infos-enchères',
     loadComponent: () =>
       import('./pages/infos-auction/infos-auction.component').then((m) => m.InfosAuctionComponent),
     title: 'Infos Enchères'
   },
   {
-    path: 'office',
+    path: 'le-cabinet',
     loadComponent: () =>
       import('./pages/office/office.component').then((m) => m.OfficeComponent),
-    title: 'Bureau'
+    title: 'Le cabinet'
   },
   {
-    path: 'selected-skill',
+    path: 'compétence-selectionnée',
     loadComponent: () =>
       import('./pages/selected-skill/selected-skill.component').then((m) => m.SelectedSkillComponent),
     title: 'Compétence sélectionnée'
   },
   {
-    path: 'skills',
+    path: 'comptétences',
     loadComponent: () =>
       import('./pages/skills/skills.component').then((m) => m.SkillsComponent),
     title: 'Compétences'
   },
   {
-    path: 'team',
+    path: 'équipe',
     loadComponent: () =>
       import('./pages/team/team.component').then((m) => m.TeamComponent),
     title: 'Équipe'
