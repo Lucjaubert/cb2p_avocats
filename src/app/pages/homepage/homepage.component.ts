@@ -25,6 +25,9 @@ export class HomepageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.titleService.setTitle('Accueil - CB2P Avocats');
+    this.metaService.updateTag({ name: 'description', content: 'Avocats, contentieux, conseils à Bordeaux' });
+
     this.wpService.getHomepageData().subscribe((data) => {
       this.homepageData = data;
     });

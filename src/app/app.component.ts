@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { WordpressService } from './services/wordpress.service';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
@@ -19,6 +19,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
 })
 export class AppComponent implements OnInit {
   title = 'cb2p_avocats';
+  currentRoute: string = '';
 
   homepageData: any;
   officeData: any;
@@ -29,7 +30,7 @@ export class AppComponent implements OnInit {
   auctions: any[] = [];
   selectedAuction: any;
 
-  constructor(private wordpressService: WordpressService) {}
+  constructor(private router: Router, private wordpressService: WordpressService) {}
 
   ngOnInit() {
     this.wordpressService.getHomepageData().subscribe(data => {
@@ -62,6 +63,12 @@ export class AppComponent implements OnInit {
 
     this.wordpressService.getSelectedAuction().subscribe(data => {
       this.selectedAuction = data;
+    });
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.currentRoute = event.urlAfterRedirects;
+      }
     });
   }
 }
