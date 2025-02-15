@@ -1,0 +1,12 @@
+@use "sass:map";
+@use "../styles/_variables.scss" as vars;
+
+body.office-page app-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent !important;
+  z-index: 99;
+  overflow-y: hidden;
+}

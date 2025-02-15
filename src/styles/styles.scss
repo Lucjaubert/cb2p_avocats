@@ -1,7 +1,7 @@
 @use "sass:map";
 @use "./_variables" as vars;
-@use "bootstrap/scss/bootstrap";
 @use "../assets/fonts/fonts.scss" as fonts;
+@use "bootstrap/scss/bootstrap";
 
 * {
   box-sizing: border-box;
@@ -32,21 +32,14 @@ body::-webkit-scrollbar {
   flex-direction: column;
   min-height: 100vh;
   width: 100vw;
-  overflow-x: hidden;
 }
 
 #page {
   flex: 1;
   width: 100vw;
-  overflow-x: hidden;
 }
 
-.page-content {
-  overflow: hidden;
-}
-
-.container,
-.container-fluid {
+.container, .container-fluid {
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
@@ -55,79 +48,28 @@ body::-webkit-scrollbar {
   width: 100vw !important;
 }
 
-.app-root {
+@mixin heading-styles($size-min, $size-max) {
   font-family: 'Work Sans', sans-serif;
   font-weight: normal;
-  font-style: normal;
   color: map.get(vars.$theme-colors, "grey");
-  margin: 0;
+  font-size: clamp($size-min, 3vw, $size-max);
+}
+
+h1 { @include heading-styles(2rem, 4.5rem); font-weight: 700; }
+h2 { @include heading-styles(1.65rem, 2rem); font-weight: 600; }
+h3 { @include heading-styles(1rem, 1.75rem); font-weight: 500; }
+h4 { @include heading-styles(1.375rem, 1.5rem); font-weight: 500; }
+h5 { @include heading-styles(1.1rem, 1.3rem); font-weight: 500; }
+h6 { @include heading-styles(0.8rem, 1rem); font-weight: 500; }
+
+ul, li, a, p {
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 300;
+  list-style-type: none;
   padding: 0;
-  min-height: 100%;
-  overflow-x: hidden;
-
-  h1 {
-    font-family: inherit;
-    font-weight: 600;
-    font-style: normal;
-    color: map.get(vars.$theme-colors, "grey");
-    font-size: clamp(2rem, 2vw, 4.5rem);
-  }
-
-  h2 {
-    font-family: inherit;
-    font-weight: 300;
-    font-style: normal;
-    color: map.get(vars.$theme-colors, "grey");
-    margin-top: -1rem;
-    font-size: clamp(1.75rem, 4vw, 3.75rem);
-  }
-
-  h3 {
-    font-family: inherit;
-    font-weight: 400;
-    font-style: normal;
-    text-transform: normal;
-    color: map.get(vars.$theme-colors, "grey");
-    font-size: clamp(1.5rem, 3.5vw, 3rem);
-  }
-
-  h4 {
-    font-family: inherit;
-    font-weight: 600;
-    font-style: normal;
-    color: map.get(vars.$theme-colors, "grey");
-    font-size: clamp(1.375rem, 3vw, 2.5rem);
-  }
-
-  h5 {
-    font-family: inherit;
-    font-weight: 100;
-    font-style: normal;
-    color: map.get(vars.$theme-colors, "grey") !important;
-    font-size: clamp(1.25rem, 2.5vw, 2.25rem);
-  }
-
-  h6 {
-    font-family: inherit;
-    font-weight: normal;
-    font-style: normal;
-    color: map.get(vars.$theme-colors, "grey");
-    font-size: clamp(1.125rem, 2vw, 2rem);
-  }
-
-  ul,
-  li,
-  a,
-  p {
-    font-family: inherit;
-    font-weight: 300;
-    font-style: normal;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    font-size: clamp(0.875rem, 2vw, 1.125rem);
-    color: map.get(vars.$theme-colors, "grey");
-  }
+  margin: 0;
+  font-size: clamp(0.675rem, 2vw, 1rem);
+  color: map.get(vars.$theme-colors, "grey");
 }
 
 #back-to-top {
@@ -160,4 +102,9 @@ body::-webkit-scrollbar {
   display: flex;
   opacity: 1;
   visibility: visible;
+}
+
+body.office-page .office-wrapper .first-section {
+  background: url("/assets/img/office/office-wall-2.webp") no-repeat center center;
+  background-size: cover;
 }
