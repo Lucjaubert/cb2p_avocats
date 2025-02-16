@@ -24,7 +24,7 @@ export class WordpressService {
     );
   }
 
-  getSkills(): Observable<any> {
+  getSkillsData(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/skills`).pipe(
       map(response => response.map((item: any) => item.acf))
     );
@@ -36,13 +36,13 @@ export class WordpressService {
     );
   }
 
-  getSelectedLawyers(): Observable<any> {
+  getSelectedLawyersData(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/selected_lawyer`).pipe(
       map(response => response.map((item: any) => item.acf))
     );
   }
 
-  getTeam(): Observable<any> {
+  getTeamData(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/team`).pipe(
       map(response => response.map((item: any) => item.acf))
     );
@@ -54,7 +54,7 @@ export class WordpressService {
     );
   }
 
-  getAuctions(): Observable<any> {
+  getAuctionsData(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/auctions`).pipe(
       map(response => response.map((item: any) => item.acf))
     );
@@ -66,7 +66,7 @@ export class WordpressService {
     );
   }
 
-  getSelectedAuction(): Observable<any> {
+  getSelectedAuctionData(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/selected_auction`).pipe(
       map(response => response[0]?.acf)
     );

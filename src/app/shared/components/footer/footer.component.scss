@@ -49,6 +49,7 @@
 
   .footer-address {
     margin: 3vw;
+    line-height: 2;
     font-size: 0.9rem !important;
     a {
       color: map.get(vars.$theme-colors, "white");
