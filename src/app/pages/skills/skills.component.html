@@ -1,1 +1,43 @@
-<p>skills works!</p>
+<div class="full-screen-container">
+  <div class="skills-wrapper">
+    <section id="first-section" class="first-section">
+      <div class="container mb-5">
+        <div class="row justify-content-center">
+          <div class="col-auto d-flex flex-column align-items-center">
+            <div class="hero-section d-flex flex-column align-items-center">
+              <h1>{{ skillsData?.title_1 }}</h1>
+              <div class="row slogan my-5 w-150">
+                <div class="col text-center mb-5">
+                  <h3>{{ skillsData?.subtitle_1 }}</h3>
+                </div>
+              </div>
+              <div class="scroll-indicator mt-5">
+                <img
+                  src="assets/icons/arrow_circle_down.webp"
+                  alt="Scroll Down"
+                  (click)="scrollToSection('second-section')"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="second-section" class="second-section">
+      <div class="d-flex flex-column align-items-start">
+        <h3>{{ skillsData?.title_2 }}</h3>
+
+        <div class="skills-list p-5">
+          <div *ngFor="let box of [skillsData?.box_1, skillsData?.box_2, skillsData?.box_3, skillsData?.box_4,
+                                   skillsData?.box_5, skillsData?.box_6, skillsData?.box_7, skillsData?.box_8,
+                                   skillsData?.box_9, skillsData?.box_10]" class="skill-box">
+            {{ box }}
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </div>
+</div>

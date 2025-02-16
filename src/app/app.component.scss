@@ -1,7 +1,8 @@
 @use "sass:map";
 @use "../styles/_variables.scss" as vars;
 
-body.office-page app-header {
+body.office-page app-header,
+body.competences-page app-header {
   position: absolute;
   top: 0;
   left: 0;
@@ -10,3 +11,4 @@ body.office-page app-header {
   z-index: 99;
   overflow-y: hidden;
 }
+

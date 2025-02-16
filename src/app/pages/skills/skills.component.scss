@@ -1,0 +1,111 @@
+@use "sass:map";
+@use "../../../styles/_variables.scss" as vars;
+
+.full-screen-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-wrapper {
+  flex: 0 0 auto;
+}
+
+.skills-wrapper {
+  .first-section {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+
+    .hero-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      margin-top: 15rem;
+
+      h1 {
+        color: map.get(vars.$theme-colors, "grey");
+
+        .highlighted-number {
+          color: map.get(vars.$theme-colors, "dark-orange");
+        }
+      }
+    }
+
+    .slogan {
+      h3 {
+        color: map.get(vars.$theme-colors, "grey");
+      }
+    }
+
+    .scroll-indicator img {
+      width: 40px;
+      height: auto;
+    }
+  }
+
+  .second-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    background-color: map.get(vars.$theme-colors, "light-grey");
+    text-align: center;
+
+    .section-title {
+      color: map.get(vars.$theme-colors, "blue");
+      text-align: start;
+      margin-bottom: 4rem;
+    }
+
+    h3 {
+      color: map.get(vars.$theme-colors, "blue");
+      margin-top: 3rem;
+      margin-left: 8vw;
+      align-items: start;
+      justify-self: start;
+    }
+
+    .skills-list {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.5rem;
+      justify-content: center;
+      align-items: center;
+      max-width: 90%;
+      margin: 0 auto;
+      overflow: hidden;
+
+      .skill-box {
+        background-color: map.get(vars.$theme-colors, "light-blue");
+        padding: 2.5rem;
+        color: map.get(vars.$theme-colors, "white");
+        display: flex;
+        align-items: end;
+        justify-content: start;
+        text-align: start;
+        min-height: 30vh;
+        min-width: 30vh;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
+        transition: transform 0.3s ease-in-out;
+        border: 3px solid transparent;
+
+        &:hover {
+          transform: scale(1.05);
+          background-color: map.get(vars.$theme-colors, "blue");
+          border: 3px solid map.get(vars.$theme-colors, "dark-orange");
+        }
+      }
+    }
+  }
+}
+

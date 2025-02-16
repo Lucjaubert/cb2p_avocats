@@ -23,12 +23,12 @@ export class AppComponent implements OnInit {
 
   homepageData: any;
   officeData: any;
-  skills: any[] = [];
-  selectedLawyers: any[] = [];
-  team: any[] = [];
+  skillsData: any[] = [];
+  selectedLawyersData: any[] = [];
+  teamData: any[] = [];
   contactData: any;
-  auctions: any[] = [];
-  selectedAuction: any;
+  auctionsData: any[] = [];
+  selectedAuctionData: any;
 
   constructor(private router: Router, private wordpressService: WordpressService) {}
 
@@ -41,28 +41,28 @@ export class AppComponent implements OnInit {
       this.officeData = data;
     });
 
-    this.wordpressService.getSkills().subscribe(data => {
-      this.skills = data;
+    this.wordpressService.getSkillsData().subscribe(data => {
+      this.skillsData = data;
     });
 
-    this.wordpressService.getSelectedLawyers().subscribe(data => {
-      this.selectedLawyers = data;
+    this.wordpressService.getSelectedLawyersData().subscribe(data => {
+      this.selectedLawyersData = data;
     });
 
-    this.wordpressService.getTeam().subscribe(data => {
-      this.team = data;
+    this.wordpressService.getTeamData().subscribe(data => {
+      this.teamData = data;
     });
 
     this.wordpressService.getContactData().subscribe(data => {
       this.contactData = data;
     });
 
-    this.wordpressService.getAuctions().subscribe(data => {
-      this.auctions = data;
+    this.wordpressService.getAuctionsData().subscribe(data => {
+      this.auctionsData = data;
     });
 
-    this.wordpressService.getSelectedAuction().subscribe(data => {
-      this.selectedAuction = data;
+    this.wordpressService.getSelectedAuctionData().subscribe(data => {
+      this.selectedAuctionData = data;
     });
 
     this.router.events.subscribe(event => {

@@ -1,6 +1,10 @@
-<body [class.office-page]="currentRoute.includes('/le-cabinet')">
+<body
+  [class.office-page]="currentRoute.includes('/le-cabinet')"
+  [class.competences-page]="currentRoute.includes('/competences')"
+>
   <app-header></app-header>
   <router-outlet></router-outlet>
   <app-footer></app-footer>
 </body>
+
 
