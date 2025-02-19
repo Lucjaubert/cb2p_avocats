@@ -33,7 +33,7 @@ export const routes: Routes = [
     title: 'Le cabinet'
   },
   {
-    path: 'competence-selectionnee',
+    path: 'competence-selectionnee/:slug',
     loadComponent: () =>
       import('./pages/selected-skill/selected-skill.component').then((m) => m.SelectedSkillComponent),
     title: 'Compétence sélectionnée'

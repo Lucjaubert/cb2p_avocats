@@ -11,6 +11,7 @@
 }
 
 .skills-wrapper {
+
   .first-section {
     width: 100%;
     min-height: 100vh;
@@ -49,6 +50,7 @@
     .scroll-indicator img {
       width: 40px;
       height: auto;
+      cursor: pointer;
     }
   }
 
@@ -61,18 +63,10 @@
     background-color: map.get(vars.$theme-colors, "light-grey");
     text-align: center;
 
-    .section-title {
-      color: map.get(vars.$theme-colors, "blue");
-      text-align: start;
-      margin-bottom: 4rem;
-    }
-
     h3 {
       color: map.get(vars.$theme-colors, "blue");
       margin-top: 3rem;
       margin-left: 8vw;
-      align-items: start;
-      justify-self: start;
     }
 
     .skills-list {
@@ -124,5 +118,54 @@
       }
     }
   }
-}
 
+  .third-section {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+
+    .third-section-left {
+      background-color: #2D4263; /* Exemple d'arrière-plan */
+      color: #fff;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .intro-text {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+
+      .lawyer-name {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+      }
+
+      .mail-link img {
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+      }
+    }
+
+    .third-section-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+
+      .lawyer-photo {
+        max-width: 300px;
+        width: 100%;
+        height: auto;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      }
+    }
+  }
+
+}

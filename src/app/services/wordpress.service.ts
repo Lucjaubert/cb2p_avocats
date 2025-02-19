@@ -10,6 +10,8 @@ export class WordpressService {
 
   private apiUrl = environment.apiUrl;
 
+  private skillsData: any = null;
+
   constructor(private http: HttpClient) {}
 
   getHomepageData(): Observable<any> {
@@ -26,13 +28,10 @@ export class WordpressService {
 
   getSkillsData(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/skills`).pipe(
-      map(response => response.map((item: any) => item.acf))
-    );
-  }
-
-  getSkillById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/skills/${id}`).pipe(
-      map(response => response.acf)
+      map(response => {
+        const item = Array.isArray(response) && response.length > 0 ? response[0] : null;
+        return item;
+      })
     );
   }
 
@@ -57,12 +56,6 @@ export class WordpressService {
   getAuctionsData(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/auctions`).pipe(
       map(response => response.map((item: any) => item.acf))
-    );
-  }
-
-  getAuctionById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/auctions/${id}`).pipe(
-      map(response => response.acf)
     );
   }
 
