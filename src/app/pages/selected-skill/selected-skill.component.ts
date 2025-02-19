@@ -7,6 +7,7 @@ import { WordpressService } from '../../services/wordpress.service';
 interface Lawyer {
   name: string;
   photo: string;
+  email?: string; // <-- Nouvelle propriété pour gérer l'email
 }
 
 @Component({
@@ -21,6 +22,7 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
   skillSlug = '';
   selectedSkill: {
     title?: string;
+    title_selected?: string;
     columns?: Array<{ title: string; subtitle: string }>;
   } | null = null;
 
@@ -55,7 +57,7 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
 
     this.wpService.getSkillsData().subscribe((data) => {
       if (data && data.acf) {
-        const matchingKey = Object.keys(data.acf).find(key =>
+        const matchingKey = Object.keys(data.acf).find((key) =>
           key.startsWith('box_') &&
           this.areSlugsEqual(data.acf[key], this.skillSlug)
         );
@@ -63,6 +65,7 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
         if (matchingKey) {
           const boxTitle = data.acf[matchingKey] || '';
           const skillColumns: Array<{ title: string; subtitle: string }> = [];
+          const skillTitleSelected = data.acf.title_selected || '';
 
           for (let i = 1; i <= 4; i++) {
             const tKey = `title_${i}_${matchingKey}`;
@@ -74,36 +77,47 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
             }
           }
 
-          this.selectedSkill = { title: boxTitle, columns: skillColumns };
+          this.selectedSkill = {
+            title: boxTitle,
+            title_selected: skillTitleSelected,
+            columns: skillColumns
+          };
+
           this.titleService.setTitle(`Compétence - ${boxTitle}`);
 
           const allLawyersDict: { [key: string]: Lawyer } = {};
 
+          // Pour chaque "avocat", on récupère name, photo, ET email
           if (data.acf.title_lawyer_name_1) {
             allLawyersDict['title_lawyer_name_1'] = {
               name: data.acf.title_lawyer_name_1,
               photo:
                 data.acf.title_lawyer_name_1_image?.url ||
                 data.acf.title_lawyer_name_1_image ||
-                'assets/images/placeholder-lawyer.jpg'
+                'assets/images/placeholder-lawyer.jpg',
+              email: data.acf.email_lawyer_name_1 || '' // <-- champ ACF email_lawyer_name_1
             };
           }
+
           if (data.acf.title_lawyer_name_2) {
             allLawyersDict['title_lawyer_name_2'] = {
               name: data.acf.title_lawyer_name_2,
               photo:
                 data.acf.title_lawyer_name_2_image?.url ||
                 data.acf.title_lawyer_name_2_image ||
-                'assets/images/placeholder-lawyer.jpg'
+                'assets/images/placeholder-lawyer.jpg',
+              email: data.acf.email_lawyer_name_2 || '' // <-- champ ACF email_lawyer_name_2
             };
           }
+
           if (data.acf.title_lawyer_name_3) {
             allLawyersDict['title_lawyer_name_3'] = {
               name: data.acf.title_lawyer_name_3,
               photo:
                 data.acf.title_lawyer_name_3_image?.url ||
                 data.acf.title_lawyer_name_3_image ||
-                'assets/images/placeholder-lawyer.jpg'
+                'assets/images/placeholder-lawyer.jpg',
+              email: data.acf.email_lawyer_name_3 || '' // <-- champ ACF email_lawyer_name_3
             };
           }
 
@@ -130,7 +144,6 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
     return title
       .toLowerCase()
       .replace(/\s+/g, '-');
-    // .replace(/[^\w-]+/g, '');
   }
 
   private areSlugsEqual(text1: string, text2: string): boolean {
