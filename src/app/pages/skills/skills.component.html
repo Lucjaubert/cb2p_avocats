@@ -29,15 +29,11 @@
         <h3>{{ skillsData?.title_2 }}</h3>
 
         <div class="skills-list p-5">
-          <div *ngFor="let box of [skillsData?.box_1, skillsData?.box_2, skillsData?.box_3, skillsData?.box_4,
-                                   skillsData?.box_5, skillsData?.box_6, skillsData?.box_7, skillsData?.box_8,
-                                   skillsData?.box_9, skillsData?.box_10]" class="skill-box">
-            {{ box }}
+          <div *ngFor="let skill of skillsList" class="skill-box" [routerLink]="['/competence-selectionnee', skill.slug]">
+            {{ skill.title }}
           </div>
         </div>
       </div>
     </section>
-
-
   </div>
 </div>
