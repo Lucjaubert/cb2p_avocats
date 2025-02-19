@@ -7,7 +7,7 @@ import { WordpressService } from '../../services/wordpress.service';
 interface Lawyer {
   name: string;
   photo: string;
-  email?: string; // <-- Nouvelle propriété pour gérer l'email
+  email?: string; 
 }
 
 @Component({
@@ -87,7 +87,6 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
 
           const allLawyersDict: { [key: string]: Lawyer } = {};
 
-          // Pour chaque "avocat", on récupère name, photo, ET email
           if (data.acf.title_lawyer_name_1) {
             allLawyersDict['title_lawyer_name_1'] = {
               name: data.acf.title_lawyer_name_1,
@@ -95,7 +94,7 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
                 data.acf.title_lawyer_name_1_image?.url ||
                 data.acf.title_lawyer_name_1_image ||
                 'assets/images/placeholder-lawyer.jpg',
-              email: data.acf.email_lawyer_name_1 || '' // <-- champ ACF email_lawyer_name_1
+              email: data.acf.email_lawyer_name_1 || '' 
             };
           }
 
@@ -106,7 +105,7 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
                 data.acf.title_lawyer_name_2_image?.url ||
                 data.acf.title_lawyer_name_2_image ||
                 'assets/images/placeholder-lawyer.jpg',
-              email: data.acf.email_lawyer_name_2 || '' // <-- champ ACF email_lawyer_name_2
+              email: data.acf.email_lawyer_name_2 || '' 
             };
           }
 
@@ -117,7 +116,7 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
                 data.acf.title_lawyer_name_3_image?.url ||
                 data.acf.title_lawyer_name_3_image ||
                 'assets/images/placeholder-lawyer.jpg',
-              email: data.acf.email_lawyer_name_3 || '' // <-- champ ACF email_lawyer_name_3
+              email: data.acf.email_lawyer_name_3 || '' 
             };
           }
 
