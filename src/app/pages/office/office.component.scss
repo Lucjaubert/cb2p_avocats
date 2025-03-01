@@ -70,8 +70,10 @@
       position: relative;
       margin-bottom: 25vh;
 
-      h3 {
-        color: map.get(vars.$theme-colors, "blue") !important;
+      h5,
+      p {
+        color: map.get(vars.$theme-colors, "blue");
+        white-space: pre-line;
       }
 
       .line {

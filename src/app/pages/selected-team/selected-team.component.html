@@ -1,0 +1,54 @@
+<div class="full-screen-container" *ngIf="displayedMember">
+  <div class="selected-team-wrapper">
+
+    <section id="third-section" class="third-section">
+      <div class="container-fluid px-0">
+        <div class="row no-gutters">
+
+          <!-- Colonne gauche : titre, nom, fonction, présentation -->
+          <div
+            class="col-md-6 third-section-left d-flex flex-column align-items-center justify-content-center"
+          >
+            <!-- Intro différent si c'est un avocat ou un assistant -->
+            <p class="intro-text">
+              {{ displayedMember.isLawyer
+                ? 'Un(e) de nos associés à votre écoute'
+                : 'Un(e) de nos assistant(e)s à votre écoute'
+              }}
+            </p>
+
+            <!-- Nom -->
+            <p class="lawyer-name">
+              {{ displayedMember.name }}
+            </p>
+
+            <!-- Fonction (HTML) -->
+            <div
+              class="member-function my-2"
+              *ngIf="displayedMember.functionHtml"
+              [innerHTML]="displayedMember.functionHtml"
+            ></div>
+
+            <!-- Présentation (HTML) -->
+            <div
+              class="member-presentation mt-4"
+              [innerHTML]="displayedMember.presentationHtml"
+            ></div>
+          </div>
+
+          <!-- Colonne droite : photo -->
+          <div
+            class="col-md-6 third-section-right d-flex align-items-center justify-content-center"
+          >
+            <img
+              class="member-photo"
+              [src]="displayedMember.photo"
+              [alt]="displayedMember.name"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>

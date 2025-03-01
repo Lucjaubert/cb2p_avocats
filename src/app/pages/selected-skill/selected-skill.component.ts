@@ -178,9 +178,7 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
 
   navigateToSkill(skillSlug: string): void {
     this.router.navigate(['/competence-selectionnee', skillSlug]).then(() => {
-      // Une fois la navigation terminée
       if (isPlatformBrowser(this.platformId)) {
-        // On cible l'élément de la nouvelle page
         const firstSection = document.getElementById('first-section');
         if (firstSection) {
           firstSection.scrollIntoView({ behavior: 'smooth' });

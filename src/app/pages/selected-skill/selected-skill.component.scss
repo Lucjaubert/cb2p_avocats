@@ -103,6 +103,7 @@
         color: map.get(vars.$theme-colors, "white");
         text-align: start;
         font-weight: 300;
+        white-space: pre-line;
       }
     }
 
@@ -197,7 +198,6 @@
 
       .lawyer-photo {
         max-width: 300px;
-        height: auto;
         border-radius: 4px;
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
       }

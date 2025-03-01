@@ -7,6 +7,7 @@
           <a
             class="nav-link nav-link-homepage"
             [routerLink]="['']"
+            [class.active]="isHomepageActive()"
           >
             Accueil
           </a>
@@ -16,6 +17,7 @@
           <a
             class="nav-link nav-link-office"
             [routerLink]="['/le-cabinet']"
+            [class.active]="isOfficeActive()"
           >
             Le cabinet
           </a>
@@ -34,7 +36,8 @@
         <li class="nav-item nav-item-team">
           <a
             class="nav-link nav-link-team"
-            [routerLink]="['/équipe']"
+            [routerLink]="['/equipe']"
+            [class.active]="isEquipeActive()"
           >
             Équipe
           </a>
@@ -44,6 +47,7 @@
           <a
             class="nav-link nav-link-contact"
             [routerLink]="['/contact']"
+            [class.active]="isContactActive()"
           >
             Contactez-nous
           </a>
@@ -52,7 +56,9 @@
         <li class="nav-item nav-item-auctions">
           <a
             class="nav-link nav-link-auctions"
-            [routerLink]="['/ventes-aux-enchères']"
+            [routerLink]="['/ventes-aux-encheres']"
+            [class.active]="isInfosAuctionActive()"
+
           >
             Ventes aux enchères
           </a>
