@@ -1,44 +1,33 @@
 <div class="full-screen-container" *ngIf="displayedMember">
   <div class="selected-team-wrapper">
-
-    <section id="third-section" class="third-section">
+    <section id="first-section" class="first-section mt-2">
       <div class="container-fluid px-0">
         <div class="row no-gutters">
 
-          <!-- Colonne gauche : titre, nom, fonction, présentation -->
-          <div
-            class="col-md-6 third-section-left d-flex flex-column align-items-center justify-content-center"
-          >
-            <!-- Intro différent si c'est un avocat ou un assistant -->
-            <p class="intro-text">
-              {{ displayedMember.isLawyer
-                ? 'Un(e) de nos associés à votre écoute'
-                : 'Un(e) de nos assistant(e)s à votre écoute'
-              }}
-            </p>
+          <div class="col-md-6 p-5 first-section-left d-flex flex-column align-items-center justify-content-center">
 
-            <!-- Nom -->
             <p class="lawyer-name">
               {{ displayedMember.name }}
             </p>
 
-            <!-- Fonction (HTML) -->
             <div
               class="member-function my-2"
               *ngIf="displayedMember.functionHtml"
               [innerHTML]="displayedMember.functionHtml"
             ></div>
 
-            <!-- Présentation (HTML) -->
             <div
               class="member-presentation mt-4"
               [innerHTML]="displayedMember.presentationHtml"
             ></div>
+            <a class="mail-link mt-5" [href]="'mailto:' + (displayedMember.email || 'contact@cabinet.com')">
+              <img src="assets/icons/email-white.webp" alt="Email" />
+              <span class="mx-2">{{ displayedMember.email || 'contact@cabinet.com' }}</span>
+            </a>
           </div>
 
-          <!-- Colonne droite : photo -->
           <div
-            class="col-md-6 third-section-right d-flex align-items-center justify-content-center"
+            class="col-md-6 first-section-right d-flex align-items-center justify-content-center"
           >
             <img
               class="member-photo"
@@ -46,9 +35,9 @@
               [alt]="displayedMember.name"
             />
           </div>
+
         </div>
       </div>
     </section>
-
   </div>
 </div>

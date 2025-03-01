@@ -1,7 +1,6 @@
 <div class="full-screen-container">
   <div class="team-wrapper">
 
-    <!-- Section AVOCATS -->
     <section id="first-section" class="first-section">
       <div class="container">
         <h2>{{ teamData?.title_1 }}</h2>
@@ -10,15 +9,12 @@
           <div class="line ms-4"></div>
         </div>
         <div class="lawyers-row mt-5">
-          <!-- On boucle sur lawyersList -->
           <div
             class="lawyer-card"
-            *ngFor="let av of lawyersList; let i = index"
+            *ngFor="let av of lawyersList"
+            (click)="goToSelectedMember(av.id)"
           >
-            <div
-              class="image-container"
-              (click)="goToSelectedMember(i, true)"
-            >
+            <div class="image-container">
               <img
                 class="lawyer-photo"
                 [src]="av.photo"
@@ -43,7 +39,6 @@
       </div>
     </section>
 
-    <!-- Section ASSISTANTS -->
     <section id="second-section" class="second-section">
       <div class="container">
         <div class="assistant-section d-flex">
@@ -51,15 +46,12 @@
           <div class="line ms-4"></div>
         </div>
         <div class="lawyers-row mt-5">
-          <!-- On boucle sur assistantsList -->
           <div
             class="lawyer-card"
-            *ngFor="let assistant of assistantsList; let j = index"
+            *ngFor="let assistant of assistantsList"
+            (click)="goToSelectedMember(assistant.id)"
           >
-            <div
-              class="image-container"
-              (click)="goToSelectedMember(j, false)"
-            >
+            <div class="image-container">
               <img
                 class="lawyer-photo"
                 [src]="assistant.photo"

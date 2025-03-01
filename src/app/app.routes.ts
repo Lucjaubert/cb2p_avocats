@@ -51,7 +51,7 @@ export const routes: Routes = [
     title: 'Équipe'
   },
   {
-    path: 'membre-equipe/:slug',
+    path: 'membre-equipe/:id',
     loadComponent: () =>
       import('./pages/selected-team/selected-team.component').then(m => m.SelectedTeamComponent),
     title: "Membre de l'équipe"
