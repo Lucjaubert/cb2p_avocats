@@ -8,7 +8,7 @@
               <h1 [innerHTML]="selectedSkill?.title"></h1>
               <div class="row slogan my-5 w-150">
                 <div class="col text-center mb-5">
-                  <h3>Accompagner et sécuriser les enjeux stratégiques des entreprises</h3>
+                  <h3 [innerHTML]="selectedSkill?.title_selected"></h3>
                 </div>
               </div>
               <div class="scroll-indicator mt-5">
@@ -49,12 +49,13 @@
       <div class="container-fluid px-0">
         <div class="row no-gutters">
           <div class="col-md-6 third-section-left d-flex flex-column align-items-center justify-content-center">
-            <p class="intro-text">Un de nos associés à votre écoute</p>
+            <p class="intro-text">Un(e) de nos associés à votre écoute</p>
             <p class="lawyer-name">
               {{ displayedLawyer.name }}
             </p>
-            <a class="mail-link" href="mailto:contact@cabinet.com">
-              <img src="assets/icons/email.svg" alt="Email" />
+            <a class="mail-link" [href]="'mailto:' + (displayedLawyer.email || 'contact@cabinet.com')">
+              <img src="assets/icons/email-white.webp" alt="Email" />
+              <span class="mx-2">{{ displayedLawyer.email || 'contact@cabinet.com' }}</span>
             </a>
           </div>
           <div class="col-md-6 third-section-right d-flex align-items-center justify-content-center">
@@ -66,6 +67,26 @@
           </div>
         </div>
       </div>
+      <div class="scroll-indicator">
+        <img
+          src="assets/icons/arrow_circle_down.webp"
+          alt="Scroll Down"
+          (click)="scrollToSection('fourth-section')"
+        />
+      </div>
     </section>
+
+    <section id="fourth-section" class="fourth-section" *ngIf="filteredSkills.length > 0">
+      <div class="d-flex flex-column align-items-start">
+        <h3>CB2P Avocats vous propose d’autres services :</h3>
+
+        <div class="skills-list p-5">
+          <div *ngFor="let skill of filteredSkills" class="skill-box" (click)="navigateToSkill(skill.slug)">
+            {{ skill.title }}
+          </div>
+        </div>
+      </div>
+    </section>
+
   </div>
 </div>
