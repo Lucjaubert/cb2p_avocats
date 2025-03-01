@@ -67,6 +67,26 @@
           </div>
         </div>
       </div>
+      <div class="scroll-indicator">
+        <img
+          src="assets/icons/arrow_circle_down.webp"
+          alt="Scroll Down"
+          (click)="scrollToSection('fourth-section')"
+        />
+      </div>
     </section>
+
+    <section id="fourth-section" class="fourth-section" *ngIf="filteredSkills.length > 0">
+      <div class="d-flex flex-column align-items-start">
+        <h3>CB2P Avocats vous propose d’autres services :</h3>
+
+        <div class="skills-list p-5">
+          <div *ngFor="let skill of filteredSkills" class="skill-box" (click)="navigateToSkill(skill.slug)">
+            {{ skill.title }}
+          </div>
+        </div>
+      </div>
+    </section>
+
   </div>
 </div>

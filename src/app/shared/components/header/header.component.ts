@@ -1,26 +1,39 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd, RouterLink } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
+  standalone: true,
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  standalone: true,
   imports: [
     CommonModule,
-    RouterModule
+    RouterLink
   ]
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  currentUrl: string = '';
+
+  constructor(private router: Router) {}
 
   ngOnInit() {
+    // On met à jour currentUrl à chaque fin de navigation
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: any) => {
+        this.currentUrl = event.urlAfterRedirects;
+      });
   }
 
-  ngOnDestroy() {
-
+  isCompetencesActive(): boolean {
+    // On retourne true si l'URL inclut "/competences"
+    // OU "/competence-selectionnee"
+    return (
+      this.currentUrl.includes('/competences') ||
+      this.currentUrl.includes('/competence-selectionnee')
+    );
   }
 }

@@ -1,13 +1,20 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation, Inject, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  ViewEncapsulation,
+  Inject,
+  PLATFORM_ID
+} from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { WordpressService } from '../../services/wordpress.service';
 
 interface Lawyer {
   name: string;
   photo: string;
-  email?: string; 
+  email?: string;
 }
 
 @Component({
@@ -28,6 +35,7 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
 
   lawyersList: Lawyer[] = [];
   displayedLawyer: Lawyer | null = null;
+  filteredSkills: Array<{ title: string; slug: string }> = [];
   private rotationInterval: any;
   private currentIndex = 0;
 
@@ -45,6 +53,7 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private titleService: Title,
     private metaService: Meta,
     private wpService: WordpressService,
@@ -52,9 +61,14 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    const encodedSlug = this.route.snapshot.paramMap.get('slug') || '';
-    this.skillSlug = decodeURIComponent(encodedSlug);
+    this.route.paramMap.subscribe(params => {
+      const newSlug = decodeURIComponent(params.get('slug') || '');
+      this.skillSlug = newSlug;
+      this.loadSkillData();
+    });
+  }
 
+  private loadSkillData(): void {
     this.wpService.getSkillsData().subscribe((data) => {
       if (data && data.acf) {
         const matchingKey = Object.keys(data.acf).find((key) =>
@@ -84,71 +98,67 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
           };
 
           this.titleService.setTitle(`Compétence - ${boxTitle}`);
-
-          const allLawyersDict: { [key: string]: Lawyer } = {};
-
-          if (data.acf.title_lawyer_name_1) {
-            allLawyersDict['title_lawyer_name_1'] = {
-              name: data.acf.title_lawyer_name_1,
-              photo:
-                data.acf.title_lawyer_name_1_image?.url ||
-                data.acf.title_lawyer_name_1_image ||
-                'assets/images/placeholder-lawyer.jpg',
-              email: data.acf.email_lawyer_name_1 || '' 
-            };
-          }
-
-          if (data.acf.title_lawyer_name_2) {
-            allLawyersDict['title_lawyer_name_2'] = {
-              name: data.acf.title_lawyer_name_2,
-              photo:
-                data.acf.title_lawyer_name_2_image?.url ||
-                data.acf.title_lawyer_name_2_image ||
-                'assets/images/placeholder-lawyer.jpg',
-              email: data.acf.email_lawyer_name_2 || '' 
-            };
-          }
-
-          if (data.acf.title_lawyer_name_3) {
-            allLawyersDict['title_lawyer_name_3'] = {
-              name: data.acf.title_lawyer_name_3,
-              photo:
-                data.acf.title_lawyer_name_3_image?.url ||
-                data.acf.title_lawyer_name_3_image ||
-                'assets/images/placeholder-lawyer.jpg',
-              email: data.acf.email_lawyer_name_3 || '' 
-            };
-          }
-
-          const lawyerKeys = this.skillLawyerMapping[boxTitle] || [];
-          this.lawyersList = lawyerKeys
-            .map((key) => allLawyersDict[key])
-            .filter((l) => !!l?.name);
-
-          if (isPlatformBrowser(this.platformId)) {
-            this.setupLawyerRotation();
-          }
+          this.setupLawyers(data.acf, boxTitle);
+          this.setupFourthSection(data.acf);
         }
       }
     });
   }
 
-  ngOnDestroy(): void {
-    if (this.rotationInterval) {
-      clearInterval(this.rotationInterval);
-    }
+  private areSlugsEqual(text1: string, text2: string): boolean {
+    return this.generateSlug(text1) === this.generateSlug(text2);
   }
 
   private generateSlug(title: string): string {
-    return title
-      .toLowerCase()
-      .replace(/\s+/g, '-');
+    return title.toLowerCase().replace(/\s+/g, '-');
   }
 
-  private areSlugsEqual(text1: string, text2: string): boolean {
-    const slug1 = this.generateSlug(text1);
-    const slug2 = this.generateSlug(text2);
-    return slug1 === slug2;
+  private setupLawyers(acfData: any, boxTitle: string): void {
+    const allLawyersDict: { [key: string]: Lawyer } = {};
+
+    if (acfData.title_lawyer_name_1) {
+      allLawyersDict['title_lawyer_name_1'] = {
+        name: acfData.title_lawyer_name_1,
+        photo: acfData.title_lawyer_name_1_image || 'assets/images/placeholder-lawyer.jpg',
+        email: acfData.email_lawyer_name_1 || ''
+      };
+    }
+
+    if (acfData.title_lawyer_name_2) {
+      allLawyersDict['title_lawyer_name_2'] = {
+        name: acfData.title_lawyer_name_2,
+        photo: acfData.title_lawyer_name_2_image || 'assets/images/placeholder-lawyer.jpg',
+        email: acfData.email_lawyer_name_2 || ''
+      };
+    }
+
+    if (acfData.title_lawyer_name_3) {
+      allLawyersDict['title_lawyer_name_3'] = {
+        name: acfData.title_lawyer_name_3,
+        photo: acfData.title_lawyer_name_3_image || 'assets/images/placeholder-lawyer.jpg',
+        email: acfData.email_lawyer_name_3 || ''
+      };
+    }
+
+    const lawyerKeys = this.skillLawyerMapping[boxTitle] || [];
+    this.lawyersList = lawyerKeys
+      .map(key => allLawyersDict[key])
+      .filter(l => !!l?.name);
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.setupLawyerRotation();
+    }
+  }
+
+  private setupFourthSection(acfData: any): void {
+    const allSkills = Object.keys(acfData)
+      .filter(key => key.startsWith('box_'))
+      .map(key => ({
+        title: acfData[key],
+        slug: this.generateSlug(acfData[key])
+      }));
+
+    this.filteredSkills = allSkills.filter(skill => skill.slug !== this.skillSlug);
   }
 
   private setupLawyerRotation(): void {
@@ -159,12 +169,27 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
         this.rotationInterval = setInterval(() => {
           this.currentIndex = (this.currentIndex + 1) % this.lawyersList.length;
           this.displayedLawyer = this.lawyersList[this.currentIndex];
-        }, 3000);
+        }, 3500);
       }
     } else {
       this.displayedLawyer = null;
     }
   }
+
+  navigateToSkill(skillSlug: string): void {
+    this.router.navigate(['/competence-selectionnee', skillSlug]).then(() => {
+      // Une fois la navigation terminée
+      if (isPlatformBrowser(this.platformId)) {
+        // On cible l'élément de la nouvelle page
+        const firstSection = document.getElementById('first-section');
+        if (firstSection) {
+          firstSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    });
+  }
+
+
 
   scrollToSection(sectionId: string): void {
     if (isPlatformBrowser(this.platformId)) {
@@ -172,6 +197,12 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.rotationInterval) {
+      clearInterval(this.rotationInterval);
     }
   }
 }

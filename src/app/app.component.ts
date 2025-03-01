@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { WordpressService } from './services/wordpress.service';
 import { HeaderComponent } from './shared/components/header/header.component';
@@ -15,7 +15,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
     FooterComponent
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   title = 'cb2p_avocats';
@@ -30,7 +30,11 @@ export class AppComponent implements OnInit {
   auctionsData: any[] = [];
   selectedAuctionData: any;
 
-  constructor(private router: Router, private wordpressService: WordpressService) {}
+  constructor(
+    private router: Router,
+    private wordpressService: WordpressService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
   ngOnInit() {
     this.wordpressService.getHomepageData().subscribe(data => {
@@ -68,6 +72,9 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.urlAfterRedirects;
+        if (isPlatformBrowser(this.platformId)) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
       }
     });
   }
