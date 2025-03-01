@@ -1,0 +1,87 @@
+@use "sass:map";
+@use "../../../styles/_variables.scss" as vars;
+
+.full-screen-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-wrapper {
+  flex: 0 0 auto;
+}
+
+.selected-team-wrapper {
+  width: 100%;
+
+  .container-fluid {
+    height: 100vh;
+  }
+
+    .first-section {
+      width: 100%;
+      min-height: 100vh;
+
+      .first-section-left {
+        background-color: map.get(vars.$theme-colors, "light-blue");
+        color: map.get(vars.$theme-colors, "white");
+        padding: 4rem 2rem;
+        text-align: center;
+        min-height: 100vh;
+
+        .intro-text {
+          font-size: 1.2rem;
+          margin-bottom: 1rem;
+        }
+
+        .lawyer-name {
+          font-size: 2rem;
+          font-weight: bold;
+          margin-bottom: 1rem;
+        }
+
+        .member-function {
+          p {
+            margin: 0;
+            font-style: italic;
+          }
+        }
+
+        .mail-link {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          color: map.get(vars.$theme-colors, "white");
+          text-decoration: none;
+
+          img {
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+          }
+        }
+
+        .member-presentation {
+          margin-top: 2rem;
+          line-height: 1.6;
+
+          p {
+            margin-bottom: 1rem;
+          }
+        }
+      }
+
+      .first-section-right {
+        background-color: map.get(vars.$theme-colors, "white");
+        padding: 4rem 2rem;
+        min-height: 100vh;
+
+        .member-photo {
+          max-width: 80%;
+          height: auto;
+          border-radius: 4px;
+          box-shadow: 0 2px 15px rgba(0,0,0,0.4);
+        }
+      }
+    }
+
+}

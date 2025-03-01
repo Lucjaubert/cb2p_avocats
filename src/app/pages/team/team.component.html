@@ -1,1 +1,73 @@
-<p>team works!</p>
+<div class="full-screen-container">
+  <div class="team-wrapper">
+
+    <section id="first-section" class="first-section">
+      <div class="container">
+        <h2>{{ teamData?.title_1 }}</h2>
+        <div class="lawyer-section d-flex">
+          <h4 class="mt-5">{{ teamData?.subtitle_1 }}</h4>
+          <div class="line ms-4"></div>
+        </div>
+        <div class="lawyers-row mt-5">
+          <div
+            class="lawyer-card"
+            *ngFor="let av of lawyersList"
+            (click)="goToSelectedMember(av.id)"
+          >
+            <div class="image-container">
+              <img
+                class="lawyer-photo"
+                [src]="av.photo"
+                alt="Avocat"
+              />
+              <div class="hover-overlay">
+                <div
+                  class="hover-text"
+                  [innerHTML]="av.nameFuncHtml"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-indicator">
+          <img
+            src="assets/icons/arrow_circle_down.webp"
+            alt="Scroll Down"
+            (click)="scrollToSection('second-section')"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section id="second-section" class="second-section">
+      <div class="container">
+        <div class="assistant-section d-flex">
+          <h4>{{ teamData?.subtitle_2 }}</h4>
+          <div class="line ms-4"></div>
+        </div>
+        <div class="lawyers-row mt-5">
+          <div
+            class="lawyer-card"
+            *ngFor="let assistant of assistantsList"
+            (click)="goToSelectedMember(assistant.id)"
+          >
+            <div class="image-container">
+              <img
+                class="lawyer-photo"
+                [src]="assistant.photo"
+                alt="Assistant"
+              />
+              <div class="hover-overlay">
+                <div
+                  class="hover-text"
+                  [innerHTML]="assistant.nameFuncHtml"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>

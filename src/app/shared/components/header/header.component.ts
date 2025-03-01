@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit() {
-    // On met à jour currentUrl à chaque fin de navigation
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: any) => {
@@ -29,11 +28,29 @@ export class HeaderComponent implements OnInit {
   }
 
   isCompetencesActive(): boolean {
-    // On retourne true si l'URL inclut "/competences"
-    // OU "/competence-selectionnee"
     return (
       this.currentUrl.includes('/competences') ||
       this.currentUrl.includes('/competence-selectionnee')
     );
+  }
+
+  isEquipeActive(): boolean {
+    return this.currentUrl.includes('/equipe');
+  }
+
+  isContactActive(): boolean {
+    return this.currentUrl.includes('/contact');
+  }
+
+  isHomepageActive(): boolean {
+    return this.currentUrl === '/';
+  }
+
+  isOfficeActive(): boolean {
+    return this.currentUrl.includes('/le-cabinet');
+  }
+
+  isInfosAuctionActive(): boolean {
+    return this.currentUrl.includes('/infos-encheres');
   }
 }

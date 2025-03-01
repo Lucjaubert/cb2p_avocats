@@ -1,7 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { Router, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import { WordpressService } from '../../services/wordpress.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class SkillsComponent implements OnInit {
     private titleService: Title,
     private metaService: Meta,
     private wpService: WordpressService,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -49,19 +49,13 @@ export class SkillsComponent implements OnInit {
   private generateSlug(title: string): string {
     return title
       .toLowerCase()
-      .replace(/\s+/g, '-')
-      ;
+      .replace(/\s+/g, '-');
   }
 
   goToSelectedSkill(slug: string): void {
-    console.log('Original slug:', slug);
-
     const encodedSlug = encodeURIComponent(slug);
-    console.log('Encoded slug:', encodedSlug);
-
     this.router.navigate(['/competence-selectionnee', encodedSlug]);
   }
-
 
   scrollToSection(sectionId: string): void {
     const element = document.getElementById(sectionId);

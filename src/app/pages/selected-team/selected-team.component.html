@@ -1,0 +1,43 @@
+<div class="full-screen-container" *ngIf="displayedMember">
+  <div class="selected-team-wrapper">
+    <section id="first-section" class="first-section mt-2">
+      <div class="container-fluid px-0">
+        <div class="row no-gutters">
+
+          <div class="col-md-6 p-5 first-section-left d-flex flex-column align-items-center justify-content-center">
+
+            <p class="lawyer-name">
+              {{ displayedMember.name }}
+            </p>
+
+            <div
+              class="member-function my-2"
+              *ngIf="displayedMember.functionHtml"
+              [innerHTML]="displayedMember.functionHtml"
+            ></div>
+
+            <div
+              class="member-presentation mt-4"
+              [innerHTML]="displayedMember.presentationHtml"
+            ></div>
+            <a class="mail-link mt-5" [href]="'mailto:' + (displayedMember.email || 'contact@cabinet.com')">
+              <img src="assets/icons/email-white.webp" alt="Email" />
+              <span class="mx-2">{{ displayedMember.email || 'contact@cabinet.com' }}</span>
+            </a>
+          </div>
+
+          <div
+            class="col-md-6 first-section-right d-flex align-items-center justify-content-center"
+          >
+            <img
+              class="member-photo"
+              [src]="displayedMember.photo"
+              [alt]="displayedMember.name"
+            />
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
