@@ -75,6 +75,7 @@
       p {
         color: map.get(vars.$theme-colors, "blue");
         white-space: pre-line;
+        font-weight: 500;
       }
 
       .line {
@@ -347,6 +348,7 @@
     .slogan {
       h4 {
         color: map.get(vars.$theme-colors, "grey");
+        line-height: 2;
       }
     }
 

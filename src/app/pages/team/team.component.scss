@@ -4,6 +4,17 @@
 .full-screen-container {
   display: flex;
   flex-direction: column;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.header-wrapper {
+  flex: 0 0 auto;
+}
+
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
 }
 
 .team-wrapper {
@@ -21,16 +32,18 @@
       .lawyer-section {
         display: flex;
         align-items: baseline;
-
-        .line {
-          width: 30vw;
-          height: 1px;
-          background-color: map.get(vars.$theme-colors, "white");
-          margin-bottom: 2rem;
-        }
+        width: 50%;
 
         h4 {
           color: map.get(vars.$theme-colors, "white");
+          white-space: nowrap;
+        }
+
+        .line {
+          flex-grow: 1;
+          height: 1px;
+          background-color: map.get(vars.$theme-colors, "white");
+          margin-left: 1rem;
         }
       }
 
@@ -113,16 +126,18 @@
       .assistant-section {
         display: flex;
         align-items: baseline;
-
-        .line {
-          width: 30vw;
-          height: 1px;
-          background-color: map.get(vars.$theme-colors, "white");
-          margin-bottom: 2rem;
-        }
+        width: 50%;
 
         h4 {
           color: map.get(vars.$theme-colors, "white");
+          white-space: nowrap;
+        }
+
+        .line {
+          flex-grow: 1;
+          height: 1px;
+          background-color: map.get(vars.$theme-colors, "white");
+          margin-left: 1rem;
         }
       }
 
