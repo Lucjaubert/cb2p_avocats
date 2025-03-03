@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { WordpressService } from '../../services/wordpress.service';
 
@@ -14,20 +14,13 @@ import { WordpressService } from '../../services/wordpress.service';
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.scss']
 })
-export class TeamComponent implements OnInit {
+export class TeamComponent implements OnInit, AfterViewInit {
+  @ViewChild('teamContainer') teamContainer!: ElementRef;
+
   teamData: any = null;
 
-  lawyersList: Array<{
-    id: number;
-    photo: string;
-    nameFuncHtml: string;
-  }> = [];
-
-  assistantsList: Array<{
-    id: number;
-    photo: string;
-    nameFuncHtml: string;
-  }> = [];
+  lawyersList: Array<{ id: number; photo: string; nameFuncHtml: string; }> = [];
+  assistantsList: Array<{ id: number; photo: string; nameFuncHtml: string; }> = [];
 
   constructor(
     private wpService: WordpressService,
@@ -73,7 +66,19 @@ export class TeamComponent implements OnInit {
           nameFuncHtml
         });
       }
+
+      setTimeout(() => {
+        if (this.teamContainer) {
+          this.teamContainer.nativeElement.classList.remove('hidden');
+        }
+      }, 100);
     });
+  }
+
+  ngAfterViewInit(): void {
+    if (this.teamContainer) {
+      this.teamContainer.nativeElement.classList.add('hidden');
+    }
   }
 
   scrollToSection(sectionId: string): void {

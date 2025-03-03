@@ -45,29 +45,34 @@ export class SelectedTeamComponent implements OnInit {
       let photoKey = '';
       let presentationKey = '';
       let functionKey = '';
+      let emailKey = '';
 
       if (isLawyer) {
         nameKey = `lawyer_name_${id}`;
         photoKey = `lawyer_image_${id}`;
         presentationKey = `lawyer_name_${id}_presentation`;
-        functionKey = `lawyer_name_function_${id}`;
+        functionKey = `lawyer_${id}_function`;
+        emailKey = `lawyer_${id}_email`;
       } else {
         const assistantIndex = id - 6;
         nameKey = `assistant_name_${assistantIndex}`;
         photoKey = `assistant_image_${assistantIndex}`;
         presentationKey = `assistant_name_${assistantIndex}_presentation`;
-        functionKey = `assistant_name_${assistantIndex}_function`;
+        functionKey = `assistant_${assistantIndex}_function`;
+        emailKey = `assistant_${assistantIndex}_email`;
       }
 
       const nameVal = item[nameKey] || 'Inconnu';
       const photoVal = item[photoKey] || 'assets/images/placeholder.png';
       const funcVal = item[functionKey] || '';
       const presentationVal = item[presentationKey] || '';
+      const emailVal = item[emailKey] && item[emailKey].trim() !== '' ? item[emailKey] : 'contact@cabinet.com';
 
       this.displayedMember = {
         isLawyer,
         name: nameVal,
         photo: photoVal,
+        email: emailVal,
         functionHtml: funcVal,
         presentationHtml: presentationVal
       };

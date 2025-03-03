@@ -60,7 +60,7 @@ h2 { @include heading-styles(1.65rem, 2rem); font-weight: 600; }
 h3 { @include heading-styles(1rem, 1.75rem); font-weight: 500; }
 h4 { @include heading-styles(1.375rem, 1.5rem); font-weight: 500; }
 h5 { @include heading-styles(1.1rem, 1.3rem); font-weight: 500; }
-h6 { @include heading-styles(0.8rem, 1rem); font-weight: 500; }
+h6 { @include heading-styles(0.8rem, 1rem); font-weight: 400; }
 
 ul, li, a, p {
   font-family: 'Work Sans', sans-serif;

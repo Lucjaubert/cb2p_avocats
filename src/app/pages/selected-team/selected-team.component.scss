@@ -20,11 +20,17 @@
     .first-section {
       width: 100%;
       min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
 
       .first-section-left {
         background-color: map.get(vars.$theme-colors, "light-blue");
         color: map.get(vars.$theme-colors, "white");
-        padding: 4rem 2rem;
+        padding: 5rem 5rem;
         text-align: center;
         min-height: 100vh;
 
@@ -37,6 +43,10 @@
           font-size: 2rem;
           font-weight: bold;
           margin-bottom: 1rem;
+        }
+
+        h6 {
+          color: map.get(vars.$theme-colors, "gold");
         }
 
         .member-function {
@@ -52,13 +62,19 @@
           gap: 0.5rem;
           color: map.get(vars.$theme-colors, "white");
           text-decoration: none;
+          margin-top: 1.5rem;
 
           img {
             width: 32px;
             height: 32px;
             cursor: pointer;
           }
+
+          &:hover {
+            text-decoration: underline;
+          }
         }
+
 
         .member-presentation {
           margin-top: 2rem;
@@ -72,16 +88,19 @@
 
       .first-section-right {
         background-color: map.get(vars.$theme-colors, "white");
-        padding: 4rem 2rem;
+        padding: 5rem 5rem;
         min-height: 100vh;
 
         .member-photo {
-          max-width: 80%;
+          max-width: 100%;
           height: auto;
           border-radius: 4px;
           box-shadow: 0 2px 15px rgba(0,0,0,0.4);
         }
       }
     }
+}
 
+.selected-team-wrapper[_ngcontent-ng-c1076159910] .first-section[_ngcontent-ng-c1076159910] .first-section-left[_ngcontent-ng-c1076159910] .mail-link[_ngcontent-ng-c1076159910] {
+  font-weight: 300;
 }

@@ -1,10 +1,12 @@
 <div class="full-screen-container" *ngIf="displayedMember">
   <div class="selected-team-wrapper">
-    <section id="first-section" class="first-section mt-2">
+    <section id="first-section" class="first-section mt-4">
       <div class="container-fluid px-0">
         <div class="row no-gutters">
 
-          <div class="col-md-6 p-5 first-section-left d-flex flex-column align-items-center justify-content-center">
+          <div class="col-md-6 first-section-left d-flex flex-column align-items-start justify-content-center">
+
+            <h6 class="mb-4">Équipe</h6>
 
             <p class="lawyer-name">
               {{ displayedMember.name }}
@@ -17,18 +19,17 @@
             ></div>
 
             <div
-              class="member-presentation mt-4"
+              class="member-presentation text-start mt-4"
               [innerHTML]="displayedMember.presentationHtml"
             ></div>
-            <a class="mail-link mt-5" [href]="'mailto:' + (displayedMember.email || 'contact@cabinet.com')">
+
+            <a class="mail-link mt-5" [href]="'mailto:' + displayedMember.email">
               <img src="assets/icons/email-white.webp" alt="Email" />
-              <span class="mx-2">{{ displayedMember.email || 'contact@cabinet.com' }}</span>
+              <span class="mx-2">{{ displayedMember.email }}</span>
             </a>
           </div>
 
-          <div
-            class="col-md-6 first-section-right d-flex align-items-center justify-content-center"
-          >
+          <div class="col-md-6 first-section-right d-flex align-items-center justify-content-center">
             <img
               class="member-photo"
               [src]="displayedMember.photo"
