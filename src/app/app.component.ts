@@ -1,5 +1,5 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID, Renderer2 } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { WordpressService } from './services/wordpress.service';
 import { HeaderComponent } from './shared/components/header/header.component';
@@ -33,7 +33,8 @@ export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     private wordpressService: WordpressService,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit() {
@@ -72,7 +73,14 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.currentRoute = event.urlAfterRedirects;
+
         if (isPlatformBrowser(this.platformId)) {
+          if (this.currentRoute.includes('/contact')) {
+            this.renderer.addClass(document.body, 'contact-page');
+          } else {
+            this.renderer.removeClass(document.body, 'contact-page');
+          }
+
           window.scrollTo({ top: 0, behavior: 'smooth' });
         }
       }

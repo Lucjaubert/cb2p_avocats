@@ -119,4 +119,12 @@ body.selected-skill-page .selected-skill-wrapper .first-section {
   background-size: cover;
 }
 
+.grecaptcha-badge {
+  display: none !important;
+}
+
+body.contact-page .grecaptcha-badge {
+  display: block !important;
+}
+
 

@@ -12,10 +12,10 @@ export const appConfig: ApplicationConfig = {
     provideRouter(
       routes,
       withRouterConfig({
-        onSameUrlNavigation: 'reload' // <-- Fait reloader la page même si seul le param change
+        onSameUrlNavigation: 'reload'
       }),
       withInMemoryScrolling({
-        scrollPositionRestoration: 'enabled' // <-- Remet en haut
+        scrollPositionRestoration: 'enabled'
       })
     ),
     provideHttpClient(withFetch()),

@@ -3,72 +3,36 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cb2p_avocats": {
+    "cb2p-avocats": {
       "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/cb2p_avocats",
+            "outputPath": "dist/cb2p_avocats/browser",
             "index": "src/index.html",
-            "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": "src/polyfills.ts",
+            "main": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              },
+              "src/favicon.ico",
+              "src/assets",
               {
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "assets"
               }
             ],
-            "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles/styles.scss"
-            ],
-            "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
-            ],
-            "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            "styles": ["src/styles/styles.scss"],
+            "scripts": []
           },
           "configurations": {
             "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2MB",
-                  "maximumError": "3MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "180kB",
-                  "maximumError": "250kB"
-                }
-              ],
               "outputHashing": "all",
-              "optimization": {
-                "scripts": true,
-                "styles": true
-              },
-              "aot": true,
+              "optimization": true,
               "sourceMap": false,
               "extractLicenses": true,
               "fileReplacements": [
@@ -79,64 +43,77 @@
               ]
             },
             "development": {
+              "buildOptimizer": false,
               "optimization": false,
+              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.ts"
-                }
-              ]
+              "namedChunks": true
             }
-          },
-          "defaultConfiguration": "production"
+          }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "buildTarget": "cb2p-avocats:build"
+          },
           "configurations": {
             "production": {
-              "buildTarget": "cb2p_avocats:build:production"
+              "buildTarget": "cb2p-avocats:build:production"
             },
             "development": {
-              "buildTarget": "cb2p_avocats:build:development"
+              "buildTarget": "cb2p-avocats:build:development"
             }
           },
           "defaultConfiguration": "development"
         },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "tsConfig": "tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              },
-              {
-                "glob": "**/*",
-                "input": "src/assets",
-                "output": "assets"
-              }
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": []
+            "outputPath": "dist/cb2p_avocats/server",
+            "main": "src/main.server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "assets": []
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "sourceMap": false,
+              "extractLicenses": true
+            }
           }
+        },
+        "prerender": {
+          "builder": "@angular-devkit/build-angular:prerender",
+          "options": {
+            "browserTarget": "cb2p-avocats:build:production",
+            "serverTarget": "cb2p-avocats:server:production",
+            "routes": ["/"]
+          }
+        },
+        "deploy-assets": {
+          "builder": "@angular-devkit/build-angular:copy",
+          "options": {
+            "outputPath": "dist/cb2p_avocats",
+            "assets": [
+              "server.mjs",
+              "bootstrap-proxy.cjs",
+              "package.json"
+            ]
+          }
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "options": {
+            "browserTarget": "cb2p-avocats:build:production",
+            "serverTarget": "cb2p-avocats:server:production"
+          },
+          "defaultConfiguration": "production"
         }
       }
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": "fc9723e8-48b3-486e-be5f-5a4acd58989a"
   }
 }

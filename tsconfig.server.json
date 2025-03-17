@@ -1,16 +1,13 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./out-tsc/server",
-    "target": "ES2020",
-    "types": [
-      "node"
-    ]
+    "outDir": "dist/cb2p_avocats/server",
+    "target": "ES2022",
+    "module": "CommonJS",
+    "types": ["node"],
+    "useDefineForClassFields": false,
+    "noUnusedLocals": false
   },
-  "files": [
-    "src/main.server.ts"
-  ],
-  "angularCompilerOptions": {
-    "entryModule": "./app/app.server.module#AppServerModule"
-  }
+  "files": ["server.ts", "src/main.server.ts", "src/app/app.config.server.ts"],
+  "exclude": ["src/test.ts", "src/**/*.spec.ts", "src/main.ts"]
 }
