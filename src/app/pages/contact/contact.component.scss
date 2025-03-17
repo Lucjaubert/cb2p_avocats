@@ -1,0 +1,116 @@
+@use "sass:map";
+@use "../../../styles/_variables.scss" as vars;
+
+.full-screen-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-wrapper {
+  flex: 0 0 auto;
+}
+
+.contact-wrapper {
+  width: 100%;
+
+  .container-fluid {
+    height: 100vh;
+    overflow-y: hidden;
+  }
+
+  .first-section {
+    width: 100%;
+    min-height: 100vh;
+
+    .first-section-left {
+      background-color: map.get(vars.$theme-colors, "dark-blue");
+      color: map.get(vars.$theme-colors, "white");
+      padding: 4rem 2rem;
+      text-align: left;
+      min-height: 100vh;
+      padding: 10rem;
+
+      .contact-details {
+        font-size: 1rem;
+        line-height: 1.6;
+        p {
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+
+    .first-section-right {
+      background-color: map.get(vars.$theme-colors, "light-blue");
+      padding: 4rem 2rem;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .contact-form {
+        width: 100%;
+        max-width: 450px;
+        display: flex;
+        flex-direction: column;
+
+        input,
+        textarea {
+          width: 100%;
+          padding: 0.75rem;
+          border: none;
+          border-radius: 4px;
+          font-size: 1rem;
+        }
+
+        textarea {
+          min-height: 120px;
+        }
+
+        .form-group {
+          display: flex;
+          align-items: start;
+          gap: 0.5rem;
+
+          label {
+            font-size: 0.9rem;
+            color: map.get(vars.$theme-colors, "white");
+          }
+        }
+
+        .recaptcha {
+          img {
+            width: 100%;
+            max-width: 200px;
+          }
+        }
+
+        .btn-submit {
+          background-color: map.get(vars.$theme-colors, "gold");
+          color: map.get(vars.$theme-colors, "white");
+          border: none;
+          padding: 0.75rem;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 1rem;
+          font-weight: bold;
+
+          &:hover {
+            background-color: darken(map.get(vars.$theme-colors, "gold"), 10%);
+          }
+        }
+      }
+
+      .recaptcha-container {
+        margin-top: 15px;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      .g-recaptcha {
+        transform: scale(1);
+        transform-origin: left center;
+      }
+
+    }
+  }
+}

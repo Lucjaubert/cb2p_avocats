@@ -1,11 +1,19 @@
 @use "sass:map";
 @use "../../../../styles/_variables.scss" as vars;
 
-.custom-container {
+.header-container {
+  position: absolute; /* ou fixed, si vous voulez qu'il reste en place au scroll */
+  top: 0;
+  left: 0;
   width: 100%;
-  margin-bottom: 3rem;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+  z-index: 999; /* pour passer au-dessus du contenu */
+  background: transparent; /* pas de large bande bleue */
+
+  /* On peut utiliser flex si on veut aligner logo / nav sur une même ligne */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
 
   a {
     color: map.get(vars.$theme-colors, "white");

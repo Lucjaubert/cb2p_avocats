@@ -1,7 +1,20 @@
+// export const environment = {
+//   production: true,
+//   apiUrl: 'http://localhost/cb2p-avocats/wp-json/wp/v2',
+//   recaptcha: {
+//     siteKey: '6Lf1GegqAAAAABOuGDe9DvE4sZFb-8ZDMXhstKXl'
+//   }
+// };
+
 export const environment = {
   production: true,
-  apiUrl: 'https://lucjaubert.com/wp-json/cb2p-avocats/v1'
+  apiUrl: 'https://dev.cb2p-avocats.fr/wp-json/wp/v2',
+  recaptcha: {
+    siteKey: '6Lf1GegqAAAAABOuGDe9DvE4sZFb-8ZDMXhstKXl'
+  }
 };
+
+
 
 
 

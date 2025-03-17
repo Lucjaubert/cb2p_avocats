@@ -8,13 +8,9 @@ import { filter } from 'rxjs/operators';
   standalone: true,
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  imports: [
-    CommonModule,
-    RouterLink
-  ]
+  imports: [CommonModule, RouterLink]
 })
 export class HeaderComponent implements OnInit {
-
   currentUrl: string = '';
 
   constructor(private router: Router) {}
@@ -33,23 +29,18 @@ export class HeaderComponent implements OnInit {
       this.currentUrl.includes('/competence-selectionnee')
     );
   }
-
   isEquipeActive(): boolean {
     return this.currentUrl.includes('/equipe');
   }
-
   isContactActive(): boolean {
     return this.currentUrl.includes('/contact');
   }
-
   isHomepageActive(): boolean {
     return this.currentUrl === '/';
   }
-
   isOfficeActive(): boolean {
     return this.currentUrl.includes('/le-cabinet');
   }
-
   isInfosAuctionActive(): boolean {
     return this.currentUrl.includes('/infos-encheres');
   }

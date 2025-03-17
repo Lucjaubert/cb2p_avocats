@@ -1,18 +1,17 @@
-<div class="custom-container container-fluid">
-  <div class="col-md-2 text-center text-md-start mb-4 mb-md-0 px-4">
+<div class="header-container">
+  <!-- Logo -->
+  <div class="col-md-2 text-center text-md-start px-4 logo-wrapper">
     <img
       src="assets/img/homepage/logo-ss-fd-cb2p.webp"
       alt="CB2P Avocats"
       class="footer-logo mb-3"
     />
   </div>
+
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
     <div class="ms-auto d-flex">
-
-
-
       <ul class="navbar-nav d-flex justify-content-end align-items-center">
-
         <li class="nav-item nav-item-homepage">
           <a
             class="nav-link nav-link-homepage"
@@ -22,7 +21,6 @@
             Accueil
           </a>
         </li>
-
         <li class="nav-item nav-item-office">
           <a
             class="nav-link nav-link-office"
@@ -32,7 +30,6 @@
             Le cabinet
           </a>
         </li>
-
         <li class="nav-item nav-item-skills">
           <a
             class="nav-link nav-link-skills"
@@ -42,7 +39,6 @@
             Compétences
           </a>
         </li>
-
         <li class="nav-item nav-item-team">
           <a
             class="nav-link nav-link-team"
@@ -52,7 +48,6 @@
             Équipe
           </a>
         </li>
-
         <li class="nav-item nav-item-contact">
           <a
             class="nav-link nav-link-contact"
@@ -62,18 +57,15 @@
             Contactez-nous
           </a>
         </li>
-
         <li class="nav-item nav-item-auctions">
           <a
             class="nav-link nav-link-auctions"
             [routerLink]="['/ventes-aux-encheres']"
             [class.active]="isInfosAuctionActive()"
-
           >
             Ventes aux enchères
           </a>
         </li>
-
       </ul>
     </div>
   </nav>
