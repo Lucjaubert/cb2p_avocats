@@ -21,9 +21,9 @@ export const routes: Routes = [
     title: 'Contact'
   },
   {
-    path: 'infos-encheres',
+    path: 'ventes-aux-encheres/details/:id',
     loadComponent: () =>
-      import('./pages/infos-auction/infos-auction.component').then((m) => m.InfosAuctionComponent),
+      import('./pages/selected-auction/selected-auction.component').then((m) => m.SelectedAuctionComponent),
     title: 'Infos Enchères'
   },
   {

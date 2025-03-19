@@ -41,7 +41,7 @@ export class HeaderComponent implements OnInit {
   isOfficeActive(): boolean {
     return this.currentUrl.includes('/le-cabinet');
   }
-  isInfosAuctionActive(): boolean {
-    return this.currentUrl.includes('/infos-encheres');
+  isAuctionsActive(): boolean {
+    return this.currentUrl.includes('/ventes-aux-encheres');
   }
 }

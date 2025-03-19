@@ -1,0 +1,120 @@
+<div class="full-screen-container">
+  <div class="auctions-wrapper">
+
+    <!-- Section 1 : Titre principal -->
+    <section id="first-section" class="first-section">
+      <div class="container mb-5">
+        <div class="row justify-content-center">
+          <div class="col-auto d-flex flex-column align-items-center">
+            <div class="hero-section d-flex flex-column align-items-center">
+              <h1 *ngIf="data?.title" [innerHTML]="data.title"></h1>
+              <div class="row slogan my-5 w-100">
+                <div class="col text-center mb-5">
+                  <h3 *ngIf="data?.subtitle" [innerHTML]="data.subtitle"></h3>
+                </div>
+              </div>
+              <div class="scroll-indicator mt-5">
+                <img
+                  src="assets/icons/arrow_circle_down.webp"
+                  alt="Scroll Down"
+                  (click)="scrollToSection('description-section')"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2 : Description détaillée -->
+    <section id="description-section" class="list-section">
+      <div class="container-fluid">
+        <div class="row auction-item">
+          <div class="col-md-6 auction-text bg-white">
+            <div class="line mb-5"></div>
+            <div class="content" [innerHTML]="safeText"></div>
+          </div>
+
+          <div class="col-md-6 auction-image bg-blue" *ngIf="data?.image">
+            <img [src]="data.image" [alt]="data.title" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3 : Infos techniques -->
+    <section id="infos-section" class="list-section bg-blue">
+      <div class="container py-5">
+        <div class="row justify-content-center">
+          <div class="col-md-10 text-white" [innerHTML]="safeInfo"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4 : Scroll-down -->
+    <section class="scroll-down-section text-center py-5">
+      <img
+        src="assets/icons/arrow_circle_down.webp"
+        alt="Scroll Down"
+        (click)="scrollToSection('documents-section')"
+      />
+    </section>
+
+    <!-- Section 5 : Pièces téléchargeables -->
+    <section id="documents-section" class="list-section bg-white">
+      <div class="container py-5">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <h5 class="mb-4">📁 FICHIERS JOINTS</h5>
+
+            <!-- Bloc PV descriptif -->
+            <h6 class="mt-4 mb-3 fw-bold text-uppercase">Procès-verbal descriptif</h6>
+            <ul class="list-unstyled">
+              <li *ngIf="data?.pdf">
+                <a [href]="data.pdf" class="doc-link" target="_blank">📄 PV Descriptif</a>
+              </li>
+              <li *ngIf="data?.pvAnnexe">
+                <a [href]="data.pvAnnexe" class="doc-link" target="_blank">📄 PV descriptif annexes et bail commercial</a>
+              </li>
+            </ul>
+
+            <!-- Bloc Cahier des conditions -->
+            <h6 class="mt-4 mb-3 fw-bold text-uppercase">Cahier des conditions de vente</h6>
+            <ul class="list-unstyled">
+              <li *ngIf="data?.cahier">
+                <a [href]="data.cahier" class="doc-link" target="_blank">📄 Cahier des conditions de la vente</a>
+              </li>
+            </ul>
+
+            <!-- Bloc Technique / Urbanisme -->
+            <h6 class="mt-4 mb-3 fw-bold text-uppercase">Informations techniques</h6>
+            <ul class="list-unstyled">
+              <li *ngIf="data?.dtt">
+                <a [href]="data.dtt" class="doc-link" target="_blank">📄 Dossier technique (DDT)</a>
+              </li>
+              <li *ngIf="data?.certificat">
+                <a [href]="data.certificat" class="doc-link" target="_blank">📄 Certificat d'urbanisme</a>
+              </li>
+              <li *ngIf="data?.bail">
+                <a [href]="data.bail" class="doc-link" target="_blank">📄 Bail commercial</a>
+              </li>
+            </ul>
+
+            <!-- Bloc Frais -->
+            <h6 class="mt-4 mb-3 fw-bold text-uppercase">Frais et autres documents</h6>
+            <ul class="list-unstyled">
+              <li *ngIf="data?.frais">
+                <a [href]="data.frais" class="doc-link" target="_blank">📄 État de frais</a>
+              </li>
+              <li *ngIf="data?.affiche">
+                <a [href]="data.affiche" class="doc-link" target="_blank">📄 Affiche</a>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
