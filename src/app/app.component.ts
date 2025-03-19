@@ -62,11 +62,11 @@ export class AppComponent implements OnInit {
       this.contactData = data;
     });
 
-    this.wordpressService.getAuctionsData().subscribe(data => {
+    this.wordpressService.getAllAuctionsSummary().subscribe((data: any) => {
       this.auctionsData = data;
     });
 
-    this.wordpressService.getSelectedAuctionData().subscribe(data => {
+    this.wordpressService.getAuctionDetailsByIndex(1).subscribe((data: any) => {
       this.selectedAuctionData = data;
     });
 

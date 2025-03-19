@@ -9,97 +9,134 @@ import { environment } from '../../environments/environment';
 export class WordpressService {
 
   private apiUrl = environment.apiUrl;
+
   private skillsData: any = null;
 
   constructor(private http: HttpClient) {}
 
   getHomepageData(): Observable<any> {
-    console.log("Fetching Homepage Data from:", `${this.apiUrl}/homepage`);
     return this.http.get<any>(`${this.apiUrl}/homepage`).pipe(
-      map(response => {
-        console.log("Homepage API Response:", response);
-        return Array.isArray(response) ? response[0]?.acf : response.acf;
-      })
+      map(response => response[0]?.acf)
     );
   }
 
   getOfficeData(): Observable<any> {
-    console.log("Fetching Office Data from:", `${this.apiUrl}/office`);
     return this.http.get<any>(`${this.apiUrl}/office`).pipe(
-      map(response => {
-        console.log("Office API Response:", response);
-        return Array.isArray(response) ? response[0]?.acf : response.acf;
-      })
+      map(response => response[0]?.acf)
     );
   }
 
   getSkillsData(): Observable<any> {
-    console.log("Fetching Skills Data from:", `${this.apiUrl}/skills`);
     return this.http.get<any>(`${this.apiUrl}/skills`).pipe(
       map(response => {
-        console.log("Skills API Response:", response);
-        return Array.isArray(response) && response.length > 0 ? response[0] : response;
+        const item = Array.isArray(response) && response.length > 0 ? response[0] : null;
+        return item;
       })
     );
   }
 
   getSelectedLawyersData(): Observable<any> {
-    console.log("Fetching Selected Lawyers Data from:", `${this.apiUrl}/selected_lawyer`);
     return this.http.get<any>(`${this.apiUrl}/selected_lawyer`).pipe(
-      map(response => {
-        console.log("Selected Lawyers API Response:", response);
-        return Array.isArray(response) ? response.map((item: any) => item.acf) : [];
-      })
+      map(response => response.map((item: any) => item.acf))
     );
   }
 
   getTeamData(): Observable<any> {
-    console.log("Fetching Team Data from:", `${this.apiUrl}/team`);
     return this.http.get<any>(`${this.apiUrl}/team`).pipe(
-      map(response => {
-        console.log("Team API Response:", response);
-        return Array.isArray(response) ? response.map((item: any) => item.acf) : [];
-      })
+      map(response => response.map((item: any) => item.acf))
     );
   }
 
   getContactData(): Observable<any> {
-    console.log("Fetching Contact Data from:", `${this.apiUrl}/contact`);
     return this.http.get<any>(`${this.apiUrl}/contact`).pipe(
-      map(response => {
-        console.log("Contact API Response:", response);
-        return Array.isArray(response) ? response[0]?.acf : response.acf;
+      map(response => response[0]?.acf)
+    );
+  }
+
+
+  getAllAuctionsSummary(): Observable<any> {
+    return this.http.get<any[]>(`${this.apiUrl}/auctions`).pipe(
+      map((res) => {
+        if (!res || res.length === 0 || !res[0].acf) return [];
+
+        const acf = res[0].acf;
+
+        const items = [];
+
+        // Supposons qu’on ait jusqu’à 10 ventes (à adapter dynamiquement si besoin)
+        for (let i = 1; i <= 10; i++) {
+          const title = acf[`title_sale_id_${i}`];
+          const subtitle = acf[`subtitle_sale_id_${i}`];
+          const description = acf[`selected_text_id_${i}`] || '';
+          const image = acf[`image_1_sale_id_${i}`] || acf[`image_sale_id_${i}`] || '';
+          const price = this.extractPriceFromSubtitle(subtitle);
+
+          if (title || description || image) {
+            items.push({
+              id: i, // ✅ très important : cet ID sera passé à getAuctionDetailsByIndex(i)
+              title,
+              description,
+              image,
+              price
+            });
+          }
+        }
+
+        return {
+          title: acf[`title_id_1`] || '',
+          subtitle: acf[`subtitle_id_1`] || '',
+          items
+        };
       })
     );
   }
 
-  getAuctionsData(): Observable<any> {
-    console.log("Fetching Auctions Data from:", `${this.apiUrl}/auctions`);
-    return this.http.get<any>(`${this.apiUrl}/auctions`).pipe(
-      map(response => {
-        console.log("Auctions API Response:", response);
-        return Array.isArray(response) ? response.map((item: any) => item.acf) : [];
-      })
-    );
+  private extractPriceFromSubtitle(subtitle: string): string | null {
+    const match = subtitle?.match(/mise à prix\s*:?\s*([\d\s]+(?:€|euros)?)/i);
+    return match ? match[1].trim() : null;
   }
 
-  getSelectedAuctionData(): Observable<any> {
-    console.log("Fetching Selected Auction Data from:", `${this.apiUrl}/selected_auction`);
-    return this.http.get<any>(`${this.apiUrl}/selected_auction`).pipe(
-      map(response => {
-        console.log("Selected Auction API Response:", response);
-        return Array.isArray(response) ? response[0]?.acf : response.acf;
+
+
+  getAuctionDetailsByIndex(i: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/auctions`).pipe(
+      map((res: any) => {
+        if (!res || !Array.isArray(res) || !res[0]?.acf) return null;
+        const acf = res[0].acf;
+
+        return {
+          title: acf[`selected_title_id_${i}`] || '',
+          subtitle: acf[`selected_subtitle_id_${i}`] || '',
+          text: acf[`selected_text_id_${i}`] || '',
+          info: acf[`selected_info_id_${i}`] || '',
+          pdf: acf[`pv_descriptif_auction_id_${i}`] || acf[`pv_descriptif_auction_${i}`] || '',
+          cahier: acf[`cahier_vente_auction_id_${i}`] || '',
+          dtt: acf[`dtt_auction_id_${i}`] || '',
+          bail: acf[`bail_auction_id_${i}`] || '',
+          certificat: acf[`certificat_auction_id_${i}`] || '',
+          frais: acf[`frais_auction_id_${i}`] || '',
+          affiche: acf[`affiche_auction_id_${i}`] || '',
+          image:
+            acf[`image_1_sale_id_${i}`] ||
+            acf[`image_sale_id_${i}`] ||
+            '',
+          gallery: Array.from({ length: 10 }, (_, index) => acf[`image_${index + 1}_sale_id_${i}`]).filter(Boolean)
+        };
       })
     );
   }
 
   getPostById(id: number): Observable<any> {
-    console.log("Fetching Post by ID:", `${this.apiUrl}/wp-json/wp/v2/posts/${id}`);
     return this.http.get<any>(`${this.apiUrl}/wp-json/wp/v2/posts/${id}`).pipe(
-      map(response => {
-        console.log("Post API Response:", response);
-        return response;
-      })
+      map(response => response)
     );
+  }
+
+  sendContactMessage(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/wp-json/cb2p/v1/send-message`, data);
+  }
+
+  verifyRecaptcha(token: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/wp-json/cb2p/v1/verify-recaptcha`, { token });
   }
 }

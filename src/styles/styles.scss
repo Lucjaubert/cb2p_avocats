@@ -7,7 +7,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  // max-width: 100vw;
   overflow-x: hidden;
 }
 
@@ -116,6 +115,16 @@ body.office-page .office-wrapper .first-section {
 
 body.selected-skill-page .selected-skill-wrapper .first-section {
   background: url("/assets/img/skills/office-wall-4.webp") no-repeat center center;
+  background-size: cover;
+}
+
+body.auctions-page .auctions-wrapper .first-section {
+  background: url("/assets/img/auctions/grand-theatre.webp") no-repeat center center;
+  background-size: cover;
+}
+
+body.selected-auction-page .selected-auction-wrapper .first-section {
+  background: url("/assets/img/auctions/grand-theatre.webp") no-repeat center center;
   background-size: cover;
 }
 

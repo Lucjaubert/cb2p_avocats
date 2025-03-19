@@ -1,0 +1,154 @@
+@use "sass:map";
+@use "../../../styles/_variables.scss" as vars;
+
+.full-screen-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.auctions-wrapper {
+  width: 100%;
+
+  .first-section {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+
+    background-color: map.get(vars.$theme-colors, "blue-dark");
+
+    .hero-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin-top: 12rem;
+
+      h1 {
+        font-size: 2.8rem;
+        color: map.get(vars.$theme-colors, "white");
+        margin-bottom: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.3rem;
+        color: map.get(vars.$theme-colors, "gold");
+      }
+
+      .scroll-indicator img {
+        width: 40px;
+        height: auto;
+        cursor: pointer;
+        margin-top: 3rem;
+      }
+    }
+  }
+
+  .list-section {
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+
+    .auction-item {
+      display: flex;
+      align-items: stretch;
+      min-height: 100vh;
+      margin: 0;
+
+      .auction-text,
+      .auction-image {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 4rem;
+      }
+
+      .auction-text {
+        background-color: map.get(vars.$theme-colors, "white");
+        color: map.get(vars.$theme-colors, "blue");
+
+        .line {
+          height: 2px;
+          width: 80px;
+          background-color: map.get(vars.$theme-colors, "gold");
+          margin-bottom: 2rem;
+        }
+
+        .content {
+          font-size: 1rem;
+          line-height: 1.8;
+        }
+      }
+
+      .auction-image {
+        background-color: map.get(vars.$theme-colors, "blue-dark");
+        text-align: center;
+
+        img {
+          width: 90%;
+          max-height: 80vh;
+          object-fit: contain;
+          margin: auto;
+        }
+      }
+    }
+
+    &.bg-blue {
+      background-color: map.get(vars.$theme-colors, "blue-dark");
+      color: map.get(vars.$theme-colors, "white");
+
+      .container {
+        padding: 5rem 2rem;
+
+        p, div {
+          font-size: 1rem;
+          line-height: 1.8;
+          color: map.get(vars.$theme-colors, "white");
+        }
+      }
+    }
+
+    &.bg-white {
+      background-color: map.get(vars.$theme-colors, "white");
+
+      .container {
+        padding: 5rem 2rem;
+
+        h5 {
+          font-size: 1.2rem;
+          color: map.get(vars.$theme-colors, "blue");
+          margin-bottom: 2rem;
+        }
+
+        ul {
+          padding-left: 1rem;
+
+          li {
+            margin-bottom: 0.8rem;
+
+            a {
+              color: map.get(vars.$theme-colors, "gold");
+              text-decoration: underline;
+
+              &:hover {
+                text-decoration: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .scroll-down-section {
+    background-color: map.get(vars.$theme-colors, "blue-dark");
+
+    img {
+      width: 40px;
+      cursor: pointer;
+    }
+  }
+}
