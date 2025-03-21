@@ -10,13 +10,13 @@
   width: 100%;
 
   .first-section {
+    position: relative;
     width: 100%;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
-
     background-color: map.get(vars.$theme-colors, "blue-dark");
 
     .hero-section {
@@ -28,17 +28,16 @@
       margin-top: 12rem;
 
       h1 {
-        font-size: 2.8rem;
         color: map.get(vars.$theme-colors, "white");
         margin-bottom: 1.5rem;
       }
 
       h3 {
-        font-size: 1.3rem;
         color: map.get(vars.$theme-colors, "gold");
       }
 
       .scroll-indicator img {
+        position: absolute;
         width: 40px;
         height: auto;
         cursor: pointer;
@@ -47,10 +46,16 @@
     }
   }
 
-  .list-section {
-    padding: 0;
+  .description-section .auction-text .content p {
+    color: map.get(vars.$theme-colors, "blue") !important;
+  }
+
+  .description-section {
+    position: relative;
     width: 100%;
+    min-height: 100vh;
     overflow-x: hidden;
+    background-color: map.get(vars.$theme-colors, "white");
 
     .auction-item {
       display: flex;
@@ -67,14 +72,13 @@
       }
 
       .auction-text {
-        background-color: map.get(vars.$theme-colors, "white");
-        color: map.get(vars.$theme-colors, "blue");
+        color: map.get(vars.$theme-colors, "blue") !important;
 
         .line {
-          height: 2px;
-          width: 80px;
+          width: 20vw;
+          height: 1px;
           background-color: map.get(vars.$theme-colors, "gold");
-          margin-bottom: 2rem;
+          margin-bottom: 1rem;
         }
 
         .content {
@@ -96,46 +100,202 @@
       }
     }
 
-    &.bg-blue {
-      background-color: map.get(vars.$theme-colors, "blue-dark");
-      color: map.get(vars.$theme-colors, "white");
+    .scroll-down-indicator {
+      position: absolute;
+      left: 50%;
+      bottom: 2rem;
+      transform: translateX(-50%);
+      text-align: center;
 
-      .container {
-        padding: 5rem 2rem;
+      img {
+        width: 40px;
+        height: auto;
+        cursor: pointer;
+      }
+    }
+  }
 
-        p, div {
-          font-size: 1rem;
-          line-height: 1.8;
-          color: map.get(vars.$theme-colors, "white");
+  .infos-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: map.get(vars.$theme-colors, "blue-dark");
+    color: map.get(vars.$theme-colors, "white");
+
+    .line {
+      width: 20vw;
+      height: 1px;
+      background-color: map.get(vars.$theme-colors, "gold");
+      margin-bottom: 1rem;
+    }
+
+    .container {
+      padding: 5rem 2rem;
+    }
+
+    .text-white {
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .row.g-3 {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: stretch;
+      justify-content: center;
+
+      .col-6 {
+        flex: 1 1 calc(50% - 10px);
+        max-width: calc(50% - 10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        a {
+          display: block;
+          width: 100%;
+          height: 100%;
+          overflow: hidden; /* 🔑 Empêche l'apparition d'une barre de scroll verticale */
+
+          img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border: 2px solid map.get(vars.$theme-colors, "white");
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+
+            &:hover {
+              transform: scale(1.03);
+            }
+          }
         }
       }
     }
 
-    &.bg-white {
-      background-color: map.get(vars.$theme-colors, "white");
+    .scroll-down-indicator {
+      position: absolute;
+      left: 50%;
+      bottom: 2rem;
+      transform: translateX(-50%);
+      text-align: center;
 
-      .container {
-        padding: 5rem 2rem;
+      img {
+        width: 40px;
+        height: auto;
+        cursor: pointer;
+      }
+    }
+  }
 
-        h5 {
-          font-size: 1.2rem;
-          color: map.get(vars.$theme-colors, "blue");
-          margin-bottom: 2rem;
+
+  .photos-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: map.get(vars.$theme-colors, "blue-dark");
+    color: map.get(vars.$theme-colors, "white");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .container {
+      padding: 5rem 2rem;
+    }
+
+    .row.g-3 {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: stretch;
+      justify-content: center;
+
+      .col-6.col-md-3 {
+        flex: 1 1 calc(25% - 10px); /* 4 images par ligne */
+        max-width: calc(25% - 10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        a {
+          display: block;
+          text-decoration: none;
+          width: 100%;
+          height: 250px; /* Augmenter la taille des images */
+
+          &:hover {
+            text-decoration: none;
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border: 2px solid map.get(vars.$theme-colors, "white");
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+
+            &:hover {
+              transform: scale(1.03);
+            }
+          }
         }
+      }
+    }
 
-        ul {
-          padding-left: 1rem;
+    .scroll-down-indicator {
+      position: absolute;
+      left: 50%;
+      bottom: 2rem;
+      transform: translateX(-50%);
+      text-align: center;
 
-          li {
-            margin-bottom: 0.8rem;
+      img {
+        width: 40px;
+        height: auto;
+        cursor: pointer;
+      }
+    }
+}
 
-            a {
-              color: map.get(vars.$theme-colors, "gold");
-              text-decoration: underline;
+  .documents-section {
+    width: 100%;
+    min-height: 100vh;
+    background-color: map.get(vars.$theme-colors, "white");
 
-              &:hover {
-                text-decoration: none;
-              }
+    .container {
+      padding: 5rem 2rem;
+
+      h5 {
+        font-size: 1.2rem;
+        color: map.get(vars.$theme-colors, "blue");
+        margin-bottom: 2rem;
+      }
+
+      h6 {
+        font-size: 0.95rem;
+        color: map.get(vars.$theme-colors, "blue");
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      ul {
+        padding-left: 1rem;
+
+        li {
+          margin-bottom: 0.8rem;
+
+          a.doc-link {
+            color: map.get(vars.$theme-colors, "gold");
+            text-decoration: underline;
+
+            &:hover {
+              text-decoration: none;
             }
           }
         }
