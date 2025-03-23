@@ -22,6 +22,10 @@
     width: 100%;
     min-height: 100vh;
 
+    h6 {
+      color: map.get(vars.$theme-colors, "white");
+    }
+
     .first-section-left {
       background-color: map.get(vars.$theme-colors, "dark-blue");
       color: map.get(vars.$theme-colors, "white");

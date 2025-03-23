@@ -33,7 +33,7 @@
               [ngClass]="{ 'bg-blue': i % 2 !== 0, 'bg-white': i % 2 === 0 }"
             >
               <div class="line mb-5"></div>
-              <h5>{{ auction.title }}</h5>
+              <h5 [innerHTML]="auction.title"></h5>
               <p class="price" *ngIf="auction.price">Mise à prix {{ auction.price }}</p>
               <div [innerHTML]="auction.description"></div>
               <a
@@ -49,8 +49,11 @@
               class="col-md-6 auction-image"
               [ngClass]="{ 'bg-blue': i % 2 === 0, 'bg-white': i % 2 !== 0 }"
             >
-              <img [src]="auction.image" [alt]="auction.title" />
+              <a [routerLink]="['/ventes-aux-encheres/details', auction.id]">
+                <img [src]="auction.image" [alt]="auction.title" />
+              </a>
             </div>
+
 
             <div class="scroll-indicator my-4 text-center" *ngIf="i < auctionsData.items.length - 1">
               <img src="assets/icons/arrow_circle_down.webp" alt="Scroll Down" (click)="scrollToNextAuction(i)" />

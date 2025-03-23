@@ -1,19 +1,18 @@
 <div class="full-screen-container">
   <div class="auctions-wrapper">
 
-    <!-- Section 1 : Titre principal -->
     <section id="first-section" class="first-section">
       <div class="container mb-5">
         <div class="row justify-content-center">
           <div class="col-auto d-flex flex-column align-items-center">
             <div class="hero-section d-flex flex-column align-items-center">
-              <h1 *ngIf="data?.title" [innerHTML]="data.title"></h1>
+              <h1 *ngIf="data?.title">{{ data.title }}</h1>
               <div class="row slogan my-5 w-100">
                 <div class="col text-center mb-5">
-                  <h3 *ngIf="data?.subtitle" [innerHTML]="data.subtitle"></h3>
+                  <h3 *ngIf="data?.subtitle">{{ data.subtitle }}</h3>
                 </div>
               </div>
-              <div class="scroll-indicator mt-5">
+              <div class="scroll-indicator mt-5 me-4">
                 <img
                   src="assets/icons/arrow_circle_down.webp"
                   alt="Scroll Down"
@@ -26,8 +25,7 @@
       </div>
     </section>
 
-    <!-- Section 2 : Description détaillée -->
-    <section id="description-section" class="list-section">
+    <section id="description-section" class="description-section">
       <div class="container-fluid">
         <div class="row auction-item">
           <div class="col-md-6 auction-text bg-white">
@@ -40,35 +38,87 @@
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- Section 3 : Infos techniques -->
-    <section id="infos-section" class="list-section bg-blue">
-      <div class="container py-5">
-        <div class="row justify-content-center">
-          <div class="col-md-10 text-white" [innerHTML]="safeInfo"></div>
-        </div>
+      <div class="scroll-down-indicator">
+        <img
+          src="assets/icons/arrow_circle_down.webp"
+          alt="Scroll Down"
+          (click)="scrollToSection('infos-section')"
+        />
       </div>
     </section>
 
-    <!-- Section 4 : Scroll-down -->
-    <section class="scroll-down-section text-center py-5">
-      <img
-        src="assets/icons/arrow_circle_down.webp"
-        alt="Scroll Down"
-        (click)="scrollToSection('documents-section')"
-      />
+    <section id="infos-section" class="infos-section bg-blue">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 col-12 mb-5 text-white pe-lg-5 d-flex flex-column justify-content-center h-100">
+            <div class="line mb-4"></div>
+            <div [innerHTML]="safeInfo"></div>
+          </div>
+
+          <div class="col-lg-6 col-12">
+            <div class="row g-3 align-items-stretch">
+              <div class="col-6" *ngFor="let img of data?.gallery.slice(1, 5)">
+                <a [href]="img" target="_blank">
+                  <img
+                    [src]="img"
+                    alt="Image bien"
+                    class="img-fluid rounded shadow-sm border border-white h-100 w-100"
+                    style="object-fit: cover; cursor: zoom-in;"
+                  />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-down-indicator">
+        <img
+          src="assets/icons/arrow_circle_down.webp"
+          alt="Scroll Down"
+          (click)="scrollToSection('photos-section')"
+        />
+      </div>
     </section>
 
-    <!-- Section 5 : Pièces téléchargeables -->
-    <section id="documents-section" class="list-section bg-white">
-      <div class="container py-5">
+    <section
+      id="photos-section"
+      class="photos-section bg-blue"
+      *ngIf="data?.gallery && data.gallery.length > 5"
+    >
+      <div class="container">
+        <div class="row g-3">
+          <div class="col-6 col-md-3" *ngFor="let photo of data.gallery.slice(5, 13)">
+            <a [href]="photo" target="_blank">
+              <img
+                [src]="photo"
+                alt="Photo supplémentaire"
+                class="img-fluid rounded shadow-sm border border-white"
+                style="object-fit: cover; width: 100%; height: 220px; cursor: zoom-in;"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-down-indicator">
+        <img
+          src="assets/icons/arrow_circle_down.webp"
+          alt="Scroll Down"
+          (click)="scrollToSection('documents-section')"
+        />
+      </div>
+    </section>
+
+    <section id="documents-section" class="documents-section bg-white mt-5">
+      <div class="container">
         <div class="row justify-content-center">
-          <div class="col-md-8">
+          <div class="col-md-8 text-center">
             <h5 class="mb-4">📁 FICHIERS JOINTS</h5>
 
             <!-- Bloc PV descriptif -->
-            <h6 class="mt-4 mb-3 fw-bold text-uppercase">Procès-verbal descriptif</h6>
+            <h6 class="mt-4 mb-3 fw-bold text-uppercase mt-5">Procès-verbal descriptif</h6>
             <ul class="list-unstyled">
               <li *ngIf="data?.pdf">
                 <a [href]="data.pdf" class="doc-link" target="_blank">📄 PV Descriptif</a>
@@ -78,7 +128,7 @@
               </li>
             </ul>
 
-            <!-- Bloc Cahier des conditions -->
+            <!-- Cahier des conditions -->
             <h6 class="mt-4 mb-3 fw-bold text-uppercase">Cahier des conditions de vente</h6>
             <ul class="list-unstyled">
               <li *ngIf="data?.cahier">
@@ -86,7 +136,7 @@
               </li>
             </ul>
 
-            <!-- Bloc Technique / Urbanisme -->
+            <!-- Technique / Urbanisme -->
             <h6 class="mt-4 mb-3 fw-bold text-uppercase">Informations techniques</h6>
             <ul class="list-unstyled">
               <li *ngIf="data?.dtt">
@@ -100,7 +150,7 @@
               </li>
             </ul>
 
-            <!-- Bloc Frais -->
+            <!-- Frais & autres docs -->
             <h6 class="mt-4 mb-3 fw-bold text-uppercase">Frais et autres documents</h6>
             <ul class="list-unstyled">
               <li *ngIf="data?.frais">
@@ -115,6 +165,7 @@
         </div>
       </div>
     </section>
+
 
   </div>
 </div>

@@ -74,20 +74,26 @@
       height: 100vh;
       margin-bottom: 0;
 
-      .auction-text,
+      .auction-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2rem 4rem;
+        height: 100%;
+      }
+
       .auction-image {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 3rem 4rem;
+        padding-left: 8rem;
         height: 100%;
       }
 
       .auction-image img {
         max-height: 80vh;
-        width: 90%;
+        width: 80%;
         object-fit: cover;
-        margin: auto;
       }
 
       .line {
@@ -112,11 +118,10 @@
         text-decoration: underline;
       }
 
-      // BG BLANC
       .bg-white {
         background-color: map.get(vars.$theme-colors, "white");
 
-        h5, .price, p {
+        h5, .price, p, div {
           color: map.get(vars.$theme-colors, "blue");
         }
 
@@ -129,11 +134,10 @@
         }
       }
 
-      // BG BLEU
       .bg-blue {
         background-color: map.get(vars.$theme-colors, "blue-dark");
 
-        h5, .price, p {
+        h5, .price, p, div {
           color: map.get(vars.$theme-colors, "white");
         }
 

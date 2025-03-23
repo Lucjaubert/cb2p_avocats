@@ -62,9 +62,7 @@ export class WordpressService {
         const acf = res[0].acf;
 
         const items = [];
-
-        // Supposons qu’on ait jusqu’à 10 ventes (à adapter dynamiquement si besoin)
-        for (let i = 1; i <= 10; i++) {
+        for (let i = 1; i <= 20; i++) {
           const title = acf[`title_sale_id_${i}`];
           const subtitle = acf[`subtitle_sale_id_${i}`];
           const description = acf[`selected_text_id_${i}`] || '';
@@ -73,7 +71,7 @@ export class WordpressService {
 
           if (title || description || image) {
             items.push({
-              id: i, // ✅ très important : cet ID sera passé à getAuctionDetailsByIndex(i)
+              id: i,
               title,
               description,
               image,

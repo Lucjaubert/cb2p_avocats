@@ -15,6 +15,7 @@ export class SelectedAuctionComponent implements OnInit {
   data: any = {};
   safeText: SafeHtml = '';
   safeInfo: SafeHtml = '';
+  additionalImages: string[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -27,8 +28,13 @@ export class SelectedAuctionComponent implements OnInit {
 
     this.wordpressService.getAuctionDetailsByIndex(index).subscribe(detail => {
       this.data = detail;
-      this.safeText = this.sanitizer.bypassSecurityTrustHtml(detail.text || '');
-      this.safeInfo = this.sanitizer.bypassSecurityTrustHtml(detail.info || '');
+      this.safeText = this.sanitizer.bypassSecurityTrustHtml(
+        (detail.text || '').replace(/style="[^"]*"/g, '')
+      );
+      this.safeInfo = this.sanitizer.bypassSecurityTrustHtml(
+        (detail.info || '').replace(/style="[^"]*"/g, '')
+      );
+      this.additionalImages = detail.gallery?.slice(1, 5) || [];
     });
   }
 
