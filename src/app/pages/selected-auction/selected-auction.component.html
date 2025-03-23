@@ -1,7 +1,6 @@
 <div class="full-screen-container">
   <div class="auctions-wrapper">
 
-    <!-- SECTION 1 : Première image si data.image existe -->
     <section id="first-section" class="first-section">
       <div class="container mb-5">
         <div class="row justify-content-center">
@@ -13,8 +12,7 @@
                   <h3 *ngIf="data?.subtitle">{{ data.subtitle }}</h3>
                 </div>
               </div>
-              <!-- Scroll vers description-section -->
-              <div class="scroll-indicator mt-5">
+              <div class="scroll-indicator mt-5 me-4">
                 <img
                   src="assets/icons/arrow_circle_down.webp"
                   alt="Scroll Down"
@@ -27,7 +25,6 @@
       </div>
     </section>
 
-    <!-- SECTION 2 : Description + 1ère image de l'annonce -->
     <section id="description-section" class="description-section">
       <div class="container-fluid">
         <div class="row auction-item">
@@ -36,14 +33,12 @@
             <div class="content" [innerHTML]="safeText"></div>
           </div>
 
-          <!-- Image principale (data.image) -->
           <div class="col-md-6 auction-image bg-blue" *ngIf="data?.image">
             <img [src]="data.image" [alt]="data.title" />
           </div>
         </div>
       </div>
 
-      <!-- Scroll vers infos-section -->
       <div class="scroll-down-indicator">
         <img
           src="assets/icons/arrow_circle_down.webp"
@@ -53,7 +48,6 @@
       </div>
     </section>
 
-    <!-- SECTION 3 : infos + 4 images suivantes (indices 1 à 4) -->
     <section id="infos-section" class="infos-section bg-blue">
       <div class="container">
         <div class="row align-items-center">
@@ -64,7 +58,6 @@
 
           <div class="col-lg-6 col-12">
             <div class="row g-3 align-items-stretch">
-              <!-- Chaque image est maintenant un lien qui s'ouvre en plein écran -->
               <div class="col-6" *ngFor="let img of data?.gallery.slice(1, 5)">
                 <a [href]="img" target="_blank">
                   <img
@@ -80,7 +73,6 @@
         </div>
       </div>
 
-      <!-- Scroll vers photos-section -->
       <div class="scroll-down-indicator">
         <img
           src="assets/icons/arrow_circle_down.webp"
@@ -90,7 +82,6 @@
       </div>
     </section>
 
-    <!-- SECTION 4 : si on a plus de 5 images, on affiche la suite (5 à 12) -->
     <section
       id="photos-section"
       class="photos-section bg-blue"
@@ -98,21 +89,19 @@
     >
       <div class="container">
         <div class="row g-3">
-          <!-- On affiche les images d’indice 5 à 12 -->
           <div class="col-6 col-md-3" *ngFor="let photo of data.gallery.slice(5, 13)">
             <a [href]="photo" target="_blank">
               <img
                 [src]="photo"
                 alt="Photo supplémentaire"
                 class="img-fluid rounded shadow-sm border border-white"
-                style="object-fit: cover; width: 100%; height: 180px; cursor: zoom-in;"
+                style="object-fit: cover; width: 100%; height: 220px; cursor: zoom-in;"
               />
             </a>
           </div>
         </div>
       </div>
 
-      <!-- Scroll down (ou autre section) -->
       <div class="scroll-down-indicator">
         <img
           src="assets/icons/arrow_circle_down.webp"
@@ -122,15 +111,14 @@
       </div>
     </section>
 
-    <!-- SECTION 5 : documents (PDF, annexes, etc.) -->
-    <section id="documents-section" class="documents-section bg-white">
+    <section id="documents-section" class="documents-section bg-white mt-5">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-md-8">
+          <div class="col-md-8 text-center">
             <h5 class="mb-4">📁 FICHIERS JOINTS</h5>
 
             <!-- Bloc PV descriptif -->
-            <h6 class="mt-4 mb-3 fw-bold text-uppercase">Procès-verbal descriptif</h6>
+            <h6 class="mt-4 mb-3 fw-bold text-uppercase mt-5">Procès-verbal descriptif</h6>
             <ul class="list-unstyled">
               <li *ngIf="data?.pdf">
                 <a [href]="data.pdf" class="doc-link" target="_blank">📄 PV Descriptif</a>
@@ -177,6 +165,7 @@
         </div>
       </div>
     </section>
+
 
   </div>
 </div>

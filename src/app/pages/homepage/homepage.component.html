@@ -49,11 +49,17 @@
           </div>
         </div>
 
-        <div class="row justify-content-center align-items-center">
-          <div class="col-auto d-flex align-items-center">
-            <p class="mb-0">{{ homepageData?.subtitle_1 }}</p>
-            <div class="indicator-arrow-down ms-2">
-              <img src="assets/icons/arrow_right.webp" alt="arrow down" />
+        <div
+          class="row justify-content-center align-items-center"
+          style="cursor: pointer;"
+          (click)="goToSkills()"
+        >
+          <div class="row justify-content-center align-items-center">
+            <div class="col-auto d-flex align-items-center">
+              <p class="mb-0">{{ homepageData?.subtitle_1 }}</p>
+              <div class="indicator-arrow-down ms-2">
+                <img src="assets/icons/arrow_right.webp" alt="arrow down" />
+              </div>
             </div>
           </div>
         </div>
@@ -108,16 +114,39 @@
               class="img-fluid"
             />
           </div>
-        </div>
 
-        <div class="row justify-content-center align-items-center mt-5">
-          <div class="col-auto d-flex align-items-center">
-            <p class="mb-0">{{ homepageData?.subtitle_2 }}</p>
-            <div class="indicator-arrow-down ms-2">
-              <img src="assets/icons/arrow-right-white.webp" alt="arrow down" />
+          <div class="col-12 col-sm-6 col-md-3" *ngIf="homepageData?.image_5">
+            <img
+              [src]="homepageData?.image_5"
+              alt="Portrait 5"
+              class="img-fluid"
+            />
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-3" *ngIf="homepageData?.image_6">
+            <img
+              [src]="homepageData?.image_6"
+              alt="Portrait 6"
+              class="img-fluid"
+            />
+          </div>
+
+          <div
+          class="row justify-content-center align-items-center"
+          style="cursor: pointer;"
+          (click)="goToTeam()"
+          >
+            <div class="row justify-content-center align-items-center mt-5">
+              <div class="col-auto d-flex align-items-center">
+                <p class="mb-0">{{ homepageData?.subtitle_2 }}</p>
+                <div class="indicator-arrow-down ms-2">
+                  <img src="assets/icons/arrow-right-white.webp" alt="arrow down" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
       </div>
     </section>
 

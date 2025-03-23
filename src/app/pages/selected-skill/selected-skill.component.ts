@@ -63,6 +63,7 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const newSlug = decodeURIComponent(params.get('slug') || '');
+      console.log('SelectedSkillComponent - param slug=', newSlug);
       this.skillSlug = newSlug;
       this.loadSkillData();
     });
@@ -70,11 +71,14 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
 
   private loadSkillData(): void {
     this.wpService.getSkillsData().subscribe((data) => {
+      console.log('SelectedSkillComponent - getSkillsData() response :', data);
+
       if (data && data.acf) {
         const matchingKey = Object.keys(data.acf).find((key) =>
           key.startsWith('box_') &&
           this.areSlugsEqual(data.acf[key], this.skillSlug)
         );
+        console.log('SelectedSkillComponent - matchingKey=', matchingKey);
 
         if (matchingKey) {
           const boxTitle = data.acf[matchingKey] || '';
@@ -98,8 +102,15 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
           };
 
           this.titleService.setTitle(`Compétence - ${boxTitle}`);
+
           this.setupLawyers(data.acf, boxTitle);
           this.setupFourthSection(data.acf);
+        } else {
+          console.warn('SelectedSkillComponent - Aucun skill trouvé pour slug=', this.skillSlug);
+        }
+
+        if (isPlatformBrowser(this.platformId)) {
+          window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
         }
       }
     });
@@ -110,7 +121,15 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
   }
 
   private generateSlug(title: string): string {
-    return title.toLowerCase().replace(/\s+/g, '-');
+    return title
+      .trim()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w-]/g, '')
+      .replace(/-+/g, '-')
+      .replace(/-+$/g, '');
   }
 
   private setupLawyers(acfData: any, boxTitle: string): void {
@@ -123,7 +142,6 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
         email: acfData.email_lawyer_name_1 || ''
       };
     }
-
     if (acfData.title_lawyer_name_2) {
       allLawyersDict['title_lawyer_name_2'] = {
         name: acfData.title_lawyer_name_2,
@@ -131,7 +149,6 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
         email: acfData.email_lawyer_name_2 || ''
       };
     }
-
     if (acfData.title_lawyer_name_3) {
       allLawyersDict['title_lawyer_name_3'] = {
         name: acfData.title_lawyer_name_3,
@@ -159,6 +176,7 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
       }));
 
     this.filteredSkills = allSkills.filter(skill => skill.slug !== this.skillSlug);
+    console.log('SelectedSkill - filteredSkills :', this.filteredSkills);
   }
 
   private setupLawyerRotation(): void {
@@ -186,8 +204,6 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
       }
     });
   }
-
-
 
   scrollToSection(sectionId: string): void {
     if (isPlatformBrowser(this.platformId)) {

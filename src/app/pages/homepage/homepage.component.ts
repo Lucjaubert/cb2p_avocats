@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import { WordpressService } from '../../services/wordpress.service';
 
@@ -21,7 +21,8 @@ export class HomepageComponent implements OnInit {
   constructor(
     private titleService: Title,
     private metaService: Meta,
-    private wpService: WordpressService
+    private wpService: WordpressService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -38,5 +39,13 @@ export class HomepageComponent implements OnInit {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+  goToTeam(): void {
+    this.router.navigate(['/equipe']);
+  }
+
+  goToSkills(): void {
+    this.router.navigate(['/competences']);
   }
 }

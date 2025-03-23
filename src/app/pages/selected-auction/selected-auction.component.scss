@@ -156,7 +156,7 @@
           display: block;
           width: 100%;
           height: 100%;
-          overflow: hidden; /* 🔑 Empêche l'apparition d'une barre de scroll verticale */
+          overflow: hidden;
 
           img {
             width: 100%;
@@ -214,7 +214,7 @@
       justify-content: center;
 
       .col-6.col-md-3 {
-        flex: 1 1 calc(25% - 10px); /* 4 images par ligne */
+        flex: 1 1 calc(25% - 10px);
         max-width: calc(25% - 10px);
         display: flex;
         align-items: center;
@@ -224,7 +224,7 @@
           display: block;
           text-decoration: none;
           width: 100%;
-          height: 250px; /* Augmenter la taille des images */
+          height: 250px;
 
           &:hover {
             text-decoration: none;

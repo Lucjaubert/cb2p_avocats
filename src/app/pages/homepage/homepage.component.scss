@@ -142,33 +142,34 @@
       }
     }
 
+    /* Spécifique aux grandes photos : on cible
+       uniquement les .col-xx qui contiennent un .img-fluid, pas l’icône */
     .row.gy-4 {
       margin-top: 2rem;
 
-      img {
-        width: auto;
-        height: 50vh;
-        object-fit: cover;
-        display: block;
-        margin: 0 auto;
-        box-shadow: 0 6px 12px rgba(0, 0, 0.1, 0.35);
+      /* Les colonnes images */
+      .col-12.col-sm-6.col-md-3 {
+        img {
+          width: auto;
+          height: 50vh;
+          object-fit: cover;
+          display: block;
+          margin: 0 auto;
+          box-shadow: 0 6px 12px rgba(0, 0, 0.1, 0.35);
+        }
       }
     }
 
-    .indicator-arrow-down {
-      display: flex;
-      align-items: center;
-
-      img {
-        width: 28px;
-        height: auto;
-        margin-left: 0.5rem;
-      }
+    /* Règle spécifique à l’icône flèche */
+    .indicator-arrow-down img {
+      width: 28px;
+      height: auto;
     }
 
     p {
       color: map.get(vars.$theme-colors, "white");
     }
   }
+
 }
 
