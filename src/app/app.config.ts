@@ -5,7 +5,7 @@ import {
   withInMemoryScrolling,
   Router,
   NavigationEnd,
-  Event as RouterEvent // Importez Event as RouterEvent pour le typage
+  Event as RouterEvent
 } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient, withFetch } from '@angular/common/http';

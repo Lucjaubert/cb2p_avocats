@@ -14,8 +14,7 @@ body, html {
   margin: 0;
   padding: 0;
   width: 100%;
-  /* height: 100%; */ /* Commenter ou supprimer cette ligne */
-  min-height: 100%; /* Ajouter cette ligne */
+  min-height: 100%;
   -ms-overflow-style: none;
   scrollbar-width: none;
   background-color: map.get(vars.$theme-colors, "blue") !important;
@@ -148,6 +147,14 @@ body.selected-auction-page .selected-auction-wrapper .first-section {
 
 body.contact-page .grecaptcha-badge {
   display: block !important;
+}
+
+body.auctions-page .site-footer {
+  border-top: 1px solid map.get(vars.$theme-colors, "gold") !important
+}
+
+body.contact-page .site-footer {
+  border-top: 1px solid map.get(vars.$theme-colors, "gold") !important
 }
 
 
