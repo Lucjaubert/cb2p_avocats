@@ -1,5 +1,6 @@
 <div class="full-screen-container">
   <div class="selected-skill-wrapper">
+
     <section id="first-section" class="first-section">
       <div class="container mb-5">
         <div class="row justify-content-center">
@@ -47,7 +48,7 @@
 
     <section id="third-section" class="third-section" *ngIf="displayedLawyer">
       <div class="container-fluid px-0">
-        <div class="row no-gutters">
+        <div class="row no-gutters" #lawyerContainer>
           <div class="col-md-6 third-section-left d-flex flex-column align-items-center justify-content-center">
             <p class="intro-text">Un(e) de nos associés à votre écoute</p>
             <p class="lawyer-name">
@@ -79,9 +80,12 @@
     <section id="fourth-section" class="fourth-section" *ngIf="filteredSkills.length > 0">
       <div class="d-flex flex-column align-items-start">
         <h3>CB2P Avocats vous propose d’autres services :</h3>
-
         <div class="skills-list p-5">
-          <div *ngFor="let skill of filteredSkills" class="skill-box" (click)="navigateToSkill(skill.slug)">
+          <div
+            *ngFor="let skill of filteredSkills"
+            class="skill-box"
+            (click)="navigateToSkill(skill.slug)"
+          >
             {{ skill.title }}
           </div>
         </div>

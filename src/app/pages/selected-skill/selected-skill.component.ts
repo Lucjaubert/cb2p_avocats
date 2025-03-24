@@ -4,12 +4,15 @@ import {
   OnDestroy,
   ViewEncapsulation,
   Inject,
-  PLATFORM_ID
+  PLATFORM_ID,
+  ElementRef,
+  ViewChild
 } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { WordpressService } from '../../services/wordpress.service';
+import { gsap } from 'gsap';
 
 interface Lawyer {
   name: string;
@@ -38,6 +41,7 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
   filteredSkills: Array<{ title: string; slug: string }> = [];
   private rotationInterval: any;
   private currentIndex = 0;
+  private transitionInProgress = false;
 
   private skillLawyerMapping: { [compTitle: string]: string[] } = {
     'Droit des affaires': ['title_lawyer_name_1'],
@@ -51,6 +55,9 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
     'Droit de la construction et droit immobilier': ['title_lawyer_name_2']
   };
 
+  @ViewChild('lawyerContainer', { static: false })
+  lawyerContainer!: ElementRef<HTMLDivElement>;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -63,22 +70,26 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       const newSlug = decodeURIComponent(params.get('slug') || '');
-      console.log('SelectedSkillComponent - param slug=', newSlug);
+      console.log('ngOnInit => slug:', newSlug);
       this.skillSlug = newSlug;
       this.loadSkillData();
     });
   }
 
+  ngOnDestroy(): void {
+    if (this.rotationInterval) {
+      clearInterval(this.rotationInterval);
+    }
+  }
+
   private loadSkillData(): void {
     this.wpService.getSkillsData().subscribe((data) => {
-      console.log('SelectedSkillComponent - getSkillsData() response :', data);
-
+      console.log('loadSkillData => getSkillsData response:', data);
       if (data && data.acf) {
         const matchingKey = Object.keys(data.acf).find((key) =>
-          key.startsWith('box_') &&
-          this.areSlugsEqual(data.acf[key], this.skillSlug)
+          key.startsWith('box_') && this.areSlugsEqual(data.acf[key], this.skillSlug)
         );
-        console.log('SelectedSkillComponent - matchingKey=', matchingKey);
+        console.log('loadSkillData => matchingKey:', matchingKey);
 
         if (matchingKey) {
           const boxTitle = data.acf[matchingKey] || '';
@@ -101,12 +112,11 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
             columns: skillColumns
           };
 
-          this.titleService.setTitle(`Compétence - ${boxTitle}`);
-
+          this.titleService.setTitle('Compétence - ' + boxTitle);
           this.setupLawyers(data.acf, boxTitle);
           this.setupFourthSection(data.acf);
         } else {
-          console.warn('SelectedSkillComponent - Aucun skill trouvé pour slug=', this.skillSlug);
+          console.warn('loadSkillData => aucun skill trouvé pour slug:', this.skillSlug);
         }
 
         if (isPlatformBrowser(this.platformId)) {
@@ -114,22 +124,6 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
         }
       }
     });
-  }
-
-  private areSlugsEqual(text1: string, text2: string): boolean {
-    return this.generateSlug(text1) === this.generateSlug(text2);
-  }
-
-  private generateSlug(title: string): string {
-    return title
-      .trim()
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .toLowerCase()
-      .replace(/\s+/g, '-')
-      .replace(/[^\w-]/g, '')
-      .replace(/-+/g, '-')
-      .replace(/-+$/g, '');
   }
 
   private setupLawyers(acfData: any, boxTitle: string): void {
@@ -158,9 +152,7 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
     }
 
     const lawyerKeys = this.skillLawyerMapping[boxTitle] || [];
-    this.lawyersList = lawyerKeys
-      .map(key => allLawyersDict[key])
-      .filter(l => !!l?.name);
+    this.lawyersList = lawyerKeys.map(key => allLawyersDict[key]).filter(l => !!l?.name);
 
     if (isPlatformBrowser(this.platformId)) {
       this.setupLawyerRotation();
@@ -174,24 +166,61 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
         title: acfData[key],
         slug: this.generateSlug(acfData[key])
       }));
-
     this.filteredSkills = allSkills.filter(skill => skill.slug !== this.skillSlug);
-    console.log('SelectedSkill - filteredSkills :', this.filteredSkills);
   }
 
   private setupLawyerRotation(): void {
     if (this.lawyersList.length > 0) {
       this.currentIndex = 0;
       this.displayedLawyer = this.lawyersList[0];
+
       if (this.lawyersList.length > 1) {
         this.rotationInterval = setInterval(() => {
-          this.currentIndex = (this.currentIndex + 1) % this.lawyersList.length;
-          this.displayedLawyer = this.lawyersList[this.currentIndex];
-        }, 3500);
+          this.rotateLawyerWithGsap();
+        }, 2000);
+      } else {
       }
     } else {
       this.displayedLawyer = null;
     }
+  }
+
+  private rotateLawyerWithGsap(): void {
+    if (this.transitionInProgress || !this.lawyerContainer) {
+      return;
+    }
+    this.transitionInProgress = true;
+    gsap.to(this.lawyerContainer.nativeElement, {
+      duration: 1.5,
+      opacity: 0,
+      onComplete: () => {
+        this.currentIndex = (this.currentIndex + 1) % this.lawyersList.length;
+        this.displayedLawyer = this.lawyersList[this.currentIndex];
+        gsap.to(this.lawyerContainer.nativeElement, {
+          duration: 1.5,
+          opacity: 1,
+          onComplete: () => {
+            this.transitionInProgress = false;
+          }
+        });
+      }
+    });
+  }
+
+  private areSlugsEqual(text1: string, text2: string): boolean {
+    return this.generateSlug(text1) === this.generateSlug(text2);
+  }
+
+  private generateSlug(title: string): string {
+    return title
+      .trim()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w-]/g, '')
+      .replace(/-+/g, '-')
+      .replace(/-+$/g, '');
   }
 
   navigateToSkill(skillSlug: string): void {
@@ -211,12 +240,6 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
       }
-    }
-  }
-
-  ngOnDestroy(): void {
-    if (this.rotationInterval) {
-      clearInterval(this.rotationInterval);
     }
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { WordpressService } from '../../services/wordpress.service';
 
@@ -23,7 +23,8 @@ export class SelectedTeamComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private wpService: WordpressService
+    private wpService: WordpressService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -77,5 +78,9 @@ export class SelectedTeamComponent implements OnInit {
         presentationHtml: presentationVal
       };
     });
+  }
+
+  goToTeam(): void {
+    this.router.navigate(['/equipe']);
   }
 }

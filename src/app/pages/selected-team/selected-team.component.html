@@ -1,12 +1,12 @@
 <div class="full-screen-container" *ngIf="displayedMember">
   <div class="selected-team-wrapper">
-    <section id="first-section" class="first-section mt-4">
+    <section id="first-section" class="first-section">
       <div class="container-fluid px-0">
         <div class="row no-gutters">
 
           <div class="col-md-6 first-section-left d-flex flex-column align-items-start justify-content-center">
 
-            <h6 class="mb-4">Équipe</h6>
+            <h6 (click)="goToTeam()" class="team mb-4">Équipe</h6>
 
             <p class="lawyer-name">
               {{ displayedMember.name }}

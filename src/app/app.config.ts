@@ -5,7 +5,7 @@ import {
   withInMemoryScrolling,
   Router,
   NavigationEnd,
-  Event as RouterEvent // Importez Event as RouterEvent pour le typage
+  Event as RouterEvent
 } from '@angular/router';
 import { routes } from './app.routes';
 import { provideHttpClient, withFetch } from '@angular/common/http';
@@ -30,7 +30,7 @@ export const appConfig: ApplicationConfig = {
         const router = inject(Router);
         return () => {
           router.events.pipe(
-            filter((e: RouterEvent): e is NavigationEnd => e instanceof NavigationEnd), // Typez correctement le premier filtre
+            filter((e: RouterEvent): e is NavigationEnd => e instanceof NavigationEnd),
             filter((e: NavigationEnd) => e.urlAfterRedirects.startsWith('/equipe'))
           ).subscribe(() => {
             if (typeof window !== 'undefined') {
