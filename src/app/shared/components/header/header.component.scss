@@ -2,14 +2,13 @@
 @use "../../../../styles/_variables.scss" as vars;
 
 .header-container {
-  position: absolute; /* ou fixed, si vous voulez qu'il reste en place au scroll */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 999; /* pour passer au-dessus du contenu */
-  background: transparent; /* pas de large bande bleue */
+  z-index: 999;
+  background: transparent;
 
-  /* On peut utiliser flex si on veut aligner logo / nav sur une même ligne */
   display: flex;
   align-items: center;
   justify-content: space-between;

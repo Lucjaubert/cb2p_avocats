@@ -157,4 +157,24 @@ body.contact-page .site-footer {
   border-top: 1px solid map.get(vars.$theme-colors, "gold") !important
 }
 
+@media (min-width: 1400px) {
+  body.selected-team-page {
+    .nav-link-skills,
+    .nav-link-team,
+    .nav-link-contact,
+    .nav-link-auctions,
+    .nav-link-office {
+      color: map.get(vars.$theme-colors, "blue") !important;
+
+      &::after {
+        background-color: map.get(vars.$theme-colors, "blue") !important;
+      }
+    }
+  }
+}
+
+
+
+
+
 

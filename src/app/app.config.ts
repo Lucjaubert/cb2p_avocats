@@ -30,7 +30,7 @@ export const appConfig: ApplicationConfig = {
         const router = inject(Router);
         return () => {
           router.events.pipe(
-            filter((e: RouterEvent): e is NavigationEnd => e instanceof NavigationEnd), // Typez correctement le premier filtre
+            filter((e: RouterEvent): e is NavigationEnd => e instanceof NavigationEnd),
             filter((e: NavigationEnd) => e.urlAfterRedirects.startsWith('/equipe'))
           ).subscribe(() => {
             if (typeof window !== 'undefined') {

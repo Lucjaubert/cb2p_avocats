@@ -39,6 +39,15 @@
           margin-bottom: 1rem;
         }
 
+        .team {
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+            color: map.get(vars.$theme-colors, "gold");
+          }
+        }
+
         .lawyer-name {
           font-size: 2rem;
           font-weight: bold;
@@ -92,7 +101,8 @@
         min-height: 100vh;
 
         .member-photo {
-          max-width: 100%;
+          max-width: 350px;
+          width: 100%;
           height: auto;
           border-radius: 4px;
           box-shadow: 0 2px 15px rgba(0,0,0,0.4);
