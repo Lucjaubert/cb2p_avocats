@@ -1,0 +1,85 @@
+<div class="full-screen-container">
+  <div class="erasure-wrapper">
+    <section id="first-section" class="first-section">
+      <div class="container mb-5">
+        <div class="row justify-content-center">
+          <div class="col-auto d-flex flex-column align-items-center">
+            <div class="hero-section d-flex flex-column align-items-center">
+              <h1>Droit à l'oubli</h1>
+              <h3 class="mt-3">Soumettez une demande d'effacement de vos données privées</h3>
+              <div class="scroll-indicator mt-5">
+                <img
+                  src="assets/icons/arrow_circle_down.webp"
+                  alt="Scroll Down"
+                  (click)="scrollToSection('second-section')"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="second-section" class="second-section">
+      <div class="container">
+        <form (ngSubmit)="sendMessage()">
+          <input
+            type="text"
+            name="name"
+            placeholder="Nom complet"
+            class="form-control mb-3"
+            [(ngModel)]="formData.name"
+            required
+          />
+
+          <input
+            type="email"
+            name="email"
+            placeholder="Adresse email"
+            class="form-control mb-3"
+            [(ngModel)]="formData.email"
+            required
+          />
+
+          <textarea
+            name="message"
+            placeholder="Message"
+            rows="5"
+            class="form-control mb-3"
+            [(ngModel)]="formData.message"
+            required
+          ></textarea>
+
+          <input
+            type="text"
+            name="phone"
+            placeholder="Téléphone"
+            class="form-control mb-3"
+            [(ngModel)]="formData.phone"
+          />
+
+          <div class="form-group d-flex align-items-center mt-2 px-2">
+            <input
+              type="checkbox"
+              id="privacy"
+              name="privacy"
+              [(ngModel)]="formData.privacyAccepted"
+              style="margin-right: 15px; transform: scale(1.5);"
+            />
+
+            <label for="privacy">
+              En soumettant ce formulaire, j’accepte que les informations saisies soient
+              exploitées dans le cadre strict de ma demande.
+            </label>
+          </div>
+
+          <button type="submit"
+                  class="btn-submit mt-4"
+                  [disabled]="!formData.privacyAccepted">
+            Envoyer
+          </button>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>

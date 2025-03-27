@@ -147,6 +147,41 @@ body.selected-auction-page .selected-auction-wrapper .first-section {
   background-size: cover;
 }
 
+body.legal-documents-page .legal-wrapper .first-section {
+  background: url("/assets/img/legal-documents/livres-droit.webp") no-repeat center center;
+  background-size: cover;
+}
+
+body.dpo-page .dpo-wrapper .first-section {
+  background: url("/assets/img/legal-documents/livres-droit.webp") no-repeat center center;
+  background-size: cover;
+}
+
+body.cookies-page .cookies-wrapper .first-section {
+  background: url("/assets/img/legal-documents/livres-droit.webp") no-repeat center center;
+  background-size: cover;
+}
+
+body.legal-mentions-page .legal-mentions-wrapper .first-section {
+  background: url("/assets/img/legal-documents/livres-droit.webp") no-repeat center center;
+  background-size: cover;
+}
+
+body.privacy-page .privacy-wrapper .first-section {
+  background: url("/assets/img/legal-documents/livres-droit.webp") no-repeat center center;
+  background-size: cover;
+}
+
+body.rectification-page .rectification-wrapper .first-section {
+  background: url("/assets/img/legal-documents/livres-droit.webp") no-repeat center center;
+  background-size: cover;
+}
+
+body.erasure-page .erasure-wrapper .first-section {
+  background: url("/assets/img/legal-documents/livres-droit.webp") no-repeat center center;
+  background-size: cover;
+}
+
 .grecaptcha-badge {
   display: none !important;
 }
@@ -168,10 +203,9 @@ body.selected-team-page .header-container  {
   border-bottom: 1px solid map.get(vars.$theme-colors, "gold") !important;
 }
 
-// body.contact-page .first-section {
-//   min-height: 100vh;
-// }
-
+.grecaptcha-badge {
+  margin-bottom: 55px
+}
 
 
 
