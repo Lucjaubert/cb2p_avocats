@@ -57,6 +57,48 @@ export const routes: Routes = [
     title: "Membre de l'équipe"
   },
   {
+    path: 'centre-de-confidentialite',
+    loadComponent: () =>
+      import('./pages/legal-documents/privacy-policy/privacy-policy.component').then((m) => m.PrivacyPolicyComponent),
+    title: 'Centre de confidentialité'
+  },
+  {
+    path: 'contactez-le-dpo',
+    loadComponent: () =>
+      import('./pages/legal-documents/dpo-contact/dpo-contact.component').then((m) => m.DpoContactComponent),
+    title: 'Contactez le DPO'
+  },
+  {
+    path: 'politique-des-cookies',
+    loadComponent: () =>
+      import('./pages/legal-documents/cookies-policy/cookies-policy.component').then((m) => m.CookiesPolicyComponent),
+    title: 'Politique des cookies'
+  },
+  {
+    path: 'mentions-legales',
+    loadComponent: () =>
+      import('./pages/legal-documents/legal-mentions/mentions-legales.component').then(m => m.MentionsLegalesComponent),
+    title: 'Mentions légales'
+  },
+  {
+    path: 'politique-de-confidentialite',
+    loadComponent: () =>
+      import('./pages/legal-documents/privacy/privacy.component').then((m) => m.PrivacyComponent),
+    title: 'Politique de confidentialité'
+  },
+  {
+    path: 'droit-a-l-oubli',
+    loadComponent: () =>
+      import('./pages/legal-documents/erasure/erasure.component').then((m) => m.ErasureComponent),
+    title: 'Droit à loubli'
+  },
+  {
+    path: 'rectification-des-donnees',
+    loadComponent: () =>
+      import('./pages/legal-documents/rectification/rectification.component').then((m) => m.RectificationComponent),
+    title: 'Rectification des données'
+  },
+  {
     path: '404',
     loadComponent: () =>
       import('./pages/not-found/not-found.component').then((m) => m.NotFoundComponent),

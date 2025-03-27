@@ -1,0 +1,79 @@
+@use "sass:map";
+@use "../../../../styles/_variables.scss" as vars;
+
+.full-screen-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.rectification-wrapper {
+  width: 100%;
+
+  .first-section {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .hero-section {
+      margin-top: 5rem;
+      text-align: center;
+
+      h1, h3 {
+        color: map.get(vars.$theme-colors, "white") !important;
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        img {
+          width: 40px;
+          height: auto;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .second-section {
+    padding: 5rem 1rem;
+    background-color: map.get(vars.$theme-colors, "white");
+    min-height: 100vh;
+
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+
+      .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+      }
+
+      textarea {
+        min-height: 100px;
+      }
+
+      .btn-submit {
+        background-color: map.get(vars.$theme-colors, "blue");
+        color: white;
+        border: none;
+        padding: 0.75rem 2rem;
+        font-size: 1rem;
+        cursor: pointer;
+        border-radius: 4px;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: darken(map.get(vars.$theme-colors, "blue"), 10%);
+        }
+      }
+    }
+  }
+}
