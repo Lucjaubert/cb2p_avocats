@@ -44,9 +44,16 @@
       }
     }
 
-    .scroll-indicator img {
-      width: 40px;
-      height: auto;
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+
+      img {
+        width: 40px;
+        height: auto;
+      }
     }
   }
 
@@ -152,7 +159,10 @@
     }
 
     .scroll-indicator {
-      text-align: center;
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
 
       img {
         width: 40px;

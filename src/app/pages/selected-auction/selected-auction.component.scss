@@ -36,12 +36,16 @@
         color: map.get(vars.$theme-colors, "gold");
       }
 
-      .scroll-indicator img {
+      .scroll-indicator {
         position: absolute;
-        width: 40px;
-        height: auto;
-        cursor: pointer;
-        margin-top: 3rem;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+
+        img {
+          width: 40px;
+          height: auto;
+        }
       }
     }
   }

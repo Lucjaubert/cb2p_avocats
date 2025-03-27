@@ -1,0 +1,7 @@
+<div class="payment-popup py-0"
+     (click)="goToPayment()"
+     (mouseenter)="onMouseEnter()"
+     (mouseleave)="onMouseLeave()">
+  <img class="credit-icon" src="assets/icons/credit_card.webp" alt="Paiement en ligne" />
+  <span class="text-icon" *ngIf="showText">Paiement en ligne</span>
+</div>

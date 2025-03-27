@@ -53,6 +53,11 @@
     }
 
     .scroll-indicator {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+
       img {
         width: 40px;
         height: auto;
@@ -112,17 +117,12 @@
       bottom: 2rem;
       left: 50%;
       transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
 
       img {
         width: 40px;
         height: auto;
-        cursor: pointer;
       }
     }
-
   }
 
   .third-section {
@@ -208,14 +208,10 @@
       bottom: 2rem;
       left: 50%;
       transform: translateX(-50%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
 
       img {
         width: 40px;
         height: auto;
-        cursor: pointer;
       }
     }
   }

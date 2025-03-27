@@ -8,11 +8,13 @@
   width: 100%;
   z-index: 999;
   background: transparent;
-
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 0 1rem;
+
+  .logo-wrapper {
+    flex: 0 0 auto;
+  }
 
   a {
     color: map.get(vars.$theme-colors, "white");
@@ -26,16 +28,13 @@
   }
 
   .custom-navbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
+    flex: 1;
+    position: relative;
     z-index: 10;
     background: transparent;
-    margin-left: auto;
-    margin-right: 0;
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: center;
 
     &::before {
       content: "";
@@ -52,7 +51,7 @@
     .navbar-nav {
       display: flex;
       flex-direction: row;
-      justify-content: flex-end;
+      justify-content: center;
       align-items: center;
       width: 100%;
       padding-right: 3vw;
