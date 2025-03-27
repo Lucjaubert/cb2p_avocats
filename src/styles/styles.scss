@@ -25,6 +25,12 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+app-footer {
+  width: 100%;
+  height: 100px;
+  margin-top: auto;
+}
+
 #app-container {
   position: relative;
   display: flex;
@@ -157,21 +163,16 @@ body.contact-page .site-footer {
   border-top: 1px solid map.get(vars.$theme-colors, "gold") !important
 }
 
-@media (min-width: 1400px) {
-  body.selected-team-page {
-    .nav-link-skills,
-    .nav-link-team,
-    .nav-link-contact,
-    .nav-link-auctions,
-    .nav-link-office {
-      color: map.get(vars.$theme-colors, "blue") !important;
-
-      &::after {
-        background-color: map.get(vars.$theme-colors, "blue") !important;
-      }
-    }
-  }
+body.selected-team-page .header-container  {
+  background-color: map.get(vars.$theme-colors, "light-blue") !important;
+  border-bottom: 1px solid map.get(vars.$theme-colors, "gold") !important;
 }
+
+// body.contact-page .first-section {
+//   min-height: 100vh;
+// }
+
+
 
 
 

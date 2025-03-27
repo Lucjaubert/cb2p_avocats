@@ -142,12 +142,8 @@
       }
     }
 
-    /* Spécifique aux grandes photos : on cible
-       uniquement les .col-xx qui contiennent un .img-fluid, pas l’icône */
-    .row.gy-4 {
+     .row.gy-4 {
       margin-top: 2rem;
-
-      /* Les colonnes images */
       .col-12.col-sm-6.col-md-3 {
         img {
           width: auto;
@@ -160,7 +156,6 @@
       }
     }
 
-    /* Règle spécifique à l’icône flèche */
     .indicator-arrow-down img {
       width: 28px;
       height: auto;
