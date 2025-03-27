@@ -11,11 +11,12 @@ import {
 import { WordpressService } from './services/wordpress.service';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import { PaymentPopupComponent } from './shared/components/payment/payment-popup.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CommonModule, HeaderComponent, FooterComponent],
+  imports: [RouterOutlet, CommonModule, HeaderComponent, FooterComponent, PaymentPopupComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })

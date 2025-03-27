@@ -103,8 +103,6 @@
               <h5>{{ officeData?.title_7 }}</h5>
             </div>
             <div class="line"></div>
-
-            <!-- On liste tous les skills extraits dans skillList -->
             <p
               *ngFor="let skill of skillList"
               (click)="goToSelectedSkill(skill.slug)"

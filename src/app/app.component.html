@@ -15,4 +15,6 @@
   <ng-container *ngIf="showFooter">
     <app-footer></app-footer>
   </ng-container>
+
+  <app-payment-popup *ngIf="!currentRoute.includes('/404')"></app-payment-popup>
 </body>

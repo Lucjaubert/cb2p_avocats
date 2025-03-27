@@ -1,0 +1,30 @@
+@use "sass:map";
+@use "../../../../styles/_variables.scss" as vars;
+
+.payment-popup {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  color: map.get(vars.$theme-colors, "dark-orange");
+  padding: 0.8rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  z-index: 9999;
+  background: none;
+
+  .credit-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 0.5rem;
+  }
+
+  .text-icon {
+    color: map.get(vars.$theme-colors, "white");
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
