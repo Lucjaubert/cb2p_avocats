@@ -20,8 +20,14 @@
               <textarea name="message" placeholder="Message" class="form-control mb-3" [(ngModel)]="formData.message" required></textarea>
 
               <div class="form-group d-flex align-items-center">
-                <input type="checkbox" id="privacy" [(ngModel)]="formData.privacyAccepted" name="privacy">
-                <label for="privacy">En soumettant ce formulaire, j’accepte que les informations saisies soient exploitées dans le cadre strict de ma demande.</label>
+                <div class="col-3">
+                  <input type="checkbox" id="privacy" [(ngModel)]="formData.privacyAccepted" name="privacy" class="form-check-input">
+                </div>
+                <div class="col-9">
+                  <label for="privacy" class="form-check-label">
+                    En soumettant ce formulaire, j’accepte que les informations saisies soient exploitées dans le cadre strict de ma demande.
+                  </label>
+                </div>
               </div>
 
               <button type="submit" class="btn-submit mt-4" [disabled]="!formData.privacyAccepted">Envoyer</button>

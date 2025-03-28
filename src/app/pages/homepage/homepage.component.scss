@@ -11,46 +11,56 @@
 }
 
 .homepage-wrapper {
-
   .first-section {
     min-height: 100vh;
+    overflow: hidden;
 
-    .presentation {
-      margin-top: 7rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    .slogan-container {
+      overflow-y: hidden;
 
-    .logo {
-      width: 20vw;
-      height: auto;
-      margin-bottom: 2rem;
-    }
-
-    .separator {
-      width: 2px;
-      height: 280px;
-      background-color: #fff;
-      flex: 0 0 auto;
-      margin: 0 1rem;
-    }
-
-    .office-skill {
-      letter-spacing: 5px;
-      color: map.get(vars.$theme-colors, "grey");
-      text-transform: uppercase;
-    }
-
-    .slogan {
-      h2 {
-        color: map.get(vars.$theme-colors, "grey");
+      .presentation {
+        margin-top: 7rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
-    }
 
-    .scroll-indicator img {
-      width: 40px;
-      height: auto;
+      .logo {
+        width: 20vw;
+        height: auto;
+        margin-bottom: 2rem;
+      }
+
+      .separator {
+        width: 2px;
+        height: 40vh;
+        background-color: map.get(vars.$theme-colors, "white");
+        flex: 0 0 auto;
+        margin: 0 1rem;
+        transform-origin: top;
+        transform: scaleY(0);
+      }
+
+      .office-skill {
+        letter-spacing: 5px;
+        color: map.get(vars.$theme-colors, "white");
+        text-transform: uppercase;
+      }
+
+      .slogan {
+        .text-center {
+          overflow-y: hidden;
+        }
+
+        h2 {
+          color: map.get(vars.$theme-colors, "white");
+        }
+      }
+
+      .scroll-indicator img {
+        width: 40px;
+        height: auto;
+      }
     }
   }
 
@@ -87,10 +97,12 @@
     .title-skills {
       margin-left: 10vw;
       margin-right: 10vw;
+      overflow-y: hidden;
     }
 
     .skills {
       text-transform: uppercase;
+      overflow-y: hidden;
     }
 
     p {
@@ -124,6 +136,7 @@
     justify-content: center;
     padding: 0;
     background-color: map.get(vars.$theme-colors, "gold");
+    perspective: 1000px;
 
     .container {
       position: relative;
@@ -136,14 +149,16 @@
       margin-left: 10vw;
       margin-right: 10vw;
       text-align: center;
+      overflow-y: hidden;
 
       h3 {
         color: map.get(vars.$theme-colors, "white");
       }
     }
 
-     .row.gy-4 {
+    .row.gy-4 {
       margin-top: 2rem;
+
       .col-12.col-sm-6.col-md-3 {
         img {
           width: auto;
@@ -152,8 +167,15 @@
           display: block;
           margin: 0 auto;
           box-shadow: 0 6px 12px rgba(0, 0, 0.1, 0.35);
+          backface-visibility: hidden;
+          transform-style: preserve-3d;
+          will-change: transform, opacity;
         }
       }
+    }
+
+    .team {
+      overflow-y: hidden;
     }
 
     .indicator-arrow-down img {
@@ -167,4 +189,3 @@
   }
 
 }
-
