@@ -4,31 +4,40 @@
     <section id="first-section" class="first-section">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-auto d-flex flex-column align-items-center mt-5">
+          <div class="slogan-container col-auto d-flex flex-column align-items-center mt-5">
 
             <div class="presentation d-flex align-items-center ms-5">
               <div class="col-6 text-center px-4">
                 <img
+                  #logo
                   src="/assets/img/homepage/logo-ss-fd-cb2p.webp"
                   alt="CB2P Avocats"
                   class="logo px-3"
                 />
               </div>
-              <div class="separator"></div>
+
+              <div #separator class="separator"></div>
+
               <div class="col-6 px-4 mx-4">
-                <h1 class="office-skill d-flex justify-content-center align-items-center px-3 pb-4">
-                  AVOCATS<br>CONTENTIEUX<br>CONSEILS<br>À BORDEAUX
+                <h1
+                  #words
+                  class="office-skill d-flex flex-column align-items-start text-center px-3 pb-4"
+                >
+                  <span>AVOCATS</span>
+                  <span>CONTENTIEUX</span>
+                  <span>CONSEILS</span>
+                  <span>À BORDEAUX</span>
                 </h1>
               </div>
             </div>
 
             <div class="row slogan my-5 w-100">
               <div class="col text-center">
-                <h2>{{ homepageData?.title_1 }}</h2>
+                <h2 #title1>{{ homepageData?.title_1 }}</h2>
               </div>
             </div>
 
-            <div class="scroll-indicator">
+            <div #scrollIndicator class="scroll-indicator">
               <img
                 src="assets/icons/arrow_circle_down.webp"
                 alt="Scroll Down"
@@ -45,7 +54,7 @@
       <div class="container">
         <div class="row my-5 px-5 justify-content-center">
           <div class="col title-skills text-center">
-            <h2>{{ homepageData?.title_2 }}</h2>
+            <h2 #title2>{{ homepageData?.title_2 }}</h2>
           </div>
         </div>
 
@@ -54,101 +63,68 @@
           style="cursor: pointer;"
           (click)="goToSkills()"
         >
-          <div class="row justify-content-center align-items-center">
-            <div class="col-auto d-flex align-items-center">
-              <p class="mb-0">{{ homepageData?.subtitle_1 }}</p>
-              <div class="indicator-arrow-down ms-2">
-                <img src="assets/icons/arrow_right.webp" alt="arrow down" />
-              </div>
+          <div class="skills col-auto d-flex align-items-center">
+            <p class="mb-0" #subtitle2>{{ homepageData?.subtitle_1 }}</p>
+            <div class="indicator-arrow-down ms-2" #arrowRight>
+              <img src="assets/icons/arrow_right.webp" alt="arrow down" />
             </div>
           </div>
         </div>
       </div>
 
-      <div class="scroll-indicator">
+      <div #scrollIndicator2 class="scroll-indicator">
         <img
           src="assets/icons/arrow_circle_down.webp"
           alt="Scroll Down"
           (click)="scrollToSection('third-section')"
-          />
+        />
       </div>
     </section>
 
     <section id="third-section" class="third-section">
       <div class="container">
-        <div class="row my-5 px-5 justify-content-center">
+        <div class="team row my-5 px-5 justify-content-center">
           <div class="col title-skills text-center">
-            <h3>{{ homepageData?.title_3 }}</h3>
+            <h3 #title3>{{ homepageData?.title_3 }}</h3>
           </div>
         </div>
 
         <div class="row gy-4">
           <div class="col-12 col-sm-6 col-md-3" *ngIf="homepageData?.image_1">
-            <img
-              [src]="homepageData?.image_1"
-              alt="Portrait 1"
-              class="img-fluid"
-            />
+            <img #portrait class="img-fluid" [src]="homepageData?.image_1" alt="Portrait 1" />
           </div>
-
           <div class="col-12 col-sm-6 col-md-3" *ngIf="homepageData?.image_2">
-            <img
-              [src]="homepageData?.image_2"
-              alt="Portrait 2"
-              class="img-fluid"
-            />
+            <img #portrait class="img-fluid" [src]="homepageData?.image_2" alt="Portrait 2" />
           </div>
-
           <div class="col-12 col-sm-6 col-md-3" *ngIf="homepageData?.image_3">
-            <img
-              [src]="homepageData?.image_3"
-              alt="Portrait 3"
-              class="img-fluid"
-            />
+            <img #portrait class="img-fluid" [src]="homepageData?.image_3" alt="Portrait 3" />
           </div>
-
           <div class="col-12 col-sm-6 col-md-3" *ngIf="homepageData?.image_4">
-            <img
-              [src]="homepageData?.image_4"
-              alt="Portrait 4"
-              class="img-fluid"
-            />
+            <img #portrait class="img-fluid" [src]="homepageData?.image_4" alt="Portrait 4" />
           </div>
-
           <div class="col-12 col-sm-6 col-md-3" *ngIf="homepageData?.image_5">
-            <img
-              [src]="homepageData?.image_5"
-              alt="Portrait 5"
-              class="img-fluid"
-            />
+            <img #portrait class="img-fluid" [src]="homepageData?.image_5" alt="Portrait 5" />
           </div>
-
           <div class="col-12 col-sm-6 col-md-3" *ngIf="homepageData?.image_6">
-            <img
-              [src]="homepageData?.image_6"
-              alt="Portrait 6"
-              class="img-fluid"
-            />
-          </div>
-
-          <div
-          class="row justify-content-center align-items-center"
-          style="cursor: pointer;"
-          (click)="goToTeam()"
-          >
-            <div class="row justify-content-center align-items-center mt-5">
-              <div class="col-auto d-flex align-items-center">
-                <p class="mb-0">{{ homepageData?.subtitle_2 }}</p>
-                <div class="indicator-arrow-down ms-2">
-                  <img src="assets/icons/arrow-right-white.webp" alt="arrow down" />
-                </div>
-              </div>
-            </div>
+            <img #portrait class="img-fluid" [src]="homepageData?.image_6" alt="Portrait 6" />
           </div>
         </div>
 
+        <div
+          class="team row justify-content-center align-items-center mt-5"
+          style="cursor: pointer;"
+          (click)="goToTeam()"
+        >
+          <div class=" col-auto d-flex align-items-center" #teamCallToAction>
+            <p class="mb-0">{{ homepageData?.subtitle_2 }}</p>
+            <div class="indicator-arrow-down ms-2">
+              <img src="assets/icons/arrow-right-white.webp" alt="arrow down" />
+            </div>
+          </div>
+        </div>
       </div>
     </section>
+
 
   </div>
 </div>
