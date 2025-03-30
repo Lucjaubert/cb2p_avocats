@@ -12,6 +12,30 @@
 
 .office-wrapper {
   width: 100%;
+  perspective: 1000px;
+
+  .line {
+    width: 100%;
+    height: 1.5px;
+    background-color: map.get(vars.$theme-colors, "gold");
+    transform: scaleX(0);
+    transform-origin: left;
+    position: relative;
+    z-index: 3;
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+
+    img {
+      width: 40px;
+      height: auto;
+    }
+  }
+
   .first-section {
     width: 100%;
     min-height: 100vh;
@@ -42,20 +66,14 @@
     }
 
     .slogan {
+      overflow: hidden;
+
+      .slogan-box {
+        overflow: hidden;
+      }
+
       h3 {
         color: map.get(vars.$theme-colors, "grey");
-      }
-    }
-
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-
-      img {
-        width: 40px;
-        height: auto;
       }
     }
   }
@@ -77,20 +95,14 @@
       max-width: fit-content;
       position: relative;
       margin-bottom: 25vh;
+      overflow: hidden;
 
       h5,
       p {
         color: map.get(vars.$theme-colors, "blue");
         white-space: pre-line;
         font-weight: 500;
-      }
-
-      .line {
-        width: 100%;
-        height: 1.5px;
-        background-color: map.get(vars.$theme-colors, "dark-orange");
-        margin-top: 5px;
-        display: block;
+        line-height: 1.5;
       }
     }
 
@@ -126,18 +138,6 @@
       margin-left: 20vw;
       margin-bottom: 10vh;
     }
-
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-
-      img {
-        width: 40px;
-        height: auto;
-      }
-    }
   }
 
   .third-section {
@@ -156,30 +156,14 @@
       justify-content: center;
       max-width: 60vw;
       text-align: left;
-    }
+      overflow-y: hidden;
 
-    .line {
-      width: 30vw;
-      height: 1px;
-      background-color: map.get(vars.$theme-colors, "gold");
-      margin-bottom: 2rem;
+
     }
 
     h4 {
       color: map.get(vars.$theme-colors, "white") !important;
       margin-bottom: 1rem;
-    }
-
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-
-      img {
-        width: 40px;
-        height: auto;
-      }
     }
   }
 
@@ -206,15 +190,9 @@
       max-width: 30%;
       text-align: center;
 
-      .line {
-        width: 100%;
-        height: 1px;
-        background-color: map.get(vars.$theme-colors, "gold");
-        margin-bottom: 3rem;
-      }
-
       .title-expert {
         margin-bottom: 1rem;
+        overflow: hidden;
 
         h5 {
           color: map.get(vars.$theme-colors, "blue") !important;
@@ -229,31 +207,6 @@
         font-size: clamp(0.575rem, 2vw, 0.9rem) !important;
         margin-top: 5vh;
         font-weight: 400;
-      }
-    }
-
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-80%);
-
-      img {
-        width: 40px;
-        height: auto;
-      }
-    }
-
-    @media (max-width: 1024px) {
-      .row {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      .text-container {
-        max-width: 90%;
-        margin-bottom: 2rem;
       }
     }
   }
@@ -279,6 +232,7 @@
 
       .title-expert {
         margin-bottom: 3.5rem;
+        overflow-y: hidden;
 
         h5 {
           color: map.get(vars.$theme-colors, "white") !important;
@@ -286,10 +240,7 @@
       }
 
       .line {
-        width: 400px;
-        height: 2px;
         background-color: map.get(vars.$theme-colors, "white");
-        margin: 0 auto 2rem;
       }
 
       p {
@@ -301,18 +252,6 @@
           color: map.get(vars.$theme-colors, "dark-orange");
           font-weight: 500;
         }
-      }
-    }
-
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-
-      img {
-        width: 40px;
-        height: auto;
       }
     }
 
@@ -355,22 +294,14 @@
       }
     }
 
+    .text-center {
+      overflow-y: hidden;
+    }
+
     .slogan {
       h4 {
         color: map.get(vars.$theme-colors, "grey");
         line-height: 2;
-      }
-    }
-
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-
-      img {
-        width: 40px;
-        height: auto;
       }
     }
   }
