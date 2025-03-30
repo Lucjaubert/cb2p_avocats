@@ -46,13 +46,11 @@ export class AuctionsComponent implements OnInit, AfterViewInit, AfterViewChecke
     items: []
   };
 
-  // Références pour la section HERO
   @ViewChild('firstSection') firstSection!: ElementRef;
   @ViewChild('mainTitle') mainTitle!: ElementRef;
   @ViewChild('subtitle') subtitleElement!: ElementRef;
   @ViewChild('scrollIndicatorFirst') scrollIndicatorFirst!: ElementRef;
 
-  // Références pour la section list-section
   @ViewChildren('auctionItem') auctionItems!: QueryList<ElementRef>;
   @ViewChildren('auctionTextElement') auctionTextElements!: QueryList<ElementRef>;
   @ViewChildren('auctionImage') auctionImages!: QueryList<ElementRef>;
@@ -79,14 +77,12 @@ export class AuctionsComponent implements OnInit, AfterViewInit, AfterViewChecke
   }
 
   ngAfterViewInit(): void {
-    // Nous attendons que les données soient chargées
   }
 
   ngAfterViewChecked(): void {
     if (this.auctionsData.items.length > 0 && !this.animationExecuted) {
       console.log('ngAfterViewChecked -> lancement des animations');
 
-      // ---------- SECTION 1 : HERO ----------
       if (this.firstSection && this.mainTitle && this.subtitleElement && this.scrollIndicatorFirst) {
         gsap.set(this.scrollIndicatorFirst.nativeElement, { opacity: 0, y: 20 });
         const tlHero = gsap.timeline({
@@ -115,7 +111,6 @@ export class AuctionsComponent implements OnInit, AfterViewInit, AfterViewChecke
           );
       }
 
-      // ---------- SECTION 2 : Pour chaque enchère ----------
       this.auctionItems.forEach((auctionItemRef) => {
         const auctionItem = auctionItemRef.nativeElement;
         const textEls = this.auctionTextElements

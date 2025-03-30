@@ -127,6 +127,7 @@
         display: flex;
         align-items: baseline;
         width: 50%;
+        overflow-y: hidden;
 
         h4 {
           color: map.get(vars.$theme-colors, "white");
