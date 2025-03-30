@@ -5,35 +5,36 @@
         <div class="row no-gutters">
 
           <div class="col-md-6 first-section-left d-flex flex-column align-items-start justify-content-center">
-
-            <h6 (click)="goToTeam()" class="team mb-4">Équipe</h6>
-
-            <p class="lawyer-name">
-              {{ displayedMember.name }}
-            </p>
+            <h6 #teamLink (click)="goToTeam()" class="team mb-4">Équipe</h6>
+            <p class="lawyer-name" #memberName>{{ displayedMember.name }}</p>
 
             <div
               class="member-function my-2"
               *ngIf="displayedMember.functionHtml"
               [innerHTML]="displayedMember.functionHtml"
+              #memberFunction
             ></div>
 
             <div
               class="member-presentation text-start mt-4"
               [innerHTML]="displayedMember.presentationHtml"
+              #memberPresentation
             ></div>
 
-            <a class="mail-link mt-5" [href]="'mailto:' + displayedMember.email">
+            <a class="mail-link mt-5" [href]="'mailto:' + displayedMember.email" #mailLink>
               <img src="assets/icons/email-white.webp" alt="Email" />
               <span class="mx-2">{{ displayedMember.email }}</span>
             </a>
           </div>
 
-          <div class="col-md-6 mt-5 first-section-right d-flex align-items-center justify-content-center">
+          <div
+            class="col-md-6 mt-5 first-section-right d-flex align-items-center justify-content-center"
+          >
             <img
               class="member-photo mt-3"
               [src]="displayedMember.photo"
               [alt]="displayedMember.name"
+              #memberPhoto
             />
           </div>
 

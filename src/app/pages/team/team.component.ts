@@ -208,7 +208,6 @@ export class TeamComponent implements OnInit, OnDestroy, AfterViewChecked {
           }
         });
 
-        // 1) Titre h4
         tlAssistants.from(this.assistantTitle.nativeElement, {
           opacity: 0,
           y: 50,
@@ -216,7 +215,6 @@ export class TeamComponent implements OnInit, OnDestroy, AfterViewChecked {
           ease: 'power2.out'
         });
 
-        // 2) Ligne (scaleX 0 → 1)
         gsap.set(this.assistantLine.nativeElement, { scaleX: 0, transformOrigin: 'left' });
         tlAssistants.to(this.assistantLine.nativeElement, {
           scaleX: 1,
@@ -224,7 +222,6 @@ export class TeamComponent implements OnInit, OnDestroy, AfterViewChecked {
           ease: 'power2.out'
         }, '+=0.3');
 
-        // 3) Animer chaque carte assistant
         list.forEach((card, i) => {
           tlAssistants.from(card.nativeElement, {
             opacity: 0,
