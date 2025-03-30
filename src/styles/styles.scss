@@ -207,7 +207,9 @@ body.selected-team-page .header-container  {
   margin-bottom: 55px
 }
 
-
+body.selected-team-page .text-icon {
+  color: map.get(vars.$theme-colors, "blue") !important;
+}
 
 
 
