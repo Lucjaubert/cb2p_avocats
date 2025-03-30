@@ -6,13 +6,20 @@ import {
   Inject,
   PLATFORM_ID,
   ElementRef,
-  ViewChild
+  ViewChild,
+  ViewChildren,
+  QueryList,
+  AfterViewInit,
+  AfterViewChecked
 } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { WordpressService } from '../../services/wordpress.service';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface Lawyer {
   name: string;
@@ -28,7 +35,9 @@ interface Lawyer {
   templateUrl: './selected-skill.component.html',
   styleUrls: ['./selected-skill.component.scss']
 })
-export class SelectedSkillComponent implements OnInit, OnDestroy {
+export class SelectedSkillComponent
+  implements OnInit, OnDestroy, AfterViewInit, AfterViewChecked
+{
   skillSlug = '';
   selectedSkill: {
     title?: string;
@@ -42,6 +51,7 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
   private rotationInterval: any;
   private currentIndex = 0;
   private transitionInProgress = false;
+  private animationExecuted = false;
 
   private skillLawyerMapping: { [compTitle: string]: string[] } = {
     'Droit des affaires': ['title_lawyer_name_1'],
@@ -58,6 +68,27 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
   @ViewChild('lawyerContainer', { static: false })
   lawyerContainer!: ElementRef<HTMLDivElement>;
 
+  // ===== SECTION 1 (HERO) =====
+  @ViewChild('firstSection') firstSection!: ElementRef;
+  @ViewChild('mainTitle') mainTitle!: ElementRef;
+  @ViewChild('subtitle') subtitleElement!: ElementRef;
+  @ViewChild('scrollIndicatorFirst') scrollIndicatorFirst!: ElementRef;
+
+  // ===== SECTION 2 (COLUMNS) =====
+  @ViewChild('secondSection') secondSection!: ElementRef;
+  @ViewChildren('skillColumn') skillColumns!: QueryList<ElementRef>;
+  @ViewChild('scrollIndicatorSecond') scrollIndicatorSecond!: ElementRef;
+
+  // ===== SECTION 3 (LAWYER) =====
+  @ViewChild('thirdSection') thirdSection!: ElementRef;
+  @ViewChild('lawyerText') lawyerText!: ElementRef;
+  @ViewChild('lawyerPhoto') lawyerPhoto!: ElementRef;
+  @ViewChild('scrollIndicatorThird') scrollIndicatorThird!: ElementRef;
+
+  // ===== SECTION 4 (OTHER SKILLS) =====
+  @ViewChild('fourthSection') fourthSection!: ElementRef;
+  @ViewChild('otherSkillsContainer') otherSkillsContainer!: ElementRef;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -68,12 +99,21 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params) => {
       const newSlug = decodeURIComponent(params.get('slug') || '');
-      console.log('ngOnInit => slug:', newSlug);
       this.skillSlug = newSlug;
       this.loadSkillData();
     });
+  }
+
+  ngAfterViewInit(): void {
+  }
+
+  ngAfterViewChecked(): void {
+    if (this.selectedSkill && !this.animationExecuted) {
+      this.launchAnimations();
+      this.animationExecuted = true;
+    }
   }
 
   ngOnDestroy(): void {
@@ -82,15 +122,154 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
     }
   }
 
+  private launchAnimations(): void {
+    console.log('[SelectedSkill] => Launching GSAP animations');
+
+    if (
+      this.firstSection &&
+      this.mainTitle &&
+      this.subtitleElement &&
+      this.scrollIndicatorFirst
+    ) {
+      gsap.set(this.scrollIndicatorFirst.nativeElement, { opacity: 0, y: 20 });
+      const tlHero = gsap.timeline({
+        scrollTrigger: {
+          trigger: this.firstSection.nativeElement,
+          start: 'top bottom'
+        }
+      });
+      tlHero
+        .from(this.mainTitle.nativeElement, {
+          opacity: 0,
+          y: 50,
+          duration: 0.8,
+          ease: 'power2.out'
+        })
+        .from(this.subtitleElement.nativeElement, {
+          opacity: 0,
+          y: 50,
+          duration: 1,
+          ease: 'power2.out'
+        }, '-=0.5')
+        .fromTo(
+          this.scrollIndicatorFirst.nativeElement,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' },
+          '>+0.3'
+        );
+    }
+
+    if (this.secondSection && this.skillColumns && this.scrollIndicatorSecond) {
+      gsap.set(this.scrollIndicatorSecond.nativeElement, { opacity: 0, y: 20 });
+
+      const columns = this.skillColumns.toArray().map(ref => ref.nativeElement);
+
+      const lines = columns.map(col => col.querySelector('.line'));
+      const h5s   = columns.map(col => col.querySelector('h5'));
+      const paras = columns.map(col => col.querySelector('p'));
+
+      const tlSecond = gsap.timeline({
+        scrollTrigger: {
+          trigger: this.secondSection.nativeElement,
+          start: 'top bottom'
+        }
+      });
+
+      tlSecond.from(lines, {
+        opacity: 0,
+        y: 20,
+        duration: 0.5,
+        stagger: 0.15,
+        ease: 'power2.out'
+      });
+
+      tlSecond.from(h5s, {
+        opacity: 0,
+        y: 20,
+        duration: 0.5,
+        stagger: 0.15,
+        ease: 'power2.out'
+      }, '-=0.2');
+
+      tlSecond.from(paras, {
+        opacity: 0,
+        y: 10,
+        duration: 0.7,
+        stagger: 0.1,
+        ease: 'power2.out'
+      }, '-=0.2');
+
+      tlSecond.to(this.scrollIndicatorSecond.nativeElement, {
+        opacity: 1,
+        y: 0,
+        duration: 0.5,
+        ease: 'power2.out'
+      }, '+=0.2');
+    }
+
+    if (this.thirdSection && this.lawyerText && this.lawyerPhoto && this.scrollIndicatorThird) {
+      const photoEl = this.lawyerPhoto.nativeElement.querySelector('img');
+      if (photoEl) {
+        gsap.set(photoEl, { opacity: 0, x: 50 });
+      }
+      gsap.set(this.scrollIndicatorThird.nativeElement, { opacity: 0, y: 20 });
+      const leftEls = this.lawyerText.nativeElement.querySelectorAll('p, a.mail-link');
+
+      const tlThird = gsap.timeline({
+        scrollTrigger: {
+          trigger: this.thirdSection.nativeElement,
+          start: 'top 80%',
+          once: true
+        }
+      });
+
+      tlThird.from(leftEls, {
+        opacity: 0,
+        y: 20,
+        duration: 0.4,
+        stagger: 0.2,
+        ease: 'power2.out'
+      });
+
+      if (photoEl) {
+        tlThird.to(photoEl, {
+          opacity: 1,
+          x: 0,
+          duration: 0.6,
+          ease: 'power2.out'
+        }, '+=0.2');
+      }
+
+      tlThird.to(this.scrollIndicatorThird.nativeElement, {
+        opacity: 1,
+        y: 0,
+        duration: 0.4,
+        ease: 'power2.out'
+      }, '+=0.2');
+    }
+
+    if (this.fourthSection && this.otherSkillsContainer) {
+      const tlFourth = gsap.timeline({
+        scrollTrigger: {
+          trigger: this.fourthSection.nativeElement,
+          start: 'top bottom'
+        }
+      });
+      tlFourth.from(this.fourthSection.nativeElement, {
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power2.out'
+      });
+    }
+  }
+
   private loadSkillData(): void {
     this.wpService.getSkillsData().subscribe((data) => {
-      console.log('loadSkillData => getSkillsData response:', data);
       if (data && data.acf) {
         const matchingKey = Object.keys(data.acf).find((key) =>
-          key.startsWith('box_') && this.areSlugsEqual(data.acf[key], this.skillSlug)
+          key.startsWith('box_') &&
+          this.areSlugsEqual(data.acf[key], this.skillSlug)
         );
-        console.log('loadSkillData => matchingKey:', matchingKey);
-
         if (matchingKey) {
           const boxTitle = data.acf[matchingKey] || '';
           const skillColumns: Array<{ title: string; subtitle: string }> = [];
@@ -115,12 +294,10 @@ export class SelectedSkillComponent implements OnInit, OnDestroy {
           this.titleService.setTitle('Compétence - ' + boxTitle);
           this.setupLawyers(data.acf, boxTitle);
           this.setupFourthSection(data.acf);
-        } else {
-          console.warn('loadSkillData => aucun skill trouvé pour slug:', this.skillSlug);
-        }
 
-        if (isPlatformBrowser(this.platformId)) {
-          window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+          if (isPlatformBrowser(this.platformId)) {
+            window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+          }
         }
       }
     });

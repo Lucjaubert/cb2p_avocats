@@ -29,15 +29,13 @@ export class SkillsComponent implements OnInit, AfterViewInit {
   skillsData: any;
   skillsList: Array<{ title: string; slug: string }> = [];
 
-  // Section 1
   @ViewChild('section1', { static: false }) section1!: ElementRef;
-  @ViewChild('mainTitle', { static: false }) mainTitle!: ElementRef;   // h1
-  @ViewChild('subtitle1', { static: false }) subtitle1!: ElementRef;   // h3
+  @ViewChild('mainTitle', { static: false }) mainTitle!: ElementRef;
+  @ViewChild('subtitle1', { static: false }) subtitle1!: ElementRef;
   @ViewChild('scrollIndicator1', { static: false }) scrollIndicator1!: ElementRef;
 
-  // Section 2
   @ViewChild('section2', { static: false }) section2!: ElementRef;
-  @ViewChild('title2',   { static: false }) title2!: ElementRef;       // h4
+  @ViewChild('title2',   { static: false }) title2!: ElementRef;
   @ViewChildren('skillBox') skillBoxes!: QueryList<ElementRef>;
 
   constructor(
@@ -103,7 +101,6 @@ export class SkillsComponent implements OnInit, AfterViewInit {
     }
 
 
-    // SECTION 2
     const tlSection2 = gsap.timeline({
       scrollTrigger: {
         trigger: this.section2.nativeElement,
@@ -112,7 +109,6 @@ export class SkillsComponent implements OnInit, AfterViewInit {
       }
     });
 
-    // Titre (h4)
     if (this.title2?.nativeElement) {
       tlSection2.from(this.title2.nativeElement, {
         opacity: 0,
@@ -122,7 +118,6 @@ export class SkillsComponent implements OnInit, AfterViewInit {
       });
     }
 
-    // skill-box en cascade
     if (this.skillBoxes && this.skillBoxes.length > 0) {
       tlSection2.from(
         this.skillBoxes.toArray().map(el => el.nativeElement),

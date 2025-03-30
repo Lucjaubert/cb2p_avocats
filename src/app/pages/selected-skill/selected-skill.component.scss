@@ -47,6 +47,10 @@
     }
 
     .slogan {
+      .text-center {
+        overflow-y: hidden;
+      }
+
       h3 {
         color: map.get(vars.$theme-colors, "grey");
       }
@@ -76,6 +80,12 @@
     .container {
       max-width: 80%;
       text-align: center;
+
+      .text-center {
+        .skill-descrption {
+          overflow: hidden !important;
+        }
+      }
     }
 
     .row {

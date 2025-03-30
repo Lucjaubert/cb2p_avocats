@@ -1,7 +1,6 @@
 <div class="full-screen-container">
   <div class="auctions-wrapper">
 
-    <!-- SECTION 1 : HERO -->
     <section id="first-section" class="first-section" #firstSection>
       <div class="container mb-5">
         <div class="row justify-content-center">
@@ -13,7 +12,6 @@
                   <h3 *ngIf="auctionsData.subtitle" [innerHTML]="auctionsData.subtitle" #subtitle></h3>
                 </div>
               </div>
-              <!-- Assurez-vous qu'il n'y ait pas de style inline qui masque l'image -->
               <div class="scroll-indicator mt-5" #scrollIndicatorFirst>
                 <img
                   src="assets/icons/arrow_circle_down.webp"
@@ -27,17 +25,16 @@
       </div>
     </section>
 
-    <!-- SECTION 2 : LISTE DES ENCHÈRES -->
     <section id="list-section" class="list-section">
       <div class="container-fluid p-0">
         <ng-container *ngFor="let auction of auctionsData.items; let i = index">
           <div class="row auction-item" [id]="'auction-' + i" #auctionItem>
-            <!-- Colonne TEXTE -->
+
             <div
               class="col-md-6 auction-text"
               [ngClass]="{ 'bg-blue': i % 2 !== 0, 'bg-white': i % 2 === 0 }"
             >
-              <!-- Tous les éléments de texte portent la même référence -->
+
               <div class="line mb-5" #auctionTextElement></div>
               <h5 [innerHTML]="auction.title" #auctionTextElement></h5>
               <p class="price" *ngIf="auction.price" #auctionTextElement>
@@ -53,7 +50,6 @@
               </a>
             </div>
 
-            <!-- Colonne IMAGE -->
             <div
               class="col-md-6 auction-image"
               [ngClass]="{ 'bg-blue': i % 2 === 0, 'bg-white': i % 2 !== 0 }"
@@ -64,7 +60,6 @@
               </a>
             </div>
 
-            <!-- Scroll Indicator pour passer à l'enchère suivante -->
             <div class="scroll-indicator my-4 text-center" *ngIf="i < auctionsData.items.length - 1" #scrollIndicator>
               <img
                 src="assets/icons/arrow_circle_down.webp"
