@@ -96,21 +96,15 @@ export class SelectedTeamComponent implements OnInit, AfterViewInit, AfterViewCh
   }
 
   ngAfterViewInit(): void {
-    console.log('ngAfterViewInit called');
   }
 
   ngAfterViewChecked(): void {
     if (this.displayedMember && !this.animationExecuted) {
-      console.log('ngAfterViewChecked called');
-      console.log('leftSideElements:', this.leftSideElements);
-      console.log('memberPhoto:', this.memberPhoto);
-
       if (this.leftSideElements.length > 0 && this.memberPhoto) {
         const elementsToAnimate = this.leftSideElements.toArray().map(el => el.nativeElement);
         const photoElement = this.memberPhoto.nativeElement;
         gsap.set(photoElement, { opacity: 0, x: 50 });
 
-        console.log('Elements to animate (ngAfterViewChecked):', elementsToAnimate);
         gsap.from(elementsToAnimate, {
           opacity: 0,
           y: 30,
@@ -118,21 +112,15 @@ export class SelectedTeamComponent implements OnInit, AfterViewInit, AfterViewCh
           stagger: 0.2,
           ease: 'power2.out',
           onComplete: () => {
-            console.log('Left side elements animation complete (ngAfterViewChecked)');
             gsap.to(photoElement, {
               opacity: 1,
               x: 0,
               duration: 0.8,
-              ease: 'power2.out',
-              onComplete: () => {
-                console.log('Member photo animation complete (ngAfterViewChecked)');
-              }
+              ease: 'power2.out'
             });
           }
         });
         this.animationExecuted = true;
-      } else {
-        console.log('Animation elements not found in ngAfterViewChecked.');
       }
     }
   }
