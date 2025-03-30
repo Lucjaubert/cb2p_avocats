@@ -1,8 +1,21 @@
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  ViewChildren,
+  QueryList,
+  ViewEncapsulation
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser';
 import { Router, RouterModule } from '@angular/router';
+import { Title, Meta } from '@angular/platform-browser';
 import { WordpressService } from '../../services/wordpress.service';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-skills',
@@ -12,9 +25,20 @@ import { WordpressService } from '../../services/wordpress.service';
   templateUrl: './skills.component.html',
   styleUrls: ['./skills.component.scss']
 })
-export class SkillsComponent implements OnInit {
+export class SkillsComponent implements OnInit, AfterViewInit {
   skillsData: any;
   skillsList: Array<{ title: string; slug: string }> = [];
+
+  // Section 1
+  @ViewChild('section1', { static: false }) section1!: ElementRef;
+  @ViewChild('mainTitle', { static: false }) mainTitle!: ElementRef;   // h1
+  @ViewChild('subtitle1', { static: false }) subtitle1!: ElementRef;   // h3
+  @ViewChild('scrollIndicator1', { static: false }) scrollIndicator1!: ElementRef;
+
+  // Section 2
+  @ViewChild('section2', { static: false }) section2!: ElementRef;
+  @ViewChild('title2',   { static: false }) title2!: ElementRef;       // h4
+  @ViewChildren('skillBox') skillBoxes!: QueryList<ElementRef>;
 
   constructor(
     private titleService: Title,
@@ -44,6 +68,74 @@ export class SkillsComponent implements OnInit {
           });
       }
     });
+  }
+
+  ngAfterViewInit(): void {
+    const tlSection1 = gsap.timeline({
+      scrollTrigger: {
+        trigger: this.section1.nativeElement,
+        start: 'top 80%',
+        once: true
+      }
+    });
+    tlSection1.from(this.mainTitle.nativeElement, {
+      opacity: 0,
+      y: 50,
+      duration: 1.5,
+      ease: 'power2.out'
+    });
+    if (this.subtitle1?.nativeElement?.textContent?.trim()) {
+      tlSection1.from(this.subtitle1.nativeElement, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: 'power2.out'
+      });
+      tlSection1.to(this.subtitle1.nativeElement, { duration: 1, opacity: 1 }, '+=0');
+    }
+    if (this.scrollIndicator1?.nativeElement) {
+      tlSection1.from(this.scrollIndicator1.nativeElement, {
+        opacity: 0,
+        y: 10,
+        duration: 0.2,
+        ease: 'power2.out'
+      }, '+=0.3');
+    }
+
+
+    // SECTION 2
+    const tlSection2 = gsap.timeline({
+      scrollTrigger: {
+        trigger: this.section2.nativeElement,
+        start: 'top 80%',
+        once: true
+      }
+    });
+
+    // Titre (h4)
+    if (this.title2?.nativeElement) {
+      tlSection2.from(this.title2.nativeElement, {
+        opacity: 0,
+        y: 50,
+        duration: 1.5,
+        ease: 'power2.out'
+      });
+    }
+
+    // skill-box en cascade
+    if (this.skillBoxes && this.skillBoxes.length > 0) {
+      tlSection2.from(
+        this.skillBoxes.toArray().map(el => el.nativeElement),
+        {
+          opacity: 0,
+          y: 30,
+          duration: 0.8,
+          ease: 'power2.out',
+          stagger: 0.2
+        },
+        '+=0.3'
+      );
+    }
   }
 
   private generateSlug(title: string): string {

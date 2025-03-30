@@ -1,4 +1,7 @@
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import {
+  CommonModule,
+  isPlatformBrowser
+} from '@angular/common';
 import {
   Component,
   OnInit,
@@ -8,7 +11,9 @@ import {
   ElementRef,
   ViewEncapsulation,
   OnDestroy,
-  AfterViewChecked
+  AfterViewChecked,
+  ViewChildren,
+  QueryList
 } from '@angular/core';
 import {
   Router,
@@ -19,6 +24,10 @@ import {
 } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { WordpressService } from '../../services/wordpress.service';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-team',
@@ -29,6 +38,7 @@ import { WordpressService } from '../../services/wordpress.service';
   styleUrls: ['./team.component.scss']
 })
 export class TeamComponent implements OnInit, OnDestroy, AfterViewChecked {
+
   @ViewChild('teamContainer') teamContainer!: ElementRef;
 
   teamData: any = null;
@@ -38,6 +48,19 @@ export class TeamComponent implements OnInit, OnDestroy, AfterViewChecked {
   private scrollListener?: () => void;
   private hasScrolledToTop = false;
   private dataLoaded = false;
+
+  @ViewChild('section1') section1!: ElementRef;
+  @ViewChild('teamTitle') teamTitle!: ElementRef;
+  @ViewChild('teamSubtitle') teamSubtitle!: ElementRef;
+  @ViewChild('teamLine') teamLine!: ElementRef;
+  @ViewChild('teamScrollIndicator') teamScrollIndicator!: ElementRef;
+  @ViewChildren('lawyerCard') lawyerCards!: QueryList<ElementRef>;
+
+  @ViewChild('section2') section2!: ElementRef;
+  @ViewChild('assistantTitle') assistantTitle!: ElementRef;
+  @ViewChild('assistantLine') assistantLine!: ElementRef;
+  @ViewChildren('assistantCard') assistantCards!: QueryList<ElementRef>;
+
 
   constructor(
     private wpService: WordpressService,
@@ -52,12 +75,10 @@ export class TeamComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
 
     this.router.events
-      .pipe(
-        filter((event: RouterEvent): event is NavigationStart => event instanceof NavigationStart)
-      )
-      .subscribe((ev: NavigationStart) => {
-        if (ev.url === '/equipe') {
-          console.log('TeamComponent => NavigationStart sur /equipe, désactivation de la restauration de scroll');
+      .pipe(filter((event: RouterEvent) => event instanceof NavigationStart))
+      .subscribe((ev) => {
+        if ((ev as NavigationStart).url === '/equipe') {
+          console.log('TeamComponent => NavigationStart sur /equipe');
           if (isPlatformBrowser(this.platformId)) {
             window.history.scrollRestoration = 'manual';
             this.hasScrolledToTop = false;
@@ -67,11 +88,9 @@ export class TeamComponent implements OnInit, OnDestroy, AfterViewChecked {
       });
 
     this.router.events
-      .pipe(
-        filter((event: RouterEvent): event is NavigationEnd => event instanceof NavigationEnd)
-      )
-      .subscribe((ev: NavigationEnd) => {
-        if (isPlatformBrowser(this.platformId) && ev.urlAfterRedirects.startsWith('/equipe')) {
+      .pipe(filter((event: RouterEvent) => event instanceof NavigationEnd))
+      .subscribe((ev) => {
+        if (isPlatformBrowser(this.platformId) && (ev as NavigationEnd).urlAfterRedirects.startsWith('/equipe')) {
           console.log('TeamComponent => NavigationEnd sur /equipe');
         }
       });
@@ -79,7 +98,6 @@ export class TeamComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   ngOnInit(): void {
     console.log('TeamComponent - ngOnInit => chargement des données Team...');
-
     this.wpService.getTeamData().subscribe((data) => {
       console.log('TeamComponent - getTeamData() response:', data);
 
@@ -109,8 +127,7 @@ export class TeamComponent implements OnInit, OnDestroy, AfterViewChecked {
       setTimeout(() => {
         if (this.teamContainer) {
           this.teamContainer.nativeElement.classList.remove('hidden');
-          console.log('TeamComponent => Data chargée et container visible');
-          this.dataLoaded = true; // Mark data as loaded
+          this.dataLoaded = true;
         }
       }, 100);
     });
@@ -126,8 +143,99 @@ export class TeamComponent implements OnInit, OnDestroy, AfterViewChecked {
           window.history.scrollRestoration = 'auto';
           console.log('TeamComponent - ngAfterViewChecked => restauration de scroll réactivée');
         }, 100);
-      }, 200); // Increased delay in ngAfterViewChecked
+      }, 200);
     }
+  }
+
+  ngAfterViewInit(): void {
+    this.lawyerCards.changes.subscribe((list: QueryList<ElementRef>) => {
+      if (list.length > 0) {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: this.section1.nativeElement,
+            start: 'top 80%',
+            once: true
+          }
+        });
+
+        tl.from(this.teamTitle.nativeElement, {
+          opacity: 0,
+          y: 50,
+          duration: 0.5,
+          ease: 'power2.out'
+        });
+
+        tl.from(this.teamSubtitle.nativeElement, {
+          opacity: 0,
+          y: 50,
+          duration: 0.5,
+          ease: 'power2.out'
+        }, '+=0.3');
+
+        gsap.set(this.teamLine.nativeElement, { scaleX: 0, transformOrigin: 'left' });
+        tl.to(this.teamLine.nativeElement, {
+          scaleX: 1,
+          duration: 1,
+          ease: 'power2.out'
+        }, '+=0.3');
+
+        list.forEach((card, i) => {
+          tl.from(card.nativeElement, {
+            opacity: 0,
+            rotateY: 90,
+            transformOrigin: 'center',
+            duration: 0.6,
+            ease: 'power2.out'
+          }, i === 0 ? '+=0.3' : '-=0.4');
+        });
+
+        tl.from(this.teamScrollIndicator.nativeElement, {
+          opacity: 0,
+          y: 10,
+          duration: 0.3,
+          ease: 'power2.out'
+        }, '+=0.3');
+      }
+    });
+
+    this.assistantCards.changes.subscribe((list: QueryList<ElementRef>) => {
+      if (list.length > 0) {
+        const tlAssistants = gsap.timeline({
+          scrollTrigger: {
+            trigger: this.section2.nativeElement,
+            start: 'top 80%',
+            once: true
+          }
+        });
+
+        // 1) Titre h4
+        tlAssistants.from(this.assistantTitle.nativeElement, {
+          opacity: 0,
+          y: 50,
+          duration: 0.5,
+          ease: 'power2.out'
+        });
+
+        // 2) Ligne (scaleX 0 → 1)
+        gsap.set(this.assistantLine.nativeElement, { scaleX: 0, transformOrigin: 'left' });
+        tlAssistants.to(this.assistantLine.nativeElement, {
+          scaleX: 1,
+          duration: 1,
+          ease: 'power2.out'
+        }, '+=0.3');
+
+        // 3) Animer chaque carte assistant
+        list.forEach((card, i) => {
+          tlAssistants.from(card.nativeElement, {
+            opacity: 0,
+            rotateY: 90,
+            transformOrigin: 'center',
+            duration: 0.6,
+            ease: 'power2.out'
+          }, i === 0 ? '+=0.3' : '-=0.4');
+        });
+      }
+    });
   }
 
   ngOnDestroy(): void {
