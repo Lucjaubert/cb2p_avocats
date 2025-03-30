@@ -127,7 +127,6 @@ export class HomepageComponent implements OnInit, AfterViewInit {
         ease: 'power2.out',
       }, '+=0.3');
 
-    // ✅ Lorsque les portraits sont rendus (via *ngIf), déclencher l’animation
     this.portraits.changes.subscribe((list: QueryList<ElementRef>) => {
       if (list.length > 0) {
         const tl3 = gsap.timeline({

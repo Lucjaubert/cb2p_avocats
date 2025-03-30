@@ -1,54 +1,39 @@
 <div class="full-screen-container hidden mt-5" #teamContainer>
   <div class="team-wrapper mt-5">
-
-    <section id="first-section" class="first-section mt-5">
+    <section id="first-section" class="first-section mt-5" #section1>
       <div class="container">
-        <h2>{{ teamData?.title_1 }}</h2>
+        <h2 #teamTitle>{{ teamData?.title_1 }}</h2>
         <div class="lawyer-section d-flex">
-          <h4 class="mt-5">{{ teamData?.subtitle_1 }}</h4>
-          <div class="line ms-4"></div>
+          <h4 class="mt-5" #teamSubtitle>{{ teamData?.subtitle_1 }}</h4>
+          <div class="line ms-4" #teamLine></div>
         </div>
         <div class="lawyers-row mt-5">
-          <div
-            class="lawyer-card"
-            *ngFor="let av of lawyersList"
-            (click)="goToSelectedMember(av.id)"
-          >
+          <div class="lawyer-card" *ngFor="let av of lawyersList" #lawyerCard (click)="goToSelectedMember(av.id)">
             <div class="image-container">
-              <img
-                class="lawyer-photo"
-                [src]="av.photo"
-                alt="Avocat"
-              />
+              <img class="lawyer-photo" [src]="av.photo" alt="Avocat" />
               <div class="hover-overlay">
-                <div
-                  class="hover-text"
-                  [innerHTML]="av.nameFuncHtml"
-                ></div>
+                <div class="hover-text" [innerHTML]="av.nameFuncHtml"></div>
               </div>
             </div>
           </div>
         </div>
-        <div class="scroll-indicator">
-          <img
-            src="assets/icons/arrow_circle_down.webp"
-            alt="Scroll Down"
-            (click)="scrollToSection('second-section')"
-          />
+        <div class="scroll-indicator" #teamScrollIndicator>
+          <img src="assets/icons/arrow_circle_down.webp" alt="Scroll Down" (click)="scrollToSection('second-section')"/>
         </div>
       </div>
     </section>
 
-    <section id="second-section" class="second-section">
+    <section id="second-section" class="second-section" #section2>
       <div class="container">
         <div class="assistant-section d-flex">
-          <h4>{{ teamData?.subtitle_2 }}</h4>
-          <div class="line ms-4"></div>
+          <h4 #assistantTitle>{{ teamData?.subtitle_2 }}</h4>
+          <div class="line ms-4" #assistantLine></div>
         </div>
         <div class="lawyers-row mt-5">
           <div
             class="lawyer-card"
             *ngFor="let assistant of assistantsList"
+            #assistantCard
             (click)="goToSelectedMember(assistant.id)"
           >
             <div class="image-container">
@@ -58,10 +43,7 @@
                 alt="Assistant"
               />
               <div class="hover-overlay">
-                <div
-                  class="hover-text"
-                  [innerHTML]="assistant.nameFuncHtml"
-                ></div>
+                <div class="hover-text" [innerHTML]="assistant.nameFuncHtml"></div>
               </div>
             </div>
           </div>

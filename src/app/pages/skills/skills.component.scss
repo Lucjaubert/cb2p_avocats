@@ -42,6 +42,10 @@
     }
 
     .slogan {
+
+      .text-center {
+        overflow: hidden;
+      }
       h3 {
         color: map.get(vars.$theme-colors, "grey");
       }
