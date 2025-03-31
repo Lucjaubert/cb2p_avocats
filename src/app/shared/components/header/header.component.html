@@ -1,5 +1,16 @@
-<div class="header-container">
-  <!-- Logo -->
+<div class="header-container" [class.is-active]="navbarExpanded">
+  <div
+    class="menu-toggle"
+    (click)="toggleMenu()"
+    [ngClass]="{'active': navbarExpanded}"
+  >
+    <div class="animated-icon1" [ngClass]="{'open': navbarExpanded}">
+      <span class="menu-line"></span>
+      <span class="menu-line"></span>
+      <span class="menu-line"></span>
+    </div>
+  </div>
+
   <div class="col-md-2 text-center text-md-start px-4 logo-wrapper">
     <img
       src="assets/img/homepage/logo-ss-fd-cb2p.webp"
@@ -8,15 +19,18 @@
     />
   </div>
 
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light custom-navbar">
-    <div class="ms-auto d-flex">
+  <nav
+    class="navbar navbar-expand-lg navbar-light custom-navbar"
+    [ngClass]="{'is-active': navbarExpanded}"
+  >
+    <div class="ms-auto d-flex items-burger">
       <ul class="navbar-nav d-flex justify-content-end align-items-center">
         <li class="nav-item nav-item-homepage">
           <a
             class="nav-link nav-link-homepage"
             [routerLink]="['']"
             [class.active]="isHomepageActive()"
+            (click)="closeMenu()"
           >
             Accueil
           </a>
@@ -26,6 +40,7 @@
             class="nav-link nav-link-office"
             [routerLink]="['/le-cabinet']"
             [class.active]="isOfficeActive()"
+            (click)="closeMenu()"
           >
             Le cabinet
           </a>
@@ -35,6 +50,7 @@
             class="nav-link nav-link-skills"
             [routerLink]="['/competences']"
             [class.active]="isCompetencesActive()"
+            (click)="closeMenu()"
           >
             Compétences
           </a>
@@ -44,6 +60,7 @@
             class="nav-link nav-link-team"
             [routerLink]="['/equipe']"
             [class.active]="isEquipeActive()"
+            (click)="closeMenu()"
           >
             Équipe
           </a>
@@ -53,6 +70,7 @@
             class="nav-link nav-link-contact"
             [routerLink]="['/contact']"
             [class.active]="isContactActive()"
+            (click)="closeMenu()"
           >
             Contactez-nous
           </a>
@@ -62,8 +80,23 @@
             class="nav-link nav-link-auctions"
             [routerLink]="['/ventes-aux-encheres']"
             [class.active]="isAuctionsActive()"
+            (click)="closeMenu()"
           >
             Ventes aux enchères
+          </a>
+        </li>
+        <li class="nav-item nav-item-linkedin">
+          <a
+            class="linkedin-link"
+            href="https://www.linkedin.com/company/cb2pavocats/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="assets/icons/linkedin.webp"
+              alt="LinkedIn"
+              class="nav-link linkedin-icon"
+            />
           </a>
         </li>
       </ul>
