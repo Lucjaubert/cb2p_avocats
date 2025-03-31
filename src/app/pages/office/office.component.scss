@@ -266,10 +266,10 @@
 
   @media (max-width: 768px) {
     .fourth-section {
-      height: auto; // pour laisser le contenu s'étendre verticalement
+      height: auto;
 
       .row {
-        flex-direction: column; // empile les colonnes
+        flex-direction: column;
         align-items: center;
       }
 
