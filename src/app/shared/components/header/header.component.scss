@@ -2,29 +2,33 @@
 @use "../../../../styles/_variables.scss" as vars;
 
 .header-container {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 999;
-  background: transparent;
+  z-index: 9999;
+  background-color: transparent;
+  padding: 1rem;
   display: flex;
   align-items: center;
-  padding: 0 1rem;
+  justify-content: space-between;
 
   .logo-wrapper {
     flex: 0 0 auto;
+    .footer-logo {
+      width: 7vw;
+      height: auto;
+      margin-top: 1rem;
+      display: block;
+    }
+    @media (max-width: 1024px) {
+      display: none;
+    }
   }
 
   a {
     color: map.get(vars.$theme-colors, "white");
     text-decoration: none;
-  }
-
-  .footer-logo {
-    width: 7vw;
-    height: auto;
-    margin-top: 1rem;
   }
 
   .custom-navbar {
@@ -42,10 +46,9 @@
       top: 0;
       left: 0;
       height: 1px;
-      background-color: map.get(vars.$theme-colors, "beige");
       width: 100%;
+      background-color: map.get(vars.$theme-colors, "beige");
       z-index: 1;
-      transform: translateY(-50%);
     }
 
     .navbar-nav {
@@ -55,10 +58,6 @@
       align-items: center;
       width: 100%;
       padding-right: 3vw;
-
-      .nav-item {
-        opacity: 1;
-      }
 
       .nav-link {
         color: map.get(vars.$theme-colors, "white");
@@ -88,26 +87,138 @@
           width: 100%;
         }
       }
+
+      .nav-link-auctions {
+        color: map.get(vars.$theme-colors, "light-orange");
+        &::after {
+          background-color: map.get(vars.$theme-colors, "light-orange");
+        }
+        &:hover,
+        &.active {
+          color: map.get(vars.$theme-colors, "light-orange");
+        }
+      }
+    }
+
+    .nav-item-linkedin {
+      display: flex;
+      justify-content: center;
+
+      .linkedin-link {
+        display: inline-block;
+      }
+
+      .linkedin-icon {
+        width: 45px;
+        height: auto;
+
+        @media (max-width: 1024px) {
+          width: 37px;
+        }
+      }
+    }
+
+    @media (max-width: 1024px) {
+      position: fixed;
+      top: 0;
+      left: 100%;
+      width: 100vw;
+      height: 100vh;
+      background-color: map.get(vars.$theme-colors, "white");
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: left 0.4s ease;
+      padding: 2rem;
+
+      .ms-auto {
+        margin-left: 0 !important;
+        justify-content: center !important;
+      }
+
+      .navbar-nav {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        justify-content: center;
+
+        .nav-link {
+          color: map.get(vars.$theme-colors, "blue");
+          font-size: 1.2rem;
+          margin-left: 0;
+          text-align: center;
+        }
+
+        .nav-link-auctions {
+          color: map.get(vars.$theme-colors, "light-orange");
+          &::after {
+            background-color: map.get(vars.$theme-colors, "light-orange");
+          }
+          &:hover,
+          &.active {
+            color: map.get(vars.$theme-colors, "light-orange");
+          }
+        }
+      }
     }
   }
-}
 
-@media (max-width: 1024px) {
-  .custom-navbar {
-    padding-right: 2vw;
+  &.is-active {
+    .custom-navbar {
+      @media (max-width: 1024px) {
+        left: 0;
+      }
+    }
   }
 
-  .navbar-nav {
-    gap: 0.5rem;
-    flex-wrap: nowrap;
-  }
+  .menu-toggle {
+    display: none;
+    left: 1rem;
+    top: 1rem;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    z-index: 9999;
 
-  .nav-item {
-    white-space: nowrap;
-  }
+    @media (max-width: 1024px) {
+      display: block;
+    }
 
-  .nav-link {
-    font-size: 0.85rem;
-    margin-left: 1rem;
+    .animated-icon1 {
+      position: relative;
+      width: 30px;
+      height: 24px;
+
+      .menu-line {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: map.get(vars.$theme-colors, "white");
+        transition: transform 0.3s ease, opacity 0.3s ease;
+
+        &:nth-child(1) { top: 0; }
+        &:nth-child(2) { top: 9px; }
+        &:nth-child(3) { top: 18px; }
+      }
+
+      &.open {
+        .menu-line {
+          background-color: map.get(vars.$theme-colors, "blue");
+          &:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+          }
+          &:nth-child(2) {
+            opacity: 0;
+          }
+          &:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+          }
+        }
+      }
+    }
   }
 }

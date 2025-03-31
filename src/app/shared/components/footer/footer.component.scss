@@ -88,3 +88,41 @@
   }
 
 }
+
+@media (max-width: 768px) {
+  .site-footer {
+    .row.g-5 {
+      flex-direction: column;
+      align-items: center !important;
+      text-align: center;
+      gap: 2rem;
+    }
+
+    .footer-logo {
+      width: 35vw;
+    }
+
+    .footer-menu-large {
+      margin: 0;
+    }
+
+    .footer-address {
+      margin: 0;
+    }
+
+    .vertical-separator {
+      display: none;
+    }
+
+    .footer-mention {
+      font-size: 0.8rem;
+      padding: 0 1rem;
+    }
+
+    .footer-menu {
+      li {
+        margin-bottom: 1.2rem;
+      }
+    }
+  }
+}

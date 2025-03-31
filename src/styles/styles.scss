@@ -61,7 +61,7 @@ app-footer {
 }
 
 
-h1 { @include heading-styles(2rem, 4.5rem); font-weight: 700; }
+h1 { @include heading-styles(1.8rem, 4rem); font-weight: 700; }
 h2 { @include heading-styles(1.65rem, 2rem); font-weight: 600; }
 h3 { @include heading-styles(1rem, 1.75rem); font-weight: 500; }
 h4 { @include heading-styles(1.375rem, 1.5rem); font-weight: 500; }

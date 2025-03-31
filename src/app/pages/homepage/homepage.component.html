@@ -6,38 +6,38 @@
         <div class="row justify-content-center">
           <div class="slogan-container col-auto d-flex flex-column align-items-center mt-5">
 
-            <div class="presentation d-flex align-items-center ms-5">
-              <div class="col-6 text-center px-4">
+            <div class="presentation d-flex align-items-center">
+              <div class="col-12 col-md-6 text-center px-md-5 px-0">
                 <img
                   #logo
                   src="/assets/img/homepage/logo-ss-fd-cb2p.webp"
                   alt="CB2P Avocats"
-                  class="logo px-3"
+                  class="logo px-md-5"
                 />
               </div>
 
               <div #separator class="separator"></div>
 
-              <div class="col-6 px-4 mx-4">
-                <h1
-                  #words
-                  class="office-skill d-flex flex-column align-items-start text-center px-3 pb-4"
-                >
-                  <span>AVOCATS</span>
-                  <span>CONTENTIEUX</span>
-                  <span>CONSEILS</span>
-                  <span>À BORDEAUX</span>
-                </h1>
+              <div class="col-12 col-md-6 text-center px-md-4 px-0">
+                <div class="text-box-wrapper">
+                  <h1 #words class="office-skill d-flex flex-column align-items-center text-center px-md-0 pb-md-0 px-3 pb-4">
+                    <span>AVOCATS</span>
+                    <span>CONTENTIEUX</span>
+                    <span>CONSEILS</span>
+                    <span>À BORDEAUX</span>
+                  </h1>
+                </div>
               </div>
+
             </div>
 
-            <div class="row slogan my-5 w-100">
+            <div class="row slogan my-5 w-100 mt-5">
               <div class="col text-center">
                 <h2 #title1>{{ homepageData?.title_1 }}</h2>
               </div>
             </div>
 
-            <div #scrollIndicator class="scroll-indicator">
+            <div #scrollIndicator class="scroll-indicator mt-5">
               <img
                 src="assets/icons/arrow_circle_down.webp"
                 alt="Scroll Down"
@@ -52,7 +52,7 @@
 
     <section id="second-section" class="second-section">
       <div class="container">
-        <div class="row my-5 px-5 justify-content-center">
+        <div class="row my-md-5 px-md-5 justify-content-center">
           <div class="col title-skills text-center">
             <h2 #title2>{{ homepageData?.title_2 }}</h2>
           </div>
@@ -63,7 +63,7 @@
           style="cursor: pointer;"
           (click)="goToSkills()"
         >
-          <div class="skills col-auto d-flex align-items-center">
+          <div class="skills col-auto d-flex align-items-center mt-3 mt-md-0">
             <p class="mb-0" #subtitle2>{{ homepageData?.subtitle_1 }}</p>
             <div class="indicator-arrow-down ms-2" #arrowRight>
               <img src="assets/icons/arrow_right.webp" alt="arrow down" />
@@ -83,29 +83,29 @@
 
     <section id="third-section" class="third-section">
       <div class="container">
-        <div class="team row my-5 px-5 justify-content-center">
+        <div class="team row my-0 px-0 my-md-5 px-md-5 justify-content-center">
           <div class="col title-skills text-center">
             <h3 #title3>{{ homepageData?.title_3 }}</h3>
           </div>
         </div>
 
         <div class="row gy-4">
-          <div class="col-12 col-sm-6 col-md-3" *ngIf="homepageData?.image_1">
+          <div class="col-12 col-sm-6 col-md-3 px-2 px-md-3" *ngIf="homepageData?.image_1">
             <img #portrait class="img-fluid" [src]="homepageData?.image_1" alt="Portrait 1" />
           </div>
-          <div class="col-12 col-sm-6 col-md-3" *ngIf="homepageData?.image_2">
+          <div class="col-12 col-sm-6 col-md-3 px-2 px-md-3" *ngIf="homepageData?.image_2">
             <img #portrait class="img-fluid" [src]="homepageData?.image_2" alt="Portrait 2" />
           </div>
-          <div class="col-12 col-sm-6 col-md-3" *ngIf="homepageData?.image_3">
+          <div class="col-12 col-sm-6 col-md-3 px-2 px-md-3" *ngIf="homepageData?.image_3">
             <img #portrait class="img-fluid" [src]="homepageData?.image_3" alt="Portrait 3" />
           </div>
-          <div class="col-12 col-sm-6 col-md-3" *ngIf="homepageData?.image_4">
+          <div class="col-12 col-sm-6 col-md-3 px-2 px-md-3" *ngIf="homepageData?.image_4">
             <img #portrait class="img-fluid" [src]="homepageData?.image_4" alt="Portrait 4" />
           </div>
-          <div class="col-12 col-sm-6 col-md-3" *ngIf="homepageData?.image_5">
+          <div class="col-12 col-sm-6 col-md-3 px-2 px-md-3" *ngIf="homepageData?.image_5">
             <img #portrait class="img-fluid" [src]="homepageData?.image_5" alt="Portrait 5" />
           </div>
-          <div class="col-12 col-sm-6 col-md-3" *ngIf="homepageData?.image_6">
+          <div class="col-12 col-sm-6 col-md-3 px-2 px-md-3" *ngIf="homepageData?.image_6">
             <img #portrait class="img-fluid" [src]="homepageData?.image_6" alt="Portrait 6" />
           </div>
         </div>

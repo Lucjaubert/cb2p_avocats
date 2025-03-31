@@ -11,7 +11,8 @@ import { filter } from 'rxjs/operators';
   imports: [CommonModule, RouterLink]
 })
 export class HeaderComponent implements OnInit {
-  currentUrl: string = '';
+  currentUrl = '';
+  navbarExpanded = false;
 
   constructor(private router: Router) {}
 
@@ -22,6 +23,15 @@ export class HeaderComponent implements OnInit {
         this.currentUrl = event.urlAfterRedirects;
       });
   }
+
+  toggleMenu() {
+    this.navbarExpanded = !this.navbarExpanded;
+  }
+
+  closeMenu() {
+    this.navbarExpanded = false;
+  }
+
 
   isCompetencesActive(): boolean {
     return (

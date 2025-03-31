@@ -23,12 +23,24 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
+        @media (max-width: 768px) {
+          flex-direction: column;
+        }
       }
 
       .logo {
-        width: 20vw;
+        width: 25vw;
         height: auto;
         margin-bottom: 2rem;
+
+        @media (min-width: 1024px) {
+          width: 25vw;
+        }
+
+        @media (max-width: 768px) {
+          width: 45vw;
+        }
       }
 
       .separator {
@@ -39,12 +51,29 @@
         margin: 0 1rem;
         transform-origin: top;
         transform: scaleY(0);
+
+        @media (max-width: 768px) {
+          width: 60vw;
+          height: 2px;
+          margin: 2rem 0;
+        }
       }
 
       .office-skill {
         letter-spacing: 5px;
         color: map.get(vars.$theme-colors, "white");
         text-transform: uppercase;
+        text-align: center;
+        align-items: center !important;
+        justify-content: center !important;
+
+        span {
+          display: block;
+        }
+
+        @media (max-width: 768px) {
+          padding: 0;
+        }
       }
 
       .slogan {
@@ -60,6 +89,26 @@
       .scroll-indicator img {
         width: 40px;
         height: auto;
+      }
+
+      .text-box-wrapper {
+        width: 100%;
+        max-width: 100%;
+        overflow: visible;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @media (max-width: 768px) {
+          padding: 0 1rem;
+        }
+
+        h1.office-skill {
+          line-height: 1.4;
+          white-space: normal;
+          overflow: visible;
+          word-break: break-word;
+        }
       }
     }
   }
@@ -187,5 +236,4 @@
       color: map.get(vars.$theme-colors, "white");
     }
   }
-
 }
