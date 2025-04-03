@@ -42,7 +42,6 @@
     }
 
     .slogan {
-
       .text-center {
         overflow: hidden;
       }
@@ -65,30 +64,27 @@
   }
 
   .second-section {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 4rem 2rem;
     background-color: map.get(vars.$theme-colors, "light-grey");
     text-align: center;
-    overflow-y: hidden;
 
     h4 {
       color: map.get(vars.$theme-colors, "blue");
       margin-top: 3rem;
-      margin-left: 8vw;
     }
 
     .skills-list {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
       justify-content: center;
       align-items: center;
       max-width: 90%;
       margin: 0 auto;
-      overflow: hidden;
 
       .skill-box {
         background-color: map.get(vars.$theme-colors, "light-blue");
@@ -98,8 +94,8 @@
         align-items: end;
         justify-content: start;
         text-align: start;
+        min-width: auto;
         min-height: 30vh;
-        min-width: 30vh;
         box-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
         transition: transform 0.3s ease-in-out;
         border: 3px solid transparent;
@@ -129,54 +125,38 @@
       }
     }
   }
+}
 
-  .third-section {
-    min-height: 60vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 4rem 2rem;
+@media (max-width: 768px) {
+  .skills-wrapper {
+    .second-section {
+      min-height: auto;
+      display: block;
+      padding: 2rem 1rem;
 
-    .third-section-left {
-      background-color: #2D4263;
-      color: #fff;
-      padding: 2rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      .intro-text {
-        font-size: 1.2rem;
-        margin-bottom: 1rem;
-      }
-
-      .lawyer-name {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-bottom: 1.5rem;
-      }
-
-      .mail-link img {
-        width: 32px;
-        height: 32px;
-        cursor: pointer;
-      }
-    }
-
-    .third-section-right {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-
-      .lawyer-photo {
-        max-width: 300px;
-        width: 100%;
-        height: auto;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      .skills-list {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
   }
+}
 
+@media (max-width: 425px) {
+  .skills-wrapper {
+    .second-section {
+      .skills-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .skills-wrapper {
+    .second-section {
+      .skills-list {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  }
 }

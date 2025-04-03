@@ -11,7 +11,6 @@
   flex: 0 0 auto;
 }
 
-
 .hidden {
   opacity: 0;
   visibility: hidden;
@@ -27,6 +26,12 @@
     .container {
       max-width: 1200px;
       margin: 0 auto;
+
+      h2 {
+        text-align: center;
+        color: map.get(vars.$theme-colors, "white");
+      }
+
       .lawyer-section {
         display: flex;
         align-items: baseline;
@@ -44,11 +49,6 @@
           background-color: map.get(vars.$theme-colors, "white");
           margin-left: 1rem;
         }
-      }
-
-      h2 {
-        text-align: center;
-        color: map.get(vars.$theme-colors, "white");
       }
 
       .lawyers-row {
@@ -191,3 +191,47 @@
     }
   }
 }
+
+@media (max-width: 1025px) {
+  .team-wrapper {
+    .first-section,
+    .second-section {
+      .container {
+        .lawyers-row {
+          display: grid !important;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          justify-items: center;
+          .lawyer-card {
+            width: auto !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 426px) {
+  .team-wrapper {
+    .second-section {
+      .assistant-section {
+        width: 100% !important;
+        overflow: visible !important;
+        display: block !important;
+        flex-wrap: wrap !important;
+        white-space: normal !important;
+
+        h4 {
+          white-space: normal !important;
+          word-break: break-word !important;
+        }
+
+      }
+    }
+
+
+    .line {
+      display: none !important;
+    }
+  }
+}
+
