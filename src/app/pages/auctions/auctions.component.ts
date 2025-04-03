@@ -70,6 +70,7 @@ export class AuctionsComponent implements OnInit, AfterViewInit, AfterViewChecke
       name: 'description',
       content: 'Consultez toutes les ventes aux enchères menées par le cabinet CB2P.'
     });
+
     this.wpService.getAllAuctionsSummary().subscribe((data) => {
       this.auctionsData = data;
     });
@@ -80,6 +81,7 @@ export class AuctionsComponent implements OnInit, AfterViewInit, AfterViewChecke
 
   ngAfterViewChecked(): void {
     if (this.auctionsData.items.length > 0 && !this.animationExecuted) {
+
       if (this.firstSection && this.mainTitle && this.subtitleElement && this.scrollIndicatorFirst) {
         gsap.set(this.scrollIndicatorFirst.nativeElement, { opacity: 0, y: 20 });
         const tlHero = gsap.timeline({
@@ -108,12 +110,14 @@ export class AuctionsComponent implements OnInit, AfterViewInit, AfterViewChecke
             '>+0.5'
           );
       }
+
       this.auctionItems.forEach((itemRef) => {
         const item = itemRef.nativeElement;
         const textCol = item.querySelector('.auction-text');
         const imgCol = item.querySelector('.auction-image');
         const textEls = [...textCol.querySelectorAll('h5, p, div, a')];
         const scrollEl = item.querySelector('.scroll-indicator');
+
         gsap.set(textEls, { opacity: 0, y: 30 });
         if (imgCol) {
           const imgTag = imgCol.querySelector('img');
@@ -124,12 +128,14 @@ export class AuctionsComponent implements OnInit, AfterViewInit, AfterViewChecke
         if (scrollEl) {
           gsap.set(scrollEl, { opacity: 0, y: 20 });
         }
+
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: item,
             start: 'top bottom'
           }
         });
+
         tl.to(textEls, {
           opacity: 1,
           y: 0,
@@ -137,6 +143,7 @@ export class AuctionsComponent implements OnInit, AfterViewInit, AfterViewChecke
           stagger: 0.2,
           ease: 'power2.out'
         });
+
         if (imgCol) {
           const imgTag = imgCol.querySelector('img');
           if (imgTag) {
@@ -148,6 +155,7 @@ export class AuctionsComponent implements OnInit, AfterViewInit, AfterViewChecke
             }, '+=0.2');
           }
         }
+
         if (scrollEl) {
           tl.to(scrollEl, {
             opacity: 1,
@@ -157,6 +165,7 @@ export class AuctionsComponent implements OnInit, AfterViewInit, AfterViewChecke
           }, '+=0.2');
         }
       });
+
       this.animationExecuted = true;
     }
   }
