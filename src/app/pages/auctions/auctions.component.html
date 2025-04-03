@@ -28,39 +28,33 @@
     <section id="list-section" class="list-section">
       <div class="container-fluid p-0">
         <ng-container *ngFor="let auction of auctionsData.items; let i = index">
-          <div class="row auction-item" [id]="'auction-' + i" #auctionItem>
-
-            <div
-              class="col-md-6 auction-text"
-              [ngClass]="{ 'bg-blue': i % 2 !== 0, 'bg-white': i % 2 === 0 }"
-            >
-
-              <div class="line mb-5" #auctionTextElement></div>
-              <h5 [innerHTML]="auction.title" #auctionTextElement></h5>
-              <p class="price" *ngIf="auction.price" #auctionTextElement>
-                Mise à prix {{ auction.price }}
-              </p>
-              <div [innerHTML]="auction.description" #auctionTextElement></div>
-              <a
-                class="more-link"
-                [routerLink]="['/ventes-aux-encheres/details', auction.id]"
-                #auctionTextElement
-              >
+          <div
+            class="row auction-item"
+            [id]="'auction-' + i"
+            [ngClass]="{ 'bg-blue': i % 2 !== 0, 'bg-white': i % 2 === 0 }"
+            #auctionItem
+          >
+            <div class="col-md-6 auction-text" #auctionTextElement>
+              <div class="line mb-5"></div>
+              <h5 class="title" [innerHTML]="auction.title"></h5>
+              <p class="price" *ngIf="auction.price">Mise à prix {{ auction.price }}</p>
+              <div class="description" [innerHTML]="auction.description"></div>
+              <a class="more-link" [routerLink]="['/ventes-aux-encheres/details', auction.id]">
                 Plus d’infos
               </a>
             </div>
 
-            <div
-              class="col-md-6 auction-image"
-              [ngClass]="{ 'bg-blue': i % 2 === 0, 'bg-white': i % 2 !== 0 }"
-              #auctionImage
-            >
+            <div class="col-md-6 auction-image" #auctionImage>
               <a [routerLink]="['/ventes-aux-encheres/details', auction.id]">
                 <img [src]="auction.image" [alt]="auction.title" />
               </a>
             </div>
 
-            <div class="scroll-indicator my-4 text-center" *ngIf="i < auctionsData.items.length - 1" #scrollIndicator>
+            <div
+              class="scroll-indicator my-4 text-center"
+              *ngIf="i < auctionsData.items.length - 1"
+              #scrollIndicator
+            >
               <img
                 src="assets/icons/arrow_circle_down.webp"
                 alt="Scroll Down"

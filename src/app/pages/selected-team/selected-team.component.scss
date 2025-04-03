@@ -53,6 +53,8 @@
           font-size: 2rem;
           font-weight: bold;
           margin-bottom: 1rem;
+          text-align: left !important;
+          width: 100%;
         }
 
         h6 {
@@ -115,3 +117,31 @@
 .selected-team-wrapper[_ngcontent-ng-c1076159910] .first-section[_ngcontent-ng-c1076159910] .first-section-left[_ngcontent-ng-c1076159910] .mail-link[_ngcontent-ng-c1076159910] {
   font-weight: 300;
 }
+
+@media (max-width: 768px) {
+  .selected-team-wrapper {
+    .first-section {
+      .container-fluid {
+        height: auto !important;
+        overflow-y: visible !important;
+      }
+      .row.no-gutters {
+        display: block !important;
+      }
+
+      .first-section-left,
+      .first-section-right {
+        min-height: auto !important;
+        width: 100% !important;
+        text-align: center;
+        padding: 7rem 5rem !important;
+      }
+
+      .lawyer-name {
+        text-align: left !important;
+        margin: 0 auto 1rem 0;
+      }
+    }
+  }
+}
+
