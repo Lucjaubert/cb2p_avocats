@@ -39,11 +39,9 @@
     }
 
     .slogan {
-
       .text-center {
         overflow-y: hidden !important;
       }
-
       h3 {
         color: map.get(vars.$theme-colors, "grey");
       }
@@ -55,7 +53,6 @@
       left: 50%;
       transform: translateX(-50%);
       opacity: 0;
-
       img {
         width: 40px;
         height: auto;
@@ -73,19 +70,47 @@
       padding: 0 !important;
     }
 
-    .row.auction-item {
+    .auction-item {
       margin-left: 0 !important;
       margin-right: 0 !important;
       --bs-gutter-x: 0;
-      overflow-y: hidden !important;
-    }
-
-    .auction-item {
       position: relative;
       display: flex;
       align-items: stretch;
       height: 100vh;
       margin-bottom: 0;
+
+      &.bg-white {
+        background-color: map.get(vars.$theme-colors, "white");
+        h5,
+        .price,
+        p,
+        div {
+          color: map.get(vars.$theme-colors, "blue");
+        }
+        .more-link {
+          color: map.get(vars.$theme-colors, "dark-orange");
+        }
+        .line {
+          background-color: map.get(vars.$theme-colors, "gold");
+        }
+      }
+
+      &.bg-blue {
+        background-color: map.get(vars.$theme-colors, "blue-dark");
+        h5,
+        .price,
+        p,
+        div {
+          color: map.get(vars.$theme-colors, "white");
+        }
+        .more-link {
+          color: map.get(vars.$theme-colors, "gold");
+        }
+        .line {
+          background-color: map.get(vars.$theme-colors, "gold");
+        }
+      }
 
       .auction-text {
         display: flex;
@@ -93,6 +118,18 @@
         justify-content: center;
         padding: 2rem 4rem;
         height: 100%;
+
+        .title {
+          overflow-y: hidden;
+        }
+
+        .description {
+          overflow-y: hidden;
+        }
+
+        .more-link{
+          overflow-y: hidden;
+        }
       }
 
       .auction-image {
@@ -101,16 +138,15 @@
         justify-content: center;
         padding-left: 8rem;
         height: 100%;
-      }
-
-      .auction-image img {
-        max-height: 80vh;
-        width: 80%;
-        object-fit: cover;
+        img {
+          max-height: 80vh;
+          width: 80%;
+          object-fit: cover;
+        }
       }
 
       .line {
-        width: 20vw;
+        width: 50%;
         height: 1px;
         background-color: map.get(vars.$theme-colors, "gold");
         margin-bottom: 1rem;
@@ -131,48 +167,48 @@
         text-decoration: underline;
       }
 
-      .bg-white {
-        background-color: map.get(vars.$theme-colors, "white");
-
-        h5, .price, p, div {
-          color: map.get(vars.$theme-colors, "blue");
-        }
-
-        .more-link {
-          color: map.get(vars.$theme-colors, "dark-orange");
-        }
-
-        .line {
-          background-color: map.get(vars.$theme-colors, "gold");
-        }
-      }
-
-      .bg-blue {
-        background-color: map.get(vars.$theme-colors, "blue-dark");
-
-        h5, .price, p, div {
-          color: map.get(vars.$theme-colors, "white");
-        }
-
-        .more-link {
-          color: map.get(vars.$theme-colors, "gold");
-        }
-
-        .line {
-          background-color: map.get(vars.$theme-colors, "gold");
+      .scroll-indicator {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        img {
+          width: 40px;
+          height: auto;
         }
       }
     }
+  }
+}
 
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
+@media (max-width: 768px) {
+  .auctions-wrapper {
+    .list-section {
+      .auction-item {
+        display: block !important;
+        height: auto !important;
 
-      img {
-        width: 40px;
-        height: auto;
+        .auction-text,
+        .auction-image {
+          width: 100% !important;
+          min-height: auto !important;
+          padding: 4rem !important;
+          text-align: center;
+        }
+        .auction-image {
+          padding-left: 4rem !important;
+          img {
+            max-height: none !important;
+            width: 80% !important;
+          }
+        }
+        .line {
+          width: 100%;
+        }
+
+        .scroll-indicator {
+          display: none !important;
+        }
       }
     }
   }

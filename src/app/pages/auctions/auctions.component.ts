@@ -81,7 +81,6 @@ export class AuctionsComponent implements OnInit, AfterViewInit, AfterViewChecke
 
   ngAfterViewChecked(): void {
     if (this.auctionsData.items.length > 0 && !this.animationExecuted) {
-      console.log('ngAfterViewChecked -> lancement des animations');
 
       if (this.firstSection && this.mainTitle && this.subtitleElement && this.scrollIndicatorFirst) {
         gsap.set(this.scrollIndicatorFirst.nativeElement, { opacity: 0, y: 20 });
@@ -104,71 +103,66 @@ export class AuctionsComponent implements OnInit, AfterViewInit, AfterViewChecke
             duration: 0.7,
             ease: 'power2.out'
           }, '-=0.5')
-          .fromTo(this.scrollIndicatorFirst.nativeElement,
+          .fromTo(
+            this.scrollIndicatorFirst.nativeElement,
             { opacity: 0, y: 20 },
             { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' },
-            ">+0.5"
+            '>+0.5'
           );
       }
 
-      this.auctionItems.forEach((auctionItemRef) => {
-        const auctionItem = auctionItemRef.nativeElement;
-        const textEls = this.auctionTextElements
-          .toArray()
-          .filter(elRef => elRef.nativeElement.closest('.auction-item') === auctionItem)
-          .map(elRef => elRef.nativeElement);
+      this.auctionItems.forEach((itemRef) => {
+        const item = itemRef.nativeElement;
+        const textCol = item.querySelector('.auction-text');
+        const imgCol = item.querySelector('.auction-image');
+        const textEls = [...textCol.querySelectorAll('h5, p, div, a')];
+        const scrollEl = item.querySelector('.scroll-indicator');
 
-        const imageContainer = this.auctionImages
-          .toArray()
-          .find(imgRef => imgRef.nativeElement.closest('.auction-item') === auctionItem)
-          ?.nativeElement || null;
-
-        const indicatorEl = this.scrollIndicators
-          .toArray()
-          .find(indRef => indRef.nativeElement.closest('.auction-item') === auctionItem)
-          ?.nativeElement || null;
-
-        if (imageContainer) {
-          const imgEl = imageContainer.querySelector('img');
-          if (imgEl) {
-            gsap.set(imgEl, { opacity: 0, x: 50 });
+        gsap.set(textEls, { opacity: 0, y: 30 });
+        if (imgCol) {
+          const imgTag = imgCol.querySelector('img');
+          if (imgTag) {
+            gsap.set(imgTag, { opacity: 0, x: 50 });
           }
         }
-        if (indicatorEl) {
-          gsap.set(indicatorEl, { opacity: 0, y: 20 });
+        if (scrollEl) {
+          gsap.set(scrollEl, { opacity: 0, y: 20 });
         }
 
-        const tlAuction = gsap.timeline({
+        const tl = gsap.timeline({
           scrollTrigger: {
-            trigger: auctionItem,
+            trigger: item,
             start: 'top bottom'
           }
         });
-        tlAuction.from(textEls, {
-          opacity: 0,
-          y: 30,
+
+        tl.to(textEls, {
+          opacity: 1,
+          y: 0,
           duration: 0.6,
           stagger: 0.2,
           ease: 'power2.out'
         });
-        if (imageContainer) {
-          const imgEl = imageContainer.querySelector('img');
-          if (imgEl) {
-            tlAuction.to(imgEl, {
+
+        if (imgCol) {
+          const imgTag = imgCol.querySelector('img');
+          if (imgTag) {
+            tl.to(imgTag, {
               opacity: 1,
               x: 0,
               duration: 0.8,
               ease: 'power2.out'
-            }, '+=0.1');
+            }, '+=0.2');
           }
         }
-        if (indicatorEl) {
-          tlAuction.to(indicatorEl, {
+
+        if (scrollEl) {
+          tl.to(scrollEl, {
             opacity: 1,
             y: 0,
             duration: 0.5,
             ease: 'power2.out'
-          }, '+=0.1');
+          }, '+=0.2');
         }
       });
 
@@ -177,17 +171,17 @@ export class AuctionsComponent implements OnInit, AfterViewInit, AfterViewChecke
   }
 
   scrollToSection(sectionId: string): void {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    const el = document.getElementById(sectionId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
     }
   }
 
   scrollToNextAuction(index: number): void {
     const nextId = `auction-${index + 1}`;
-    const element = document.getElementById(nextId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    const el = document.getElementById(nextId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
     }
   }
 }

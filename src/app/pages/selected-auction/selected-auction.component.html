@@ -7,18 +7,12 @@
         <div class="row justify-content-center">
           <div class="col-auto d-flex flex-column align-items-center">
             <div class="hero-section d-flex flex-column align-items-center">
-
-              <!-- Titre principal -->
               <h1 *ngIf="data?.title" #mainTitle>{{ data.title }}</h1>
-
               <div class="row slogan my-5 w-100">
                 <div class="col text-center mb-5">
-                  <!-- Sous-titre -->
                   <h3 *ngIf="data?.subtitle" #subtitle>{{ data.subtitle }}</h3>
                 </div>
               </div>
-
-              <!-- Scroll indicator de la première section -->
               <div class="scroll-indicator mt-5 me-4" #scrollIndicatorFirst>
                 <img
                   src="assets/icons/arrow_circle_down.webp"
@@ -26,7 +20,6 @@
                   (click)="scrollToSection('description-section')"
                 />
               </div>
-
             </div>
           </div>
         </div>
@@ -34,33 +27,18 @@
     </section>
 
     <!-- SECTION 2 : DESCRIPTION -->
-    <section
-      id="description-section"
-      class="description-section"
-      #descriptionSection
-    >
+    <section id="description-section" class="description-section" #descriptionSection>
       <div class="container-fluid">
         <div class="row auction-item">
-
-          <!-- Colonne texte -->
           <div class="col-md-6 auction-text bg-white" #descText>
             <div class="line mb-5"></div>
             <div class="content" [innerHTML]="safeText"></div>
           </div>
-
-          <!-- Colonne image -->
-          <div
-            class="col-md-6 auction-image bg-blue"
-            *ngIf="data?.image"
-            #descImage
-          >
+          <div class="col-md-6 auction-image bg-blue" *ngIf="data?.image" #descImage>
             <img [src]="data.image" [alt]="data.title" />
           </div>
-
         </div>
       </div>
-
-      <!-- Scroll indicator section DESCRIPTION -->
       <div class="scroll-down-indicator" #descScrollIndicator>
         <img
           src="assets/icons/arrow_circle_down.webp"
@@ -71,24 +49,16 @@
     </section>
 
     <!-- SECTION 3 : INFOS -->
-    <section
-      id="infos-section"
-      class="infos-section bg-blue"
-      #infosSection
-    >
+    <section id="infos-section" class="infos-section bg-blue" #infosSection>
       <div class="container">
         <div class="row align-items-center">
-
           <div
             class="col-lg-6 col-12 mb-5 text-white pe-lg-5 d-flex flex-column justify-content-center h-100"
             #infosText
           >
-            <div class="line mb-4"></div>
             <div [innerHTML]="safeInfo"></div>
           </div>
-
           <div class="col-lg-6 col-12" #infosImages>
-            <!-- Ex: mini-galerie -->
             <div class="row g-3 align-items-stretch">
               <div class="col-6" *ngFor="let img of data?.gallery.slice(1, 5)">
                 <a [href]="img" target="_blank">
@@ -102,11 +72,8 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
-
-      <!-- Scroll indicator section INFOS -->
       <div class="scroll-down-indicator" #infosScrollIndicator>
         <img
           src="assets/icons/arrow_circle_down.webp"
@@ -118,59 +85,46 @@
 
     <!-- SECTION 4 : PHOTOS -->
     <section
-      id="photos-section"
-      class="photos-section bg-blue"
-      *ngIf="data?.gallery && data.gallery.length > 5"
-      #photosSection
+    id="photos-section"
+    class="photos-section bg-blue"
+    *ngIf="data?.gallery && data.gallery.length > 5"
+    #photosSection
     >
-      <div class="container">
-        <div class="row g-3" #photosRow>
-          <div
-            class="col-6 col-md-3"
-            *ngFor="let photo of data.gallery.slice(5, 13)"
-          >
-            <a [href]="photo" target="_blank">
-              <img
-                [src]="photo"
-                alt="Photo supplémentaire"
-                class="img-fluid rounded shadow-sm border border-white"
-                style="object-fit: cover; width: 100%; height: 220px; cursor: zoom-in;"
-              />
-            </a>
-          </div>
+    <div class="container">
+      <!-- La nouvelle grille photos -->
+      <div class="photos-grid" #photosRow>
+        <div class="photo-cell" *ngFor="let photo of data.gallery.slice(5, 13)">
+          <a [href]="photo" target="_blank">
+            <img
+              [src]="photo"
+              alt="Photo supplémentaire"
+            />
+          </a>
         </div>
       </div>
+    </div>
 
-      <!-- Scroll indicator section PHOTOS -->
-      <div class="scroll-down-indicator" #photosScrollIndicator>
-        <img
-          src="assets/icons/arrow_circle_down.webp"
-          alt="Scroll Down"
-          (click)="scrollToSection('documents-section')"
-        />
-      </div>
+    <!-- Scroll Indicator -->
+    <div class="scroll-down-indicator" #photosScrollIndicator>
+      <img
+        src="assets/icons/arrow_circle_down.webp"
+        alt="Scroll Down"
+        (click)="scrollToSection('documents-section')"
+      />
+    </div>
     </section>
 
+
     <!-- SECTION 5 : DOCUMENTS -->
-    <section
-      id="documents-section"
-      class="documents-section bg-white mt-5"
-      #documentsSection
-    >
+    <section id="documents-section" class="documents-section bg-white pt-5" #documentsSection>
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8 text-center">
             <h5 class="mb-4">📁 FICHIERS JOINTS</h5>
-
-            <!-- PV descriptif -->
-            <h6 class="mt-4 mb-3 fw-bold text-uppercase mt-5">
-              Procès-verbal descriptif
-            </h6>
+            <h6 class="mt-4 mb-3 fw-bold text-uppercase mt-5">Procès-verbal descriptif</h6>
             <ul class="list-unstyled">
               <li *ngIf="data?.pdf">
-                <a [href]="data.pdf" class="doc-link" target="_blank"
-                  >📄 PV Descriptif</a
-                >
+                <a [href]="data.pdf" class="doc-link" target="_blank">📄 PV Descriptif</a>
               </li>
               <li *ngIf="data?.pvAnnexe">
                 <a [href]="data.pvAnnexe" class="doc-link" target="_blank"
@@ -178,11 +132,7 @@
                 >
               </li>
             </ul>
-
-            <!-- Cahier des conditions -->
-            <h6 class="mt-4 mb-3 fw-bold text-uppercase">
-              Cahier des conditions de vente
-            </h6>
+            <h6 class="mt-4 mb-3 fw-bold text-uppercase">Cahier des conditions de vente</h6>
             <ul class="list-unstyled">
               <li *ngIf="data?.cahier">
                 <a [href]="data.cahier" class="doc-link" target="_blank"
@@ -190,16 +140,10 @@
                 >
               </li>
             </ul>
-
-            <!-- Technique / Urbanisme -->
-            <h6 class="mt-4 mb-3 fw-bold text-uppercase">
-              Informations techniques
-            </h6>
+            <h6 class="mt-4 mb-3 fw-bold text-uppercase">Informations techniques</h6>
             <ul class="list-unstyled">
               <li *ngIf="data?.dtt">
-                <a [href]="data.dtt" class="doc-link" target="_blank"
-                  >📄 Dossier technique (DDT)</a
-                >
+                <a [href]="data.dtt" class="doc-link" target="_blank">📄 Dossier technique (DDT)</a>
               </li>
               <li *ngIf="data?.certificat">
                 <a [href]="data.certificat" class="doc-link" target="_blank"
@@ -207,29 +151,18 @@
                 >
               </li>
               <li *ngIf="data?.bail">
-                <a [href]="data.bail" class="doc-link" target="_blank"
-                  >📄 Bail commercial</a
-                >
+                <a [href]="data.bail" class="doc-link" target="_blank">📄 Bail commercial</a>
               </li>
             </ul>
-
-            <!-- Frais & autres docs -->
-            <h6 class="mt-4 mb-3 fw-bold text-uppercase">
-              Frais et autres documents
-            </h6>
+            <h6 class="mt-4 mb-3 fw-bold text-uppercase">Frais et autres documents</h6>
             <ul class="list-unstyled">
               <li *ngIf="data?.frais">
-                <a [href]="data.frais" class="doc-link" target="_blank"
-                  >📄 État de frais</a
-                >
+                <a [href]="data.frais" class="doc-link" target="_blank">📄 État de frais</a>
               </li>
               <li *ngIf="data?.affiche">
-                <a [href]="data.affiche" class="doc-link" target="_blank"
-                  >📄 Affiche</a
-                >
+                <a [href]="data.affiche" class="doc-link" target="_blank">📄 Affiche</a>
               </li>
             </ul>
-
           </div>
         </div>
       </div>
