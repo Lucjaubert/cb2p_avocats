@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Page d'accueil -->
+  <url>
+    <loc>https://cb2p-avocats.fr/</loc>
+    <lastmod>2025-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Page Ventes aux enchères -->
+  <url>
+    <loc>https://cb2p-avocats.fr/ventes-aux-encheres</loc>
+    <lastmod>2025-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Page Contact -->
+  <url>
+    <loc>https://cb2p-avocats.fr/contact</loc>
+    <lastmod>2025-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Page Le Cabinet -->
+  <url>
+    <loc>https://cb2p-avocats.fr/le-cabinet</loc>
+    <lastmod>2025-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Page Compétences -->
+  <url>
+    <loc>https://cb2p-avocats.fr/competences</loc>
+    <lastmod>2025-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Page Équipe -->
+  <url>
+    <loc>https://cb2p-avocats.fr/equipe</loc>
+    <lastmod>2025-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Page Centre de confidentialité -->
+  <url>
+    <loc>https://cb2p-avocats.fr/centre-de-confidentialite</loc>
+    <lastmod>2025-04-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Contactez le DPO -->
+  <url>
+    <loc>https://cb2p-avocats.fr/contactez-le-dpo</loc>
+    <lastmod>2025-04-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Politique des cookies -->
+  <url>
+    <loc>https://cb2p-avocats.fr/politique-des-cookies</loc>
+    <lastmod>2025-04-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- Mentions légales -->
+  <url>
+    <loc>https://cb2p-avocats.fr/mentions-legales</loc>
+    <lastmod>2025-04-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Politique de confidentialité -->
+  <url>
+    <loc>https://cb2p-avocats.fr/politique-de-confidentialite</loc>
+    <lastmod>2025-04-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <!-- Droit à l'oubli -->
+  <url>
+    <loc>https://cb2p-avocats.fr/droit-a-l-oubli</loc>
+    <lastmod>2025-04-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Rectification des données -->
+  <url>
+    <loc>https://cb2p-avocats.fr/rectification-des-donnees</loc>
+    <lastmod>2025-04-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>
