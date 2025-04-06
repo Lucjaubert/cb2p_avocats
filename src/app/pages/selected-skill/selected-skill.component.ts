@@ -123,7 +123,6 @@ export class SelectedSkillComponent
   }
 
   private launchAnimations(): void {
-    console.log('[SelectedSkill] => Launching GSAP animations');
 
     if (
       this.firstSection &&
@@ -356,6 +355,7 @@ export class SelectedSkillComponent
           this.rotateLawyerWithGsap();
         }, 2000);
       } else {
+        // Rien
       }
     } else {
       this.displayedLawyer = null;

@@ -9,7 +9,7 @@
               <h1 [innerHTML]="selectedSkill?.title" #mainTitle></h1>
 
               <div class="row slogan my-5 w-150">
-                <div class="col text-center mb-5">
+                <div class="col text-center mb-5 px-4">
                   <h3 [innerHTML]="selectedSkill?.title_selected" #subtitle></h3>
                 </div>
               </div>
@@ -30,7 +30,7 @@
       <div class="container">
         <div class="row justify-content-center text-center">
           <div
-            class="col-md-4 text-container"
+            class="col-md-4 col-12 px-2 text-container"
             *ngFor="let col of selectedSkill?.columns"
             #skillColumn
           >
@@ -96,25 +96,28 @@
         </div>
     </section>
 
+    <!-- SECTION 4 (Other Skills) -->
     <section
-      id="fourth-section"
-      class="fourth-section"
-      *ngIf="filteredSkills.length > 0"
-      #fourthSection
+    id="fourth-section"
+    class="fourth-section"
+    *ngIf="filteredSkills.length > 0"
+    #fourthSection
     >
-      <div class="d-flex flex-column align-items-start">
-        <h3>CB2P Avocats vous propose d’autres services :</h3>
-        <div class="skills-list p-5" #otherSkillsContainer>
-          <div
-            *ngFor="let skill of filteredSkills"
-            class="skill-box"
-            (click)="navigateToSkill(skill.slug)"
-          >
-            {{ skill.title }}
-          </div>
+    <div class="d-flex flex-column align-items-start">
+      <h3>CB2P Avocats vous propose d’autres services :</h3>
+      <div class="skills-list p-5" #otherSkillsContainer>
+        <div
+          *ngFor="let skill of filteredSkills"
+          class="skill-box"
+          (click)="navigateToSkill(skill.slug)"
+        >
+          {{ skill.title }}
         </div>
       </div>
+    </div>
     </section>
+
+
 
   </div>
 </div>

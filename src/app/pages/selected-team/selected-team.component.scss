@@ -118,6 +118,13 @@
   font-weight: 300;
 }
 
+@media (max-width: 1024px) {
+  .selected-team-wrapper[_ngcontent-ng-c1223802389] .first-section[_ngcontent-ng-c1223802389] .first-section-right[_ngcontent-ng-c1223802389] .member-photo[_ngcontent-ng-c1223802389] {
+    max-width: 350px;
+    width: 80%;
+}
+}
+
 @media (max-width: 768px) {
   .selected-team-wrapper {
     .first-section {
@@ -135,6 +142,10 @@
         width: 100% !important;
         text-align: center;
         padding: 7rem 5rem !important;
+
+        .member-photo {
+          width: 80%;
+        }
       }
 
       .lawyer-name {

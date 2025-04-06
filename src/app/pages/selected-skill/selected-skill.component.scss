@@ -75,12 +75,11 @@
     display: flex;
     align-items: center;
     background-color: map.get(vars.$theme-colors, "blue");
-    padding: 5rem 0;
+    padding: 8rem 0;
 
     .container {
       max-width: 80%;
       text-align: center;
-
       .text-center {
         .skill-descrption {
           overflow: hidden !important;
@@ -91,11 +90,11 @@
     .row {
       display: flex;
       justify-content: center;
-      gap: 2rem;
+      gap: 4rem;
     }
 
     .text-container {
-      max-width: 30%;
+      max-width: 40%;
       text-align: center;
 
       .line {
@@ -105,13 +104,9 @@
         margin-bottom: 2rem;
       }
 
-      .title-expert {
-        margin-bottom: 1rem;
-
-        h5 {
-          color: map.get(vars.$theme-colors, "white") !important;
-          text-align: start;
-        }
+      h6 {
+        color: map.get(vars.$theme-colors, "white") !important;
+        text-align: left !important;
       }
 
       p {
@@ -122,12 +117,12 @@
       }
     }
 
+
     .scroll-indicator {
       position: absolute;
       bottom: 2rem;
       left: 50%;
       transform: translateX(-50%);
-
       img {
         width: 40px;
         height: auto;
@@ -226,69 +221,118 @@
     }
   }
 
-  .fourth-section {
-    height: 100vh;
-    display: flex;
-    align-items: center;
+  /* =================== SECTION 4 =================== */
+.fourth-section {
+  // Plutôt que 100vh, on met auto pour laisser le contenu s'étendre
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background-color: map.get(vars.$theme-colors, "light-grey");
+  text-align: center;
+  overflow-y: hidden; // Passe en 'visible' si tu veux scroller.
+
+  h3 {
+    color: map.get(vars.$theme-colors, "blue");
+    margin-top: 3rem;
+    margin-left: 8vw;
+  }
+
+  .skills-list {
+    display: grid;
+    // Par défaut, sur écrans ≥ 768px, on veut 4 colonnes
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
     justify-content: center;
-    padding: 4rem 2rem;
-    background-color: map.get(vars.$theme-colors, "light-grey");
-    text-align: center;
-    overflow-y: hidden;
+    align-items: center;
+    max-width: 90%;
+    margin: 0 auto;
 
-    h3 {
-      color: map.get(vars.$theme-colors, "blue");
-      margin-top: 3rem;
-      margin-left: 8vw;
-    }
+    .skill-box {
+      background-color: map.get(vars.$theme-colors, "light-blue");
+      padding: 1.5rem;
+      color: map.get(vars.$theme-colors, "white");
+      display: flex;
+      align-items: end;
+      justify-content: start;
+      text-align: start;
+      min-height: 30vh;
+      min-width: 30vh;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
+      transition: transform 0.3s ease-in-out;
+      border: 3px solid transparent;
+      position: relative;
 
-    .skills-list {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1.5rem;
-      justify-content: center;
-      align-items: center;
-      max-width: 90%;
-      margin: 0 auto;
-      overflow: hidden;
-
-      .skill-box {
-        background-color: map.get(vars.$theme-colors, "light-blue");
-        padding: 1.5rem;
-        color: map.get(vars.$theme-colors, "white");
-        display: flex;
-        align-items: end;
-        justify-content: start;
-        text-align: start;
-        min-height: 30vh;
-        min-width: 30vh;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
+      &::before {
+        content: "";
+        position: absolute;
+        bottom: 6.5rem;
+        left: 10%;
+        width: 40%;
+        height: 2px;
+        background-color: map.get(vars.$theme-colors, "dark-orange");
+        transform: scaleX(0);
         transition: transform 0.3s ease-in-out;
-        border: 3px solid transparent;
-        position: relative;
+      }
 
+      &:hover {
+        transform: scale(1.05);
+        background-color: map.get(vars.$theme-colors, "blue");
+        border: 3px solid map.get(vars.$theme-colors, "dark-orange");
         &::before {
-          content: "";
-          position: absolute;
-          bottom: 6.5rem;
-          left: 10%;
-          width: 40%;
-          height: 2px;
-          background-color: map.get(vars.$theme-colors, "dark-orange");
-          transform: scaleX(0);
-          transition: transform 0.3s ease-in-out;
-        }
-
-        &:hover {
-          transform: scale(1.05);
-          background-color: map.get(vars.$theme-colors, "blue");
-          border: 3px solid map.get(vars.$theme-colors, "dark-orange");
-
-          &::before {
-            transform: scaleX(1);
-          }
+          transform: scaleX(1);
         }
       }
     }
   }
+}
+
+/* -- (B) Sous 768px => 2 colonnes -- */
+@media (max-width: 768px) {
+  .fourth-section {
+    height: auto !important;
+    overflow-y: visible !important; // si tu veux scroller
+
+    .skills-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+/* -- (C) Sous 425px => 1 colonne -- */
+@media (max-width: 425px) {
+  .fourth-section {
+    .skills-list {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media (max-width: 425px) {
+  .third-section {
+    .row.no-gutters {
+      /* Forcer l’empilement vertical */
+      display: block !important;
+    }
+
+    .third-section-left,
+    .third-section-right {
+      /* Chaque bloc prend 100% de la largeur */
+      width: 100% !important;
+      /* Ajuster la hauteur/padding si besoin */
+      min-height: auto !important;
+      padding: 2rem 1rem !important;
+    }
+  }
+}
+
+/* -- (D) Au-dessus de 1440px => 5 colonnes (optionnel) -- */
+@media (min-width: 1440px) {
+  .fourth-section {
+    .skills-list {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+}
 }
