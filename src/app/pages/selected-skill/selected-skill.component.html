@@ -5,7 +5,7 @@
       <div class="container mb-5">
         <div class="row justify-content-center">
           <div class="col-auto d-flex flex-column align-items-center">
-            <div class="hero-section d-flex flex-column align-items-center">
+            <div class="hero-section d-flex flex-column align-items-center px-3">
               <h1 [innerHTML]="selectedSkill?.title" #mainTitle></h1>
 
               <div class="row slogan my-5 w-150">
@@ -34,9 +34,9 @@
             *ngFor="let col of selectedSkill?.columns"
             #skillColumn
           >
-            <div class="line my-2"></div>
-            <h5 class="my-2 skill-descrption" [innerHTML]="col.title"></h5>
-            <div class="my-2 skill-descrption" [innerHTML]="col.subtitle"></div>
+            <div class="line my-3"></div>
+            <h5 class="my-2 skill-description px-2" [innerHTML]="col.title"></h5>
+            <div class="skill-description px-2" [innerHTML]="col.subtitle"></div>
           </div>
         </div>
       </div>

@@ -80,8 +80,21 @@
     .container {
       max-width: 80%;
       text-align: center;
+
+      h5 {
+        color: map.get(vars.$theme-colors, "white") !important;
+        text-align: left !important;
+      }
+
+      p {
+        color: map.get(vars.$theme-colors, "white");
+        text-align: start;
+        font-weight: 300;
+        white-space: pre-line;
+      }
+
       .text-center {
-        .skill-descrption {
+        .skill-description {
           overflow: hidden !important;
         }
       }
@@ -94,7 +107,7 @@
     }
 
     .text-container {
-      max-width: 40%;
+      max-width: 80%;
       text-align: center;
 
       .line {
@@ -104,17 +117,7 @@
         margin-bottom: 2rem;
       }
 
-      h6 {
-        color: map.get(vars.$theme-colors, "white") !important;
-        text-align: left !important;
-      }
 
-      p {
-        color: map.get(vars.$theme-colors, "white");
-        text-align: start;
-        font-weight: 300;
-        white-space: pre-line;
-      }
     }
 
 
@@ -133,7 +136,6 @@
   .third-section {
     position: relative;
     height: 100vh;
-    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -292,7 +294,7 @@
 @media (max-width: 768px) {
   .fourth-section {
     height: auto !important;
-    overflow-y: visible !important; // si tu veux scroller
+    overflow-y: visible !important;
 
     .skills-list {
       grid-template-columns: repeat(2, 1fr);
@@ -300,39 +302,43 @@
   }
 }
 
-/* -- (C) Sous 425px => 1 colonne -- */
-@media (max-width: 425px) {
-  .fourth-section {
-    .skills-list {
-      grid-template-columns: 1fr;
+  @media (max-width: 1024px) {
+
+    .second-section {
+      height: auto;
     }
   }
-}
 
-@media (max-width: 425px) {
-  .third-section {
-    .row.no-gutters {
-      /* Forcer l’empilement vertical */
-      display: block !important;
-    }
 
-    .third-section-left,
-    .third-section-right {
-      /* Chaque bloc prend 100% de la largeur */
-      width: 100% !important;
-      /* Ajuster la hauteur/padding si besoin */
-      min-height: auto !important;
-      padding: 2rem 1rem !important;
+  @media (max-width: 425px) {
+
+    .fourth-section {
+      .skills-list {
+        grid-template-columns: 1fr;
+      }
     }
   }
-}
 
-/* -- (D) Au-dessus de 1440px => 5 colonnes (optionnel) -- */
-@media (min-width: 1440px) {
-  .fourth-section {
-    .skills-list {
-      grid-template-columns: repeat(5, 1fr);
+  @media (max-width: 425px) {
+    .third-section {
+      .row.no-gutters {
+        display: block !important;
+      }
+
+      .third-section-left,
+      .third-section-right {
+        width: 100% !important;
+        min-height: auto !important;
+        padding: 2rem 1rem !important;
+      }
     }
   }
-}
+
+  @media (min-width: 1440px) {
+    .fourth-section {
+      .skills-list {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+  }
 }
