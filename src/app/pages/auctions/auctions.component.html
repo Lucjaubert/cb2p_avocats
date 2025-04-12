@@ -12,13 +12,13 @@
                   <h3 *ngIf="auctionsData.subtitle" [innerHTML]="auctionsData.subtitle" #subtitle></h3>
                 </div>
               </div>
-              <div class="scroll-indicator mt-5" #scrollIndicatorFirst>
+              <!-- <div class="scroll-indicator mt-5" #scrollIndicatorFirst>
                 <img
                   src="assets/icons/arrow_circle_down.webp"
                   alt="Scroll Down"
                   (click)="scrollToSection('list-section')"
                 />
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@
               </a>
             </div>
 
-            <div
+            <!-- <div
               class="scroll-indicator my-4 text-center"
               *ngIf="i < auctionsData.items.length - 1"
               #scrollIndicator
@@ -60,7 +60,7 @@
                 alt="Scroll Down"
                 (click)="scrollToNextAuction(i)"
               />
-            </div>
+            </div> -->
           </div>
         </ng-container>
       </div>

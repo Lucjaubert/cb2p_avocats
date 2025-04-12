@@ -11,21 +11,36 @@
 }
 
 .homepage-wrapper {
+  width: 100%;
+  perspective: 1000px;
+
+  .line {
+    width: 100%;
+    height: 1.5px;
+    background-color: map.get(vars.$theme-colors, "gold");
+    transform: scaleX(0);
+    transform-origin: left;
+    position: relative;
+    z-index: 3;
+  }
+
   .first-section {
     min-height: 100vh;
+    position: relative;
     overflow: hidden;
 
     .slogan-container {
       overflow-y: hidden;
 
       .presentation {
-        margin-top: 7rem;
+        margin-top: 9rem;
         display: flex;
         align-items: center;
         justify-content: center;
 
         @media (max-width: 768px) {
           flex-direction: column;
+          margin-top: 9rem;
         }
       }
 
@@ -77,19 +92,29 @@
       }
 
       .slogan {
-        .text-center {
-          overflow-y: hidden;
+        overflow: hidden;
+
+        .slogan-box {
+          overflow: hidden;
         }
 
-        h2 {
-          color: map.get(vars.$theme-colors, "white");
+        h3 {
+          color: map.get(vars.$theme-colors, "grey");
         }
       }
 
-      .scroll-indicator img {
-        width: 40px;
-        height: auto;
-      }
+      // .scroll-indicator {
+      //   position: fixed;
+      //   bottom: 2rem;
+      //   left: 2rem;
+      //   z-index: 1000;
+      //   transform: none;
+
+      //   img {
+      //     width: 40px;
+      //     height: auto;
+      //   }
+      // }
 
       .text-box-wrapper {
         width: 100%;
@@ -114,7 +139,7 @@
   }
 
   .second-section {
-    min-height: 100vh;
+    height: 120vh;
     position: relative;
     display: flex;
     align-items: center;
@@ -163,18 +188,18 @@
       height: auto;
     }
 
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
+    // .scroll-indicator {
+    //   position: fixed;
+    //   bottom: 2rem;
+    //   left: 2rem;
+    //   z-index: 1000;
+    //   transform: none;
 
-      img {
-        width: 40px;
-        height: auto;
-      }
-    }
+    //   img {
+    //     width: 40px;
+    //     height: auto;
+    //   }
+    // }
   }
 
   .third-section {
@@ -234,6 +259,116 @@
 
     p {
       color: map.get(vars.$theme-colors, "white");
+    }
+  }
+
+  .fourth-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    background-color: map.get(vars.$theme-colors, "light-grey");
+    padding: 5rem 0;
+
+    .container {
+      max-width: 80%;
+      text-align: center;
+    }
+
+    .row {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+
+    .text-container {
+      max-width: 30%;
+      text-align: center;
+
+      .title-expert {
+        margin-bottom: 1rem;
+        overflow: hidden;
+
+        h5 {
+          color: map.get(vars.$theme-colors, "blue") !important;
+          font-weight: 500;
+          text-align: start;
+        }
+      }
+
+      p {
+        color: map.get(vars.$theme-colors, "blue");
+        text-align: start;
+        margin-top: 5vh;
+        font-weight: 400;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .fourth-section {
+      height: auto;
+
+      .row {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .text-container {
+        max-width: 100%;
+        margin-bottom: 3rem;
+        text-align: center;
+
+        .title-expert {
+          h5, p {
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  .sixth-section {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    background: url("/assets/img/office/office-wall-3.webp") no-repeat center center;
+    background-size: cover;
+
+    .hero-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      margin-top: 10rem;
+
+      h1 {
+        color: map.get(vars.$theme-colors, "grey");
+        font-size: clamp(2.5rem, 5vw, 3rem);
+
+        .highlighted-number {
+          color: map.get(vars.$theme-colors, "dark-orange");
+        }
+      }
+    }
+
+    .text-center {
+      overflow-y: hidden;
+    }
+
+    .slogan {
+      h4 {
+        color: map.get(vars.$theme-colors, "grey");
+        line-height: 2;
+      }
     }
   }
 }

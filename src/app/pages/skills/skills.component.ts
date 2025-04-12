@@ -27,7 +27,7 @@ gsap.registerPlugin(ScrollTrigger);
 })
 export class SkillsComponent implements OnInit, AfterViewInit {
   skillsData: any;
-  skillsList: Array<{ title: string; slug: string }> = [];
+  skillsList: Array<{ title: string; slug: string; icon?: string }> = [];
 
   @ViewChild('section1', { static: false }) section1!: ElementRef;
   @ViewChild('mainTitle', { static: false }) mainTitle!: ElementRef;
@@ -56,14 +56,16 @@ export class SkillsComponent implements OnInit, AfterViewInit {
       if (data && data.acf) {
         this.skillsData = data.acf;
         this.skillsList = Object.keys(this.skillsData)
-          .filter(key => key.startsWith('box_'))
-          .map(key => {
-            const boxTitle = this.skillsData[key];
-            return {
-              title: boxTitle,
-              slug: this.generateSlug(boxTitle)
-            };
-          });
+        .filter(key => key.startsWith('box_'))
+        .map((key, index) => {
+          const boxTitle = this.skillsData[key];
+          const iconKey = `icon_${index + 1}`;
+          return {
+            title: boxTitle,
+            slug: this.generateSlug(boxTitle),
+            icon: this.skillsData[iconKey] || null
+          };
+        });
       }
     });
   }

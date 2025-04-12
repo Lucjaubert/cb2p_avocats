@@ -24,33 +24,33 @@
     z-index: 3;
   }
 
-  .scroll-indicator {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
+  // .scroll-indicator {
+  //   position: absolute;
+  //   bottom: 2rem;
+  //   left: 50%;
+  //   transform: translateX(-50%);
 
-    .scroll-icon-desktop {
-      display: block;
+  //   .scroll-icon-desktop {
+  //     display: block;
 
-      @media (max-width: 768px) {
-        display: none;
-      }
-    }
+  //     @media (max-width: 768px) {
+  //       display: none;
+  //     }
+  //   }
 
-    .scroll-icon-mobile {
-      display: none;
+  //   .scroll-icon-mobile {
+  //     display: none;
 
-      @media (max-width: 768px) {
-        display: block;
-      }
-    }
+  //     @media (max-width: 768px) {
+  //       display: block;
+  //     }
+  //   }
 
-    img {
-      width: 40px;
-      height: auto;
-    }
-  }
+  //   img {
+  //     width: 40px;
+  //     height: auto;
+  //   }
+  // }
 
   .first-section {
     width: 100%;
@@ -99,7 +99,7 @@
     position: relative;
     display: flex;
     align-items: center;
-    background-color: map.get(vars.$theme-colors, "light-grey");
+    background-color: map.get(vars.$theme-colors, "blue-dark");
 
     .text-container {
       padding-left: 5rem;
@@ -115,7 +115,7 @@
 
       h5,
       p {
-        color: map.get(vars.$theme-colors, "blue");
+        color: map.get(vars.$theme-colors, "white") !important;
         white-space: pre-line;
         font-weight: 500;
         line-height: 1.5;
@@ -174,20 +174,20 @@
         text-align: center;
       }
 
-      .scroll-indicator {
-        position: absolute;
-        bottom: 2rem;
-        left: 50%;
-        transform: translateX(-50%);
+      // .scroll-indicator {
+      //   position: absolute;
+      //   bottom: 2rem;
+      //   left: 50%;
+      //   transform: translateX(-50%);
 
-        .scroll-icon-desktop {
-          display: none;
-        }
+      //   .scroll-icon-desktop {
+      //     display: none;
+      //   }
 
-        .scroll-icon-mobile {
-          display: block;
-        }
-      }
+      //   .scroll-icon-mobile {
+      //     display: block;
+      //   }
+      // }
     }
   }
 
@@ -211,6 +211,8 @@
 
       @media (max-width: 768px) {
         max-width: 100%;
+        align-items: center;
+        text-align: center;
       }
     }
 
@@ -218,7 +220,20 @@
       color: map.get(vars.$theme-colors, "white") !important;
       margin-bottom: 1rem;
     }
+
+    // .scroll-indicator {
+    //   position: absolute;
+    //   bottom: 2rem;
+    //   left: 50%;
+    //   transform: translateX(-50%);
+
+    //   img {
+    //     width: 40px;
+    //     height: auto;
+    //   }
+    // }
   }
+
 
   .fourth-section {
     position: relative;
@@ -257,7 +272,6 @@
       p {
         color: map.get(vars.$theme-colors, "blue");
         text-align: start;
-        font-size: clamp(0.575rem, 2vw, 0.9rem) !important;
         margin-top: 5vh;
         font-weight: 400;
       }

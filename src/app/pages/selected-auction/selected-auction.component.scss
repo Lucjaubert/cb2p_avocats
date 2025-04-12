@@ -72,11 +72,12 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 4rem;
+        padding: 2rem;
       }
 
       .auction-text {
         color: map.get(vars.$theme-colors, "blue") !important;
+        text-align: left;
 
         .line {
           width: 50%;
@@ -101,7 +102,7 @@
 
         img {
           width: 90%;
-          max-height: 80vh;
+          height: 50vh;
           object-fit: contain;
           margin: auto;
         }
@@ -217,18 +218,29 @@
 
   .photos-section {
     position: relative;
+    height: 100vh;
+    display: flex;               /* Permet de centrer le contenu verticalement/horizontalement */
+    flex-direction: column;
+    align-items: center;         /* Centre horizontalement le contenu dans la section */
+    justify-content: center;     /* Centre verticalement le contenu dans la section */
+
     .container {
       padding: 5rem 2rem;
 
       .photos-grid {
         display: grid;
         gap: 1rem;
+        margin: 0 auto;               /* <-- Centre la grille horizontalement */
+        max-width: 1200px;            /* <-- Limite la largeur maximale (optionnel) */
+
         @media (min-width: 768px) {
           grid-template-columns: repeat(3, 1fr);
         }
         @media (max-width: 767px) {
           grid-template-columns: repeat(2, 1fr);
         }
+
+        /* Centre chaque image dans sa cellule */
         justify-items: center;
         align-items: center;
       }
@@ -239,15 +251,17 @@
           display: block;
           text-decoration: none;
           width: 100%;
+
           img {
             width: 100%;
-            height: auto;
+            height: 220px;
             object-fit: cover;
             border-radius: 8px;
             border: 2px solid map.get(vars.$theme-colors, "white");
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             transition: transform 0.3s ease;
             cursor: zoom-in;
+
             &:hover {
               transform: scale(1.03);
             }
@@ -262,6 +276,7 @@
       bottom: 2rem;
       transform: translateX(-50%);
       text-align: center;
+
       img {
         width: 40px;
         height: auto;
@@ -270,16 +285,14 @@
     }
   }
 
-
   .documents-section {
     width: 100%;
     min-height: 100vh;
     background-color: map.get(vars.$theme-colors, "white");
 
-    // Ajout du centrage flexbox
     display: flex;
-    justify-content: center; // centre horizontalement
-    align-items: center; // centre verticalement
+    justify-content: center;
+    align-items: center;
 
     .container {
       padding: 5rem 2rem;
@@ -315,5 +328,22 @@
       }
     }
   }
+}
 
+
+@media (max-width: 767px) {
+  .infos-section {
+    .row.g-3 {
+      .col-6 {
+        flex: 1 1 100% !important;
+        max-width: 100% !important;
+
+        a {
+          img {
+            height: 320px !important;
+          }
+        }
+      }
+    }
+  }
 }

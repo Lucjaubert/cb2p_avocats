@@ -4,7 +4,7 @@
     <!-- SECTION 1 : HERO -->
     <section id="first-section" class="first-section" #firstSection>
       <div class="container mb-5">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center px-3">
           <div class="col-auto d-flex flex-column align-items-center">
             <div class="hero-section d-flex flex-column align-items-center">
               <h1 *ngIf="data?.title" #mainTitle>{{ data.title }}</h1>
@@ -12,13 +12,6 @@
                 <div class="col text-center mb-5">
                   <h3 *ngIf="data?.subtitle" #subtitle>{{ data.subtitle }}</h3>
                 </div>
-              </div>
-              <div class="scroll-indicator mt-5 me-4" #scrollIndicatorFirst>
-                <img
-                  src="assets/icons/arrow_circle_down.webp"
-                  alt="Scroll Down"
-                  (click)="scrollToSection('description-section')"
-                />
               </div>
             </div>
           </div>
@@ -39,21 +32,14 @@
           </div>
         </div>
       </div>
-      <div class="scroll-down-indicator" #descScrollIndicator>
-        <img
-          src="assets/icons/arrow_circle_down.webp"
-          alt="Scroll Down"
-          (click)="scrollToSection('infos-section')"
-        />
-      </div>
     </section>
 
     <!-- SECTION 3 : INFOS -->
     <section id="infos-section" class="infos-section bg-blue" #infosSection>
       <div class="container">
-        <div class="row align-items-center">
+        <div class="row align-items-center px-5">
           <div
-            class="col-lg-6 col-12 mb-5 text-white pe-lg-5 d-flex flex-column justify-content-center h-100"
+            class="col-lg-6 col-12 mb-5 text-white pe-lg-5 d-flex flex-column justify-content-center h-100 px-5"
             #infosText
           >
             <div [innerHTML]="safeInfo"></div>
@@ -74,13 +60,6 @@
           </div>
         </div>
       </div>
-      <div class="scroll-down-indicator" #infosScrollIndicator>
-        <img
-          src="assets/icons/arrow_circle_down.webp"
-          alt="Scroll Down"
-          (click)="scrollToSection('photos-section')"
-        />
-      </div>
     </section>
 
     <!-- SECTION 4 : PHOTOS -->
@@ -92,7 +71,7 @@
     >
     <div class="container">
       <!-- La nouvelle grille photos -->
-      <div class="photos-grid" #photosRow>
+      <div class="photos-grid px-3" #photosRow>
         <div class="photo-cell" *ngFor="let photo of data.gallery.slice(5, 13)">
           <a [href]="photo" target="_blank">
             <img
@@ -102,15 +81,6 @@
           </a>
         </div>
       </div>
-    </div>
-
-    <!-- Scroll Indicator -->
-    <div class="scroll-down-indicator" #photosScrollIndicator>
-      <img
-        src="assets/icons/arrow_circle_down.webp"
-        alt="Scroll Down"
-        (click)="scrollToSection('documents-section')"
-      />
     </div>
     </section>
 

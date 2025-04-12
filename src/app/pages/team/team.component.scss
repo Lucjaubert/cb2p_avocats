@@ -19,7 +19,7 @@
 .team-wrapper {
   .first-section {
     background-color: map.get(vars.$theme-colors, "dark-blue");
-    min-height: 100vh;
+    min-height: 120vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -99,17 +99,17 @@
         }
       }
 
-      .scroll-indicator {
-        margin-top: 4rem;
-        margin-bottom: 4rem;
-        text-align: center;
+      // .scroll-indicator {
+      //   margin-top: 4rem;
+      //   margin-bottom: 4rem;
+      //   text-align: center;
 
-        img {
-          width: 40px;
-          height: auto;
-          cursor: pointer;
-        }
-      }
+      //   img {
+      //     width: 40px;
+      //     height: auto;
+      //     cursor: pointer;
+      //   }
+      // }
     }
   }
 
