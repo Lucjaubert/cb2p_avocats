@@ -2,12 +2,12 @@
   <div class="team-wrapper mt-5">
     <section id="first-section" class="first-section mt-5" #section1>
       <div class="container mx-5">
-        <h2 #teamTitle>{{ teamData?.title_1 }}</h2>
+        <!-- <h2 #teamTitle>{{ teamData?.title_1 }}</h2> -->
         <div class="lawyer-section d-flex">
           <h4 class="mt-5" #teamSubtitle>{{ teamData?.subtitle_1 }}</h4>
           <div class="line ms-4" #teamLine></div>
         </div>
-        <div class="lawyers-row mt-5">
+        <div class="lawyers-row mt-5 pb-5">
           <div class="lawyer-card" *ngFor="let av of lawyersList" #lawyerCard (click)="goToSelectedMember(av.id)">
             <div class="image-container">
               <img class="lawyer-photo" [src]="av.photo" alt="Avocat" />
@@ -17,13 +17,13 @@
             </div>
           </div>
         </div>
-        <div class="scroll-indicator" #teamScrollIndicator>
+        <!-- <div class="scroll-indicator" #teamScrollIndicator>
           <img src="assets/icons/arrow_circle_down.webp" alt="Scroll Down" (click)="scrollToSection('second-section')"/>
-        </div>
+        </div> -->
       </div>
     </section>
 
-    <section id="second-section" class="second-section" #section2>
+    <section id="second-section" class="second-section mt-3" #section2>
       <div class="container mx-5">
         <div class="assistant-section d-flex">
           <h4 #assistantTitle>{{ teamData?.subtitle_2 }}</h4>

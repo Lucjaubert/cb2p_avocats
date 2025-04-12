@@ -162,10 +162,9 @@ export class SelectedSkillComponent
       gsap.set(this.scrollIndicatorSecond.nativeElement, { opacity: 0, y: 20 });
 
       const columns = this.skillColumns.toArray().map(ref => ref.nativeElement);
-
       const lines = columns.map(col => col.querySelector('.line'));
       const h5s   = columns.map(col => col.querySelector('h5'));
-      const paras = columns.map(col => col.querySelector('p'));
+      const paras = columns.map(col => col.querySelector('div.skill-description'));
 
       const tlSecond = gsap.timeline({
         scrollTrigger: {
@@ -205,6 +204,8 @@ export class SelectedSkillComponent
         ease: 'power2.out'
       }, '+=0.2');
     }
+
+
 
     if (this.thirdSection && this.lawyerText && this.lawyerPhoto && this.scrollIndicatorThird) {
       const photoEl = this.lawyerPhoto.nativeElement.querySelector('img');
@@ -409,14 +410,5 @@ export class SelectedSkillComponent
         }
       }
     });
-  }
-
-  scrollToSection(sectionId: string): void {
-    if (isPlatformBrowser(this.platformId)) {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
   }
 }

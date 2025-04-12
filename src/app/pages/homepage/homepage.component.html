@@ -30,20 +30,14 @@
               </div>
 
             </div>
-
-            <div class="row slogan my-5 w-100 mt-5">
-              <div class="col text-center">
-                <h2 #title1>{{ homepageData?.title_1 }}</h2>
-              </div>
-            </div>
-
+<!--
             <div #scrollIndicator class="scroll-indicator mt-2">
               <img
                 src="assets/icons/arrow_circle_down.webp"
                 alt="Scroll Down"
                 (click)="scrollToSection('second-section')"
               />
-            </div>
+            </div> -->
 
           </div>
         </div>
@@ -72,13 +66,13 @@
         </div>
       </div>
 
-      <div #scrollIndicator2 class="scroll-indicator">
+      <!-- <div #scrollIndicator2 class="scroll-indicator">
         <img
           src="assets/icons/arrow_circle_down.webp"
           alt="Scroll Down"
           (click)="scrollToSection('third-section')"
         />
-      </div>
+      </div> -->
     </section>
 
     <section id="third-section" class="third-section">
@@ -115,7 +109,7 @@
           style="cursor: pointer;"
           (click)="goToTeam()"
         >
-          <div class=" col-auto d-flex align-items-center" #teamCallToAction>
+          <div class="col-auto d-flex align-items-center" #teamCallToAction>
             <p class="mb-0">{{ homepageData?.subtitle_2 }}</p>
             <div class="indicator-arrow-down ms-2">
               <img src="assets/icons/arrow-right-white.webp" alt="arrow down" />
@@ -124,7 +118,6 @@
         </div>
       </div>
     </section>
-
 
   </div>
 </div>

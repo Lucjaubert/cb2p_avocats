@@ -116,7 +116,7 @@ export class AuctionsComponent implements OnInit, AfterViewInit, AfterViewChecke
         const textCol = item.querySelector('.auction-text');
         const imgCol = item.querySelector('.auction-image');
         const textEls = [...textCol.querySelectorAll('h5, p, div, a')];
-        const scrollEl = item.querySelector('.scroll-indicator');
+        // const scrollEl = item.querySelector('.scroll-indicator');
 
         gsap.set(textEls, { opacity: 0, y: 30 });
         if (imgCol) {
@@ -125,9 +125,9 @@ export class AuctionsComponent implements OnInit, AfterViewInit, AfterViewChecke
             gsap.set(imgTag, { opacity: 0, x: 50 });
           }
         }
-        if (scrollEl) {
-          gsap.set(scrollEl, { opacity: 0, y: 20 });
-        }
+        // if (scrollEl) {
+        //   gsap.set(scrollEl, { opacity: 0, y: 20 });
+        // }
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -156,14 +156,14 @@ export class AuctionsComponent implements OnInit, AfterViewInit, AfterViewChecke
           }
         }
 
-        if (scrollEl) {
-          tl.to(scrollEl, {
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-            ease: 'power2.out'
-          }, '+=0.2');
-        }
+        // if (scrollEl) {
+        //   tl.to(scrollEl, {
+        //     opacity: 1,
+        //     y: 0,
+        //     duration: 0.5,
+        //     ease: 'power2.out'
+        //   }, '+=0.2');
+        // }
       });
 
       this.animationExecuted = true;

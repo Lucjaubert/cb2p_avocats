@@ -13,19 +13,21 @@
 .homepage-wrapper {
   .first-section {
     min-height: 100vh;
+    position: relative;
     overflow: hidden;
 
     .slogan-container {
       overflow-y: hidden;
 
       .presentation {
-        margin-top: 7rem;
+        margin-top: 9rem;
         display: flex;
         align-items: center;
         justify-content: center;
 
         @media (max-width: 768px) {
           flex-direction: column;
+          margin-top: 9rem;
         }
       }
 
@@ -86,10 +88,18 @@
         }
       }
 
-      .scroll-indicator img {
-        width: 40px;
-        height: auto;
-      }
+      // .scroll-indicator {
+      //   position: fixed;
+      //   bottom: 2rem;
+      //   left: 2rem;
+      //   z-index: 1000;
+      //   transform: none;
+
+      //   img {
+      //     width: 40px;
+      //     height: auto;
+      //   }
+      // }
 
       .text-box-wrapper {
         width: 100%;
@@ -114,7 +124,7 @@
   }
 
   .second-section {
-    min-height: 100vh;
+    height: 120vh;
     position: relative;
     display: flex;
     align-items: center;
@@ -163,18 +173,18 @@
       height: auto;
     }
 
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 2;
+    // .scroll-indicator {
+    //   position: fixed;
+    //   bottom: 2rem;
+    //   left: 2rem;
+    //   z-index: 1000;
+    //   transform: none;
 
-      img {
-        width: 40px;
-        height: auto;
-      }
-    }
+    //   img {
+    //     width: 40px;
+    //     height: auto;
+    //   }
+    // }
   }
 
   .third-section {

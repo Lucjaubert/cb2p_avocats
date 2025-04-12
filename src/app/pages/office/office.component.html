@@ -8,13 +8,13 @@
             <div class="hero-section d-flex flex-column align-items-center">
               <h1 #mainTitle>CB<span class="highlighted-number">2</span>P Avocats</h1>
               <div class="row slogan my-5 w-120">
-                <div class="slogan-box col text-center mb-5">
+                <div class="slogan-box col text-center mb-5 px-5">
                   <h3 #sectionTitle>{{ officeData?.title_1 }}</h3>
                 </div>
               </div>
-              <div class="scroll-indicator mt-5" #sectionScrollIndicator>
+              <!-- <div class="scroll-indicator mt-5" #sectionScrollIndicator>
                 <img src="assets/icons/arrow_circle_down.webp" alt="Scroll Down" (click)="scrollToSection('second-section')"/>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -23,7 +23,7 @@
 
     <!-- Section 2 -->
     <section id="second-section" class="second-section" #officeSection>
-      <div class="container-fluid">
+      <div class="container d-flex flex-column align-items-start justify-content-start">
         <div class="row align-items-center">
           <div class="col-md-6 text-left text-container">
             <div class="line mb-4" #sectionLine></div>
@@ -37,7 +37,7 @@
             </div>
           </div>
         </div>
-        <div class="scroll-indicator" #sectionScrollIndicator>
+        <!-- <div class="scroll-indicator" #sectionScrollIndicator>
           <img
             src="assets/icons/arrow_circle_down_white.webp"
             alt="Scroll Down"
@@ -51,13 +51,13 @@
             class="scroll-icon-mobile"
             (click)="scrollToSection('third-section')"
           />
-        </div>
+        </div> -->
 
       </div>
     </section>
 
     <!-- Section 3 -->
-    <section id="third-section" class="third-section" #officeSection>
+    <!-- <section id="third-section" class="third-section" #officeSection>
       <div class="container d-flex flex-column align-items-start justify-content-start">
         <div class="line mb-4" #sectionLine></div>
         <h4 class="section-text" #sectionTitle>{{ officeData?.title_3 }}</h4>
@@ -65,7 +65,7 @@
       <div class="scroll-indicator" #sectionScrollIndicator>
         <img src="assets/icons/arrow_circle_down.webp" alt="Scroll Down" (click)="scrollToSection('fourth-section')"/>
       </div>
-    </section>
+    </section> -->
 
     <!-- Section 4 (animations distinctes) -->
     <section id="fourth-section" class="fourth-section" #section4>
@@ -96,9 +96,9 @@
             </div>
           </div>
         </div>
-        <div class="scroll-indicator" #scrollIndicator4>
+        <!-- <div class="scroll-indicator" #scrollIndicator4>
           <img src="assets/icons/arrow_circle_down.webp" alt="Scroll Down" (click)="scrollToSection('fifth-section')"/>
-        </div>
+        </div> -->
       </div>
     </section>
 
@@ -116,9 +116,9 @@
             </p>
           </div>
         </div>
-        <div class="scroll-indicator" #scrollIndicator5>
+        <!-- <div class="scroll-indicator" #scrollIndicator5>
           <img src="assets/icons/arrow_circle_down_white.webp" alt="Scroll Down" (click)="scrollToSection('sixth-section')"/>
-        </div>
+        </div> -->
       </div>
     </section>
 

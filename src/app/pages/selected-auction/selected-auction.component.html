@@ -13,13 +13,13 @@
                   <h3 *ngIf="data?.subtitle" #subtitle>{{ data.subtitle }}</h3>
                 </div>
               </div>
-              <div class="scroll-indicator mt-5 me-4" #scrollIndicatorFirst>
+              <!-- <div class="scroll-indicator mt-5 me-4" #scrollIndicatorFirst>
                 <img
                   src="assets/icons/arrow_circle_down.webp"
                   alt="Scroll Down"
                   (click)="scrollToSection('description-section')"
                 />
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -53,7 +53,7 @@
       <div class="container">
         <div class="row align-items-center px-5">
           <div
-            class="col-lg-6 col-12 mb-5 text-white pe-lg-5 d-flex flex-column justify-content-center h-100"
+            class="col-lg-6 col-12 mb-5 text-white pe-lg-5 d-flex flex-column justify-content-center h-100 px-5"
             #infosText
           >
             <div [innerHTML]="safeInfo"></div>

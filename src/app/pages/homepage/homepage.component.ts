@@ -81,22 +81,16 @@ export class HomepageComponent implements OnInit, AfterViewInit {
       .from(this.words.nativeElement.children, {
         opacity: 0,
         y: 20,
-        duration: 0.6,
-        stagger: 0.2,
+        duration: 3,
+        stagger: 0.7,
         ease: 'power2.out',
       }, '-=0.2')
-      .from(this.title1.nativeElement, {
-        opacity: 0,
-        y: 20,
-        duration: 1,
-        ease: 'power2.out',
-      }, '+=0.3')
       .from(this.scrollIndicator.nativeElement, {
         opacity: 0,
         y: 10,
-        duration: 1,
+        duration: 0.5,
         ease: 'power2.out',
-      }, '+=0.3');
+      }, '+=0.2');
 
     const tl2 = gsap.timeline({
       scrollTrigger: {

@@ -47,17 +47,17 @@
       }
     }
 
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      opacity: 0;
-      img {
-        width: 40px;
-        height: auto;
-      }
-    }
+    // .scroll-indicator {
+    //   position: absolute;
+    //   bottom: 2rem;
+    //   left: 50%;
+    //   transform: translateX(-50%);
+    //   opacity: 0;
+    //   img {
+    //     width: 40px;
+    //     height: auto;
+    //   }
+    // }
   }
 
   .list-section {
@@ -167,16 +167,16 @@
         text-decoration: underline;
       }
 
-      .scroll-indicator {
-        position: absolute;
-        bottom: 2rem;
-        left: 50%;
-        transform: translateX(-50%);
-        img {
-          width: 40px;
-          height: auto;
-        }
-      }
+      // .scroll-indicator {
+      //   position: absolute;
+      //   bottom: 2rem;
+      //   left: 50%;
+      //   transform: translateX(-50%);
+      //   img {
+      //     width: 40px;
+      //     height: auto;
+      //   }
+      // }
     }
   }
 }
@@ -206,9 +206,9 @@
           width: 100%;
         }
 
-        .scroll-indicator {
-          display: none !important;
-        }
+        // .scroll-indicator {
+        //   display: none !important;
+        // }
       }
     }
   }

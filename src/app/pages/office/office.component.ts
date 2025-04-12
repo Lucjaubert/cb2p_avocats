@@ -179,40 +179,40 @@ export class OfficeComponent implements OnInit, AfterViewInit {
     }
 
     // SECTION 3
-    const titleEl3 = this.sectionTitles.toArray()[2];
-    const subtitleEl3 = this.sectionSubtitles.toArray()[2];
-    const lineEl3 = this.sectionLines.toArray()[2];
-    const scrollEl3 = this.sectionScrolls.toArray()[2];
+    // const titleEl3 = this.sectionTitles.toArray()[2];
+    // const subtitleEl3 = this.sectionSubtitles.toArray()[2];
+    // const lineEl3 = this.sectionLines.toArray()[2];
+    // const scrollEl3 = this.sectionScrolls.toArray()[2];
 
-    const tlSection3 = gsap.timeline({
-      scrollTrigger: {
-        trigger: titleEl3.nativeElement,
-        start: 'top 80%',
-        once: true
-      }
-    });
-    tlSection3.from(titleEl3.nativeElement, {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: 'power2.out'
-    });
-    if (lineEl3) {
-      gsap.set(lineEl3.nativeElement, { scaleX: 0, transformOrigin: 'left' });
-      tlSection3.to(lineEl3.nativeElement, {
-        scaleX: 1,
-        duration: 0.5,
-        ease: 'power2.out'
-      }, '-=0.4');
-    }
-    if (scrollEl3) {
-      tlSection3.from(scrollEl3.nativeElement, {
-        opacity: 0,
-        y: 10,
-        duration: 0.2,
-        ease: 'power2.out'
-      }, '+=0.3');
-    }
+    // const tlSection3 = gsap.timeline({
+    //   scrollTrigger: {
+    //     trigger: titleEl3.nativeElement,
+    //     start: 'top 80%',
+    //     once: true
+    //   }
+    // });
+    // tlSection3.from(titleEl3.nativeElement, {
+    //   opacity: 0,
+    //   y: 50,
+    //   duration: 1,
+    //   ease: 'power2.out'
+    // });
+    // if (lineEl3) {
+    //   gsap.set(lineEl3.nativeElement, { scaleX: 0, transformOrigin: 'left' });
+    //   tlSection3.to(lineEl3.nativeElement, {
+    //     scaleX: 1,
+    //     duration: 0.5,
+    //     ease: 'power2.out'
+    //   }, '-=0.4');
+    // }
+    // if (scrollEl3) {
+    //   tlSection3.from(scrollEl3.nativeElement, {
+    //     opacity: 0,
+    //     y: 10,
+    //     duration: 0.2,
+    //     ease: 'power2.out'
+    //   }, '+=0.3');
+    // }
 
     // SECTION 4 (animation distincte)
     const tlSection4 = gsap.timeline({
