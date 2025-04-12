@@ -95,7 +95,7 @@
 
       p {
         color: map.get(vars.$theme-colors, "white");
-        text-align: justify;
+        text-align: left;
         font-weight: 300;
         white-space: pre-line;
       }
@@ -119,22 +119,8 @@
         transform-origin: left center;
       }
     }
-
-    // .scroll-indicator {
-    //   position: absolute;
-    //   bottom: 2rem;
-    //   left: 50%;
-    //   transform: translateX(-50%);
-    //   img {
-    //     width: 40px;
-    //     height: auto;
-    //   }
-    // }
   }
 
-  /* =======================
-     SECTION 3
-  ======================= */
   .third-section {
     position: relative;
     height: 100vh;
@@ -278,6 +264,18 @@
             transform: scaleX(1);
           }
         }
+
+        .icon-wrapper {
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+        }
+
+        .skill-icon {
+          width: 48px;
+          height: 48px;
+          object-fit: contain;
+        }
       }
     }
   }
@@ -298,7 +296,6 @@
     }
   }
 
-  /* Sous 425px => 1 colonne dans .fourth-section */
   @media (max-width: 425px) {
     .fourth-section {
       .skills-list {
