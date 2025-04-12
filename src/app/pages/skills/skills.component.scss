@@ -10,6 +10,9 @@
   flex: 0 0 auto;
 }
 
+/* =======================
+   SKILLS WRAPPER
+   ======================= */
 .skills-wrapper {
 
   .first-section {
@@ -49,18 +52,6 @@
         color: map.get(vars.$theme-colors, "grey");
       }
     }
-
-    // .scroll-indicator {
-    //   position: absolute;
-    //   bottom: 2rem;
-    //   left: 50%;
-    //   transform: translateX(-50%);
-
-    //   img {
-    //     width: 40px;
-    //     height: auto;
-    //   }
-    // }
   }
 
   .second-section {
@@ -70,56 +61,75 @@
     justify-content: center;
     padding: 4rem 2rem;
     background-color: map.get(vars.$theme-colors, "light-grey");
-    text-align: center;
 
-    h4 {
-      color: map.get(vars.$theme-colors, "blue");
-      margin-top: 3rem;
-    }
-
-    .skills-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      justify-content: center;
-      align-items: center;
+    .second-container {
       max-width: 90%;
       margin: 0 auto;
+      text-align: left;
 
-      .skill-box {
-        background-color: map.get(vars.$theme-colors, "light-blue");
-        padding: 1.5rem;
-        color: map.get(vars.$theme-colors, "white");
-        display: flex;
-        align-items: end;
-        justify-content: start;
-        text-align: start;
-        min-width: auto;
-        min-height: 30vh;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
-        transition: transform 0.3s ease-in-out;
-        border: 3px solid transparent;
-        position: relative;
+      h4 {
+        color: map.get(vars.$theme-colors, "blue");
+        margin-top: 3rem;
+        margin-bottom: 2rem;
+      }
 
-        &::before {
-          content: "";
-          position: absolute;
-          bottom: 6.5rem;
-          left: 10%;
-          width: 40%;
-          height: 2px;
-          background-color: map.get(vars.$theme-colors, "dark-orange");
-          transform: scaleX(0);
+      .skills-list {
+        display: grid;
+        gap: 1.5rem;
+        align-items: center;
+        overflow: hidden;
+
+        grid-template-columns: repeat(4, 1fr);
+
+        .skill-box {
+          position: relative;
+          box-sizing: border-box;
+          background-color: map.get(vars.$theme-colors, "light-blue");
+          padding: 1.5rem;
+          color: map.get(vars.$theme-colors, "white");
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          text-align: start;
+          min-height: 30vh;
+          box-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
           transition: transform 0.3s ease-in-out;
-        }
-
-        &:hover {
-          transform: scale(1.05);
-          background-color: map.get(vars.$theme-colors, "blue");
-          border: 3px solid map.get(vars.$theme-colors, "dark-orange");
+          border: 3px solid transparent;
+          z-index: 0;
 
           &::before {
-            transform: scaleX(1);
+            content: "";
+            position: absolute;
+            bottom: 6.5rem;
+            left: 10%;
+            width: 40%;
+            height: 2px;
+            background-color: map.get(vars.$theme-colors, "dark-orange");
+            transform: scaleX(0);
+            transition: transform 0.3s ease-in-out;
+          }
+
+          &:hover {
+            z-index: 2;
+            transform: scale(1.05);
+            background-color: map.get(vars.$theme-colors, "blue");
+            border: 3px solid map.get(vars.$theme-colors, "dark-orange");
+
+            &::before {
+              transform: scaleX(1);
+            }
+          }
+
+          .icon-wrapper {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+          }
+
+          .skill-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
           }
         }
       }
@@ -127,35 +137,31 @@
   }
 }
 
-@media (max-width: 768px) {
+
+@media (max-width: 767px) {
   .skills-wrapper {
     .second-section {
-      min-height: auto;
-      display: block;
-      padding: 2rem 1rem;
+      min-height: auto !important;
+      display: block !important;
+      overflow-y: visible !important;
 
-      .skills-list {
-        grid-template-columns: repeat(2, 1fr);
+      .second-container {
+        .skills-list {
+          grid-template-columns: repeat(3, 1fr) !important;
+        }
       }
     }
   }
 }
 
-@media (max-width: 425px) {
-  .skills-wrapper {
-    .second-section {
-      .skills-list {
-        grid-template-columns: 1fr;
-      }
-    }
-  }
-}
 
-@media (min-width: 1440px) {
+@media (max-width: 424px) {
   .skills-wrapper {
     .second-section {
-      .skills-list {
-        grid-template-columns: repeat(4, 1fr);
+      .second-container {
+        .skills-list {
+          grid-template-columns: 1fr !important;
+        }
       }
     }
   }

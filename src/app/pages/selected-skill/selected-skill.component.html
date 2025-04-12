@@ -32,15 +32,13 @@
     #secondSection
   >
     <div class="container">
-      <!-- Ligne 1 : deux blocs (indexes 0 et 1) -->
       <div class="row text-start align-items-start">
-        <!-- Bloc 0 -->
-        <div class="col-md-6 col-12">
+        <div class="col-md-6 col-12 py-4">
           <ng-container *ngIf="selectedSkill?.columns?.[0] as col0">
             <div class="text-container mb-5" #skillColumn>
               <div class="line my-3"></div>
               <h5
-                class="my-2 skill-description px-2"
+                class="my-2 skill-description px-2 py-1"
                 [innerHTML]="col0.title || ''"
               ></h5>
               <div
@@ -52,12 +50,12 @@
         </div>
 
         <!-- Bloc 1 -->
-        <div class="col-md-6 col-12">
+        <div class="col-md-6 col-12 py-4">
           <ng-container *ngIf="selectedSkill?.columns?.[1] as col1">
             <div class="text-container mb-5" #skillColumn>
               <div class="line my-3"></div>
               <h5
-                class="my-2 skill-description px-2"
+                class="my-2 skill-description px-2 py-1"
                 [innerHTML]="col1.title || ''"
               ></h5>
               <div
@@ -72,12 +70,12 @@
       <!-- Ligne 2 : deux blocs (indexes 2 et 3) -->
       <div class="row text-start align-items-start">
         <!-- Bloc 2 -->
-        <div class="col-md-6 col-12">
+        <div class="col-md-6 col-12 py-4">
           <ng-container *ngIf="selectedSkill?.columns?.[2] as col2">
             <div class="text-container mb-5" #skillColumn>
               <div class="line my-3"></div>
               <h5
-                class="my-2 skill-description px-2"
+                class="my-2 skill-description px-2 py-1"
                 [innerHTML]="col2.title || ''"
               ></h5>
               <div
@@ -106,15 +104,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Indicateur de scroll (facultatif) -->
-    <!-- <div class="scroll-indicator mt-5" #scrollIndicatorSecond>
-      <img
-        src="assets/icons/arrow_circle_down.webp"
-        alt="Scroll Down"
-        (click)="scrollToSection('third-section')"
-      />
-    </div> -->
   </section>
 
     <section
@@ -153,35 +142,26 @@
 
           </div>
         </div>
-
-        <!-- <div class="scroll-indicator" #scrollIndicatorThird>
-          <img
-            src="assets/icons/arrow_circle_down.webp"
-            alt="Scroll Down"
-            (click)="scrollToSection('fourth-section')"
-          />
-        </div> -->
     </section>
 
-    <!-- SECTION 4 (Other Skills) -->
     <section
-    id="fourth-section"
-    class="fourth-section"
-    *ngIf="filteredSkills.length > 0"
-    #fourthSection
-    >
-    <div class="d-flex flex-column align-items-start">
-      <h3>CB2P Avocats vous propose d’autres services :</h3>
-      <div class="skills-list p-5" #otherSkillsContainer>
-        <div
-          *ngFor="let skill of filteredSkills"
-          class="skill-box"
-          (click)="navigateToSkill(skill.slug)"
-        >
-          {{ skill.title }}
+      id="fourth-section"
+      class="fourth-section"
+      *ngIf="filteredSkills.length > 0"
+      #fourthSection
+      >
+      <div class="d-flex flex-column align-items-start">
+        <h3 class="">CB2P Avocats vous propose d’autres services :</h3>
+        <div class="skills-list p-5" #otherSkillsContainer>
+          <div
+            *ngFor="let skill of filteredSkills"
+            class="skill-box"
+            (click)="navigateToSkill(skill.slug)"
+          >
+            {{ skill.title }}
+          </div>
         </div>
       </div>
-    </div>
     </section>
 
 

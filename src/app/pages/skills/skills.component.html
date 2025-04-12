@@ -15,15 +15,6 @@
                   <!-- <h3 #subtitle1>{{ skillsData?.subtitle_1 }}</h3> -->
                 </div>
               </div>
-
-              <!-- Flèche de scroll -->
-              <!-- <div class="scroll-indicator mt-5" #scrollIndicator1>
-                <img
-                  src="assets/icons/arrow_circle_down.webp"
-                  alt="Scroll Down"
-                  (click)="scrollToSection('second-section')"
-                />
-              </div> -->
             </div>
           </div>
         </div>
@@ -31,23 +22,25 @@
     </section>
 
     <!-- Section 2 -->
-    <section id="second-section" class="second-section" #section2>
-      <div class="d-flex flex-column align-items-center">
-        <!-- Titre -->
+    <section id="second-section" class="second-section">
+      <div class="second-container">
         <h4 #title2>{{ skillsData?.title_2 }}</h4>
-
-        <!-- Liste de compétences -->
-        <div class="skills-list p-5">
+        <div class="skills-list p-2">
           <div
-            *ngFor="let skill of skillsList"
             class="skill-box"
-            #skillBox
+            *ngFor="let skill of skillsList"
             [routerLink]="['/competence-selectionnee', skill.slug]"
           >
-            {{ skill.title }}
+            <div class="icon-wrapper" *ngIf="skill.icon">
+              <img [src]="skill.icon" alt="icon" class="skill-icon pt-3" />
+            </div>
+            <span>{{ skill.title }}</span>
           </div>
+
         </div>
       </div>
     </section>
+
+
   </div>
 </div>

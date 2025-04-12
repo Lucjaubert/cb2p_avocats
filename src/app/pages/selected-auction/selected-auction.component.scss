@@ -72,11 +72,12 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 4rem;
+        padding: 2rem;
       }
 
       .auction-text {
         color: map.get(vars.$theme-colors, "blue") !important;
+        text-align: left;
 
         .line {
           width: 50%;
@@ -183,7 +184,6 @@
           overflow: hidden;
 
           img {
-            /* IMAGES : 220px + object-fit => fixée */
             width: 100%;
             height: 220px;
             object-fit: cover;
@@ -217,8 +217,6 @@
   }
 
   .photos-section {
-    /* On fait en sorte que la section occupe la hauteur d'écran,
-       et on aligne tout au centre si désiré : */
     position: relative;
     height: 100vh;
     display: flex;               /* Permet de centrer le contenu verticalement/horizontalement */
@@ -227,11 +225,9 @@
     justify-content: center;     /* Centre verticalement le contenu dans la section */
 
     .container {
-      /* Espace interne autour de la grille */
       padding: 5rem 2rem;
 
       .photos-grid {
-        /* Transforme la grille en un bloc centré dans la .container */
         display: grid;
         gap: 1rem;
         margin: 0 auto;               /* <-- Centre la grille horizontalement */
@@ -327,6 +323,24 @@
             &:hover {
               text-decoration: none;
             }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media (max-width: 767px) {
+  .infos-section {
+    .row.g-3 {
+      .col-6 {
+        flex: 1 1 100% !important;
+        max-width: 100% !important;
+
+        a {
+          img {
+            height: 320px !important;
           }
         }
       }

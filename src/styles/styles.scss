@@ -54,12 +54,11 @@ app-footer {
 }
 
 @mixin heading-styles($size-min, $size-max) {
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: normal;
   color: inherit;
   font-size: clamp($size-min, 3vw, $size-max);
 }
-
 
 h1 { @include heading-styles(1.8rem, 4rem); font-weight: 700; }
 h2 { @include heading-styles(1.65rem, 2rem); font-weight: 600; }
@@ -69,7 +68,7 @@ h5 { @include heading-styles(1rem, 1.3rem); font-weight: 500; }
 h6 { @include heading-styles(0.8rem, 1rem); font-weight: 400; }
 
 ul, li, a {
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 300;
   list-style-type: none;
   padding: 0;
@@ -79,7 +78,7 @@ ul, li, a {
 }
 
 p {
-  font-family: 'Work Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 300;
   list-style-type: none;
   padding: 0;
@@ -87,8 +86,6 @@ p {
   font-size: clamp(0.775rem, 2vw, 1rem);
   color: inherit;
 }
-
-
 
 #back-to-top {
   position: fixed;
@@ -210,10 +207,3 @@ body.selected-team-page .header-container  {
 body.selected-team-page .text-icon {
   color: map.get(vars.$theme-colors, "blue") !important;
 }
-
-
-
-
-
-
-
