@@ -58,7 +58,7 @@
         gap: 2rem;
 
         .lawyer-card {
-          width: calc((100% - 3 * 2rem) / 4);
+          width: calc((100% - 3 * 2rem) / 3);
           cursor: pointer;
 
           .image-container {
@@ -98,18 +98,6 @@
           }
         }
       }
-
-      // .scroll-indicator {
-      //   margin-top: 4rem;
-      //   margin-bottom: 4rem;
-      //   text-align: center;
-
-      //   img {
-      //     width: 40px;
-      //     height: auto;
-      //     cursor: pointer;
-      //   }
-      // }
     }
   }
 
@@ -151,7 +139,7 @@
         align-items: start;
 
         .lawyer-card {
-          width: calc((100% - 3 * 2rem) / 4);
+          width: calc((100% - 3 * 2rem) / 3);
           cursor: pointer;
 
           .image-container {
