@@ -25,6 +25,7 @@ interface Lawyer {
   name: string;
   photo: string;
   email?: string;
+  gender?: 'homme' | 'femme';
 }
 
 @Component({
@@ -72,23 +73,18 @@ export class SelectedSkillComponent implements OnInit, OnDestroy, AfterViewInit,
     'Droit de la construction et droit immobilier': ['title_lawyer_name_2']
   };
 
-  @ViewChild('lawyerContainer', { static: false })
-  lawyerContainer!: ElementRef<HTMLDivElement>;
-
+  @ViewChild('lawyerContainer', { static: false }) lawyerContainer!: ElementRef<HTMLDivElement>;
   @ViewChild('firstSection') firstSection!: ElementRef;
   @ViewChild('mainTitle') mainTitle!: ElementRef;
   @ViewChild('subtitle') subtitleElement!: ElementRef;
   @ViewChild('scrollIndicatorFirst') scrollIndicatorFirst!: ElementRef;
-
   @ViewChild('secondSection') secondSection!: ElementRef;
   @ViewChildren('skillColumn') skillColumns!: QueryList<ElementRef>;
   @ViewChild('scrollIndicatorSecond') scrollIndicatorSecond!: ElementRef;
-
   @ViewChild('thirdSection') thirdSection!: ElementRef;
   @ViewChild('lawyerText') lawyerText!: ElementRef;
   @ViewChild('lawyerPhoto') lawyerPhoto!: ElementRef;
   @ViewChild('scrollIndicatorThird') scrollIndicatorThird!: ElementRef;
-
   @ViewChild('fourthSection') fourthSection!: ElementRef;
   @ViewChild('otherSkillsContainer') otherSkillsContainer!: ElementRef;
 
@@ -125,6 +121,20 @@ export class SelectedSkillComponent implements OnInit, OnDestroy, AfterViewInit,
     }
   }
 
+  get lawyerIntroText(): string {
+    const count = this.lawyersList.length;
+    if (count === 2) return 'Deux associés à votre écoute';
+
+    const lawyer = this.displayedLawyer;
+    if (!lawyer) return 'Un de nos associés à votre écoute';
+
+    const gender = lawyer.gender;
+    if (gender === 'femme') return 'Une associée à votre écoute';
+    if (gender === 'homme') return 'Un associé à votre écoute';
+
+    return 'Un(e) de nos associés à votre écoute';
+  }
+
   private startBackgroundRotation(): void {
     setInterval(() => {
       this.backgroundIndex = (this.backgroundIndex + 1) % this.backgroundImages.length;
@@ -133,7 +143,7 @@ export class SelectedSkillComponent implements OnInit, OnDestroy, AfterViewInit,
   }
 
   private launchAnimations(): void {
-    // Animations similaires à ta version actuelle
+    // Animation logic here
   }
 
   private loadSkillData(): void {
@@ -181,29 +191,26 @@ export class SelectedSkillComponent implements OnInit, OnDestroy, AfterViewInit,
   }
 
   private setupLawyers(acfData: any, boxTitle: string): void {
-    const allLawyersDict: { [key: string]: Lawyer } = {};
-
-    if (acfData.title_lawyer_name_1) {
-      allLawyersDict['title_lawyer_name_1'] = {
+    const allLawyersDict: { [key: string]: Lawyer } = {
+      'title_lawyer_name_1': {
         name: acfData.title_lawyer_name_1,
         photo: acfData.title_lawyer_name_1_image || 'assets/images/placeholder-lawyer.jpg',
-        email: acfData.email_lawyer_name_1 || ''
-      };
-    }
-    if (acfData.title_lawyer_name_2) {
-      allLawyersDict['title_lawyer_name_2'] = {
+        email: acfData.email_lawyer_name_1 || '',
+        gender: 'homme'
+      },
+      'title_lawyer_name_2': {
         name: acfData.title_lawyer_name_2,
         photo: acfData.title_lawyer_name_2_image || 'assets/images/placeholder-lawyer.jpg',
-        email: acfData.email_lawyer_name_2 || ''
-      };
-    }
-    if (acfData.title_lawyer_name_3) {
-      allLawyersDict['title_lawyer_name_3'] = {
+        email: acfData.email_lawyer_name_2 || '',
+        gender: 'femme'
+      },
+      'title_lawyer_name_3': {
         name: acfData.title_lawyer_name_3,
         photo: acfData.title_lawyer_name_3_image || 'assets/images/placeholder-lawyer.jpg',
-        email: acfData.email_lawyer_name_3 || ''
-      };
-    }
+        email: acfData.email_lawyer_name_3 || '',
+        gender: 'femme'
+      }
+    };
 
     const lawyerKeys = this.skillLawyerMapping[boxTitle] || [];
     this.lawyersList = lawyerKeys.map((key) => allLawyersDict[key]).filter((l) => !!l?.name);

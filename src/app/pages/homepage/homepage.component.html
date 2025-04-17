@@ -30,18 +30,10 @@
               </div>
 
             </div>
-<!--
-            <div #scrollIndicator class="scroll-indicator mt-2">
-              <img
-                src="assets/icons/arrow_circle_down.webp"
-                alt="Scroll Down"
-                (click)="scrollToSection('second-section')"
-              />
-            </div> -->
 
             <div class="row slogan my-5 w-120">
               <div class="slogan-box col text-center mb-5 px-5">
-                <h3 #sectionTitle>{{ officeData?.title_1 }}</h3>
+
               </div>
             </div>
 
@@ -124,24 +116,25 @@
         </div>
 
         <div class="row gy-4">
-          <div class="col-12 col-sm-6 col-md-3 px-2 px-md-3" *ngIf="homepageData?.image_1">
-            <img #portrait class="img-fluid" [src]="homepageData?.image_1" alt="Portrait 1" />
-          </div>
-          <div class="col-12 col-sm-6 col-md-3 px-2 px-md-3" *ngIf="homepageData?.image_2">
-            <img #portrait class="img-fluid" [src]="homepageData?.image_2" alt="Portrait 2" />
-          </div>
-          <div class="col-12 col-sm-6 col-md-3 px-2 px-md-3" *ngIf="homepageData?.image_3">
-            <img #portrait class="img-fluid" [src]="homepageData?.image_3" alt="Portrait 3" />
-          </div>
-          <div class="col-12 col-sm-6 col-md-3 px-2 px-md-3" *ngIf="homepageData?.image_4">
-            <img #portrait class="img-fluid" [src]="homepageData?.image_4" alt="Portrait 4" />
-          </div>
-          <div class="col-12 col-sm-6 col-md-3 px-2 px-md-3" *ngIf="homepageData?.image_5">
-            <img #portrait class="img-fluid" [src]="homepageData?.image_5" alt="Portrait 5" />
-          </div>
-          <div class="col-12 col-sm-6 col-md-3 px-2 px-md-3" *ngIf="homepageData?.image_6">
-            <img #portrait class="img-fluid" [src]="homepageData?.image_6" alt="Portrait 6" />
-          </div>
+          <ng-container *ngFor="let i of [1, 2, 3, 4, 5, 6]">
+            <div class="col-12 col-sm-6 col-md-4 px-2 px-md-3" *ngIf="homepageData?.['image_' + i]">
+              <div class="image-container">
+                <img
+                  #portrait
+                  class="img-fluid"
+                  [src]="homepageData?.['image_' + i]"
+                  [alt]="'Portrait ' + i"
+                />
+                <div class="hover-overlay">
+                  <div class="hover-text">
+                    <p>{{ officeData?.acf?.['lawyer_name_' + i] }}</p>
+                    <p><small>{{ officeData?.acf?.['lawyer_' + i + '_function'] }}</small></p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </ng-container>
         </div>
 
         <div
@@ -158,7 +151,6 @@
         </div>
       </div>
     </section>
-
 
     <!-- Section 6 -->
     <section id="sixth-section" class="sixth-section" #section6>

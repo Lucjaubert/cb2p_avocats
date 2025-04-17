@@ -28,6 +28,7 @@ gsap.registerPlugin(ScrollTrigger);
 export class HomepageComponent implements OnInit, AfterViewInit {
   homepageData: any;
   officeData: any;
+  lawyersList: Array<{ photo: string; name: string; function: string }> = [];
 
   // ================= SECTION 1 =================
   @ViewChild('logo') logo!: ElementRef;
@@ -83,17 +84,33 @@ export class HomepageComponent implements OnInit, AfterViewInit {
       content: 'Avocats, contentieux, conseils à Bordeaux',
     });
 
-    // Données WordPress asynchrones
-    this.wpService.getHomepageData().subscribe((data) => {
-      this.homepageData = data;
-    });
-    this.wpService.getOfficeData().subscribe((data) => {
-      this.officeData = data;
+    this.wpService.getHomepageData().subscribe((homepage) => {
+      this.homepageData = homepage;
+
+      this.wpService.getOfficeData().subscribe((office) => {
+        this.officeData = office;
+        this.lawyersList = [];
+
+        for (let i = 1; i <= 6; i++) {
+          const imageKey = `image_${i}`;
+          const nameKey = `lawyer_name_${i}`;
+          const functionKey = `lawyer_${i}_function`;
+
+          const photo = this.homepageData?.[imageKey] || '';
+          const name = this.officeData?.acf?.[nameKey] || '';
+          const func = this.officeData?.acf?.[functionKey] || '';
+
+          if (photo) {
+            this.lawyersList.push({ photo, name, function: func });
+          }
+        }
+      });
     });
   }
 
+
   ngAfterViewInit(): void {
-    // ============= TIMELINE 1 : Section header (logo, separator, words...) =============
+
     const tl1 = gsap.timeline();
     tl1
       .from(this.logo.nativeElement, {

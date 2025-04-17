@@ -133,43 +133,44 @@
 
     <!-- SECTION 3 : AVOCAT -->
     <section
-      id="third-section"
-      class="third-section"
-      *ngIf="displayedLawyer"
-      #thirdSection
+    id="third-section"
+    class="third-section"
+    *ngIf="displayedLawyer"
+    #thirdSection
     >
-      <div class="container-fluid px-0">
-        <div class="row no-gutters" #lawyerContainer>
-          <div
-            class="col-md-6 third-section-left d-flex flex-column align-items-center justify-content-center"
-            #lawyerText
+    <div class="container-fluid px-0">
+      <div class="row no-gutters" #lawyerContainer>
+        <div
+          class="col-md-6 third-section-left d-flex flex-column align-items-center justify-content-center"
+          #lawyerText
+        >
+          <p class="intro-text">{{ lawyerIntroText }}</p>
+          <p class="lawyer-name">{{ displayedLawyer.name }}</p>
+          <a
+            class="mail-link"
+            [href]="'mailto:' + (displayedLawyer.email || 'contact@cabinet.com')"
           >
-            <p class="intro-text">Un(e) de nos associés à votre écoute</p>
-            <p class="lawyer-name">{{ displayedLawyer.name }}</p>
-            <a
-              class="mail-link"
-              [href]="'mailto:' + (displayedLawyer.email || 'contact@cabinet.com')"
-            >
-              <img src="assets/icons/email-white.webp" alt="Email" />
-              <span class="mx-2">
-                {{ displayedLawyer.email || 'contact@cabinet.com' }}
-              </span>
-            </a>
-          </div>
+            <img src="assets/icons/email-white.webp" alt="Email" />
+            <span class="mx-2">
+              {{ displayedLawyer.email || 'contact@cabinet.com' }}
+            </span>
+          </a>
+        </div>
 
-          <div
-            class="col-md-6 third-section-right d-flex align-items-center justify-content-center"
-            #lawyerPhoto
-          >
-            <img
-              class="lawyer-photo"
-              [src]="displayedLawyer.photo"
-              [alt]="displayedLawyer.name"
-            />
-          </div>
+        <div
+          class="col-md-6 third-section-right d-flex align-items-center justify-content-center"
+          #lawyerPhoto
+        >
+          <img
+            class="lawyer-photo"
+            [src]="displayedLawyer.photo"
+            [alt]="displayedLawyer.name"
+          />
         </div>
       </div>
+    </div>
     </section>
+
 
     <!-- SECTION 4 : AUTRES COMPÉTENCES -->
     <section

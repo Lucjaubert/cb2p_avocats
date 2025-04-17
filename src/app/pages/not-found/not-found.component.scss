@@ -2,7 +2,7 @@
 @use "../../../styles/_variables.scss" as vars;
 
 .back-to-home {
-  color: map.get(vars.$theme-colors, "blue");
+  color: map.get(vars.$theme-colors, "light-grey") !important;
   text-decoration: none;
   font-weight: 600;
   cursor: pointer;
@@ -11,4 +11,8 @@
 
 .back-to-home:hover {
   text-decoration: underline;
+}
+
+h1, p {
+  color: map.get(vars.$theme-colors, "light-grey");
 }

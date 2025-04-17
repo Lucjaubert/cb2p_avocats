@@ -38,6 +38,13 @@ export class SkillsComponent implements OnInit, AfterViewInit {
   @ViewChild('title2',   { static: false }) title2!: ElementRef;
   @ViewChildren('skillBox') skillBoxes!: QueryList<ElementRef>;
 
+  backgroundImages = [
+    '/assets/img/skills/int-4.webp',
+    '/assets/img/skills/int-5.webp',
+    '/assets/img/skills/office-wall-2.webp'
+  ];
+  currentBackgroundIndex = 0;
+
   constructor(
     private titleService: Title,
     private metaService: Meta,
@@ -71,6 +78,7 @@ export class SkillsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    // Section 1 animations
     const tlSection1 = gsap.timeline({
       scrollTrigger: {
         trigger: this.section1.nativeElement,
@@ -101,6 +109,18 @@ export class SkillsComponent implements OnInit, AfterViewInit {
         ease: 'power2.out'
       }, '+=0.3');
     }
+
+    // Simple background image fade transition for section1
+    const section = this.section1.nativeElement;
+    section.style.backgroundImage = `url('${this.backgroundImages[this.currentBackgroundIndex]}')`;
+    section.style.backgroundSize = 'cover';
+    section.style.backgroundPosition = 'bottom center';
+    section.style.transition = 'background-image 0.5s ease-in-out';
+
+    setInterval(() => {
+      this.currentBackgroundIndex = (this.currentBackgroundIndex + 1) % this.backgroundImages.length;
+      section.style.backgroundImage = `url('${this.backgroundImages[this.currentBackgroundIndex]}')`;
+    }, 7000);
 
 
     const tlSection2 = gsap.timeline({

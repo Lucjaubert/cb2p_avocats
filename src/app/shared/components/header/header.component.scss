@@ -16,7 +16,7 @@
   .logo-wrapper {
     flex: 0 0 auto;
     .footer-logo {
-      width: 7vw;
+      width: 8vw;
       height: auto;
       margin-top: 1rem;
       display: block;
@@ -74,12 +74,13 @@
         &::after {
           content: "";
           position: absolute;
-          left: 0;
           bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
           width: 0;
-          height: 2px;
+          height: 1.5px;
           background-color: map.get(vars.$theme-colors, "white");
-          transition: width 0.4s ease-in-out;
+          transition: width 0.6s ease-in-out;
         }
 
         &:hover::after,

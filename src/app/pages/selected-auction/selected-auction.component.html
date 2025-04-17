@@ -7,7 +7,7 @@
         <div class="row justify-content-center px-3">
           <div class="col-auto d-flex flex-column align-items-center">
             <div class="hero-section d-flex flex-column align-items-center">
-              <h1 *ngIf="data?.title" #mainTitle>{{ data.title }}</h1>
+              <h1 *ngIf="data?.title" #mainTitle [innerHTML]="data.title"></h1>
               <div class="row slogan my-5 w-100">
                 <div class="col text-center mb-5">
                   <h3 *ngIf="data?.subtitle" #subtitle>{{ data.subtitle }}</h3>
