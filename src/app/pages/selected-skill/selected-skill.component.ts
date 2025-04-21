@@ -247,6 +247,7 @@ export class SelectedSkillComponent implements OnInit, OnDestroy, AfterViewInit,
     }
   }
 
+
   private rotateLawyerWithGsap(): void {
     if (this.transitionInProgress || !this.lawyerContainer) return;
 

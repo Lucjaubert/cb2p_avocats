@@ -32,7 +32,7 @@ app.use(express.static(DIST_FOLDER, { maxAge: '1y' }));
 app.use('/wp-json', async (req, res) => {
   try {
     // Appel direct vers WordPress
-    const fetchUrl = 'https://dev.cb2p-avocats.fr/wordpress/wp-json' + req.url;
+    const fetchUrl = 'https://cb2p-avocats.fr/wordpress/wp-json' + req.url;
     const response = await fetch(fetchUrl);
     if (!response.ok) {
       throw new Error(`Erreur API WordPress: ${response.status}`);

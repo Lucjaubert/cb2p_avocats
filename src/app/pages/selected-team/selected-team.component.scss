@@ -133,9 +133,10 @@
 
       .line {
         display: inline-block;
-        width: 22%;
-        height: 1.5px;
+        flex-grow: 1;
+        height: 1px;
         background-color: map.get(vars.$theme-colors, "white");
+        margin-left: 1rem;
         vertical-align: middle;
         transform-origin: left center;
       }
@@ -197,7 +198,6 @@
       }
     }
 
-    // Responsive grid
     @media (max-width: 1024px) {
       .lawyers-row {
         grid-template-columns: repeat(3, 1fr);
@@ -208,11 +208,19 @@
       .lawyers-row {
         grid-template-columns: repeat(2, 1fr);
       }
+
+      .line {
+        display: none;
+      }
     }
 
     @media (max-width: 425px) {
       .lawyers-row {
         grid-template-columns: 1fr;
+      }
+
+      .line {
+        display: none;
       }
     }
   }

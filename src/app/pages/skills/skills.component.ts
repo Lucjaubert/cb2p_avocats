@@ -26,150 +26,112 @@ gsap.registerPlugin(ScrollTrigger);
   styleUrls: ['./skills.component.scss']
 })
 export class SkillsComponent implements OnInit, AfterViewInit {
+
   skillsData: any;
   skillsList: Array<{ title: string; slug: string; icon?: string }> = [];
 
-  @ViewChild('section1', { static: false }) section1!: ElementRef;
-  @ViewChild('mainTitle', { static: false }) mainTitle!: ElementRef;
-  @ViewChild('subtitle1', { static: false }) subtitle1!: ElementRef;
-  @ViewChild('scrollIndicator1', { static: false }) scrollIndicator1!: ElementRef;
+  @ViewChild('section1')           section1!: ElementRef<HTMLElement>;
+  @ViewChild('mainTitle')          mainTitle!: ElementRef<HTMLElement>;
+  @ViewChild('subtitle1')          subtitle1?: ElementRef<HTMLElement>;
+  @ViewChild('scrollIndicator1')   scrollIndicator1?: ElementRef<HTMLElement>;
 
-  @ViewChild('section2', { static: false }) section2!: ElementRef;
-  @ViewChild('title2',   { static: false }) title2!: ElementRef;
-  @ViewChildren('skillBox') skillBoxes!: QueryList<ElementRef>;
+  @ViewChild('section2')           section2!: ElementRef<HTMLElement>;
+  @ViewChild('title2')             title2!: ElementRef<HTMLElement>;
+  @ViewChildren('skillBox')        skillBoxes!: QueryList<ElementRef<HTMLElement>>;
 
-  backgroundImages = [
+  /* calques pour le fondu */
+  @ViewChild('bgA', { static: true }) bgA!: ElementRef<HTMLImageElement>;
+  @ViewChild('bgB', { static: true }) bgB!: ElementRef<HTMLImageElement>;
+
+  private bgImages = [
     '/assets/img/skills/int-4.webp',
     '/assets/img/skills/int-5.webp',
     '/assets/img/skills/office-wall-2.webp'
   ];
-  currentBackgroundIndex = 0;
+  private current = 0;
+  private activeLayer = 0;
+  private readonly delay = 7000; // ms
 
   constructor(
-    private titleService: Title,
-    private metaService: Meta,
-    private wpService: WordpressService,
-    private router: Router
+    private titleSrv : Title,
+    private metaSrv  : Meta,
+    private wp       : WordpressService,
+    private router   : Router
   ) {}
 
   ngOnInit(): void {
-    this.titleService.setTitle('Compétences - CB2P Avocats');
-    this.metaService.updateTag({
-      name: 'description',
-      content: 'Découvrez nos domaines de compétences.'
-    });
+    this.titleSrv.setTitle('Compétences - CB2P Avocats');
+    this.metaSrv.updateTag({ name: 'description', content: 'Découvrez nos domaines de compétences.' });
 
-    this.wpService.getSkillsData().subscribe((data) => {
-      if (data && data.acf) {
-        this.skillsData = data.acf;
-        this.skillsList = Object.keys(this.skillsData)
-        .filter(key => key.startsWith('box_'))
-        .map((key, index) => {
-          const boxTitle = this.skillsData[key];
-          const iconKey = `icon_${index + 1}`;
-          return {
-            title: boxTitle,
-            slug: this.generateSlug(boxTitle),
-            icon: this.skillsData[iconKey] || null
-          };
-        });
-      }
+    this.wp.getSkillsData().subscribe(data => {
+      if (!data?.acf) return;
+      this.skillsData = data.acf;
+      this.skillsList = Object.keys(this.skillsData)
+        .filter(k => k.startsWith('box_'))
+        .map((k, i) => ({
+          title: this.skillsData[k],
+          slug : this.generateSlug(this.skillsData[k]),
+          icon : this.skillsData[`icon_${i + 1}`] ?? null
+        }));
     });
   }
 
   ngAfterViewInit(): void {
-    // Section 1 animations
-    const tlSection1 = gsap.timeline({
-      scrollTrigger: {
-        trigger: this.section1.nativeElement,
-        start: 'top 80%',
-        once: true
-      }
-    });
-    tlSection1.from(this.mainTitle.nativeElement, {
-      opacity: 0,
-      y: 50,
-      duration: 1.5,
-      ease: 'power2.out'
-    });
-    if (this.subtitle1?.nativeElement?.textContent?.trim()) {
-      tlSection1.from(this.subtitle1.nativeElement, {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        ease: 'power2.out'
-      });
-      tlSection1.to(this.subtitle1.nativeElement, { duration: 1, opacity: 1 }, '+=0');
-    }
-    if (this.scrollIndicator1?.nativeElement) {
-      tlSection1.from(this.scrollIndicator1.nativeElement, {
-        opacity: 0,
-        y: 10,
-        duration: 0.2,
-        ease: 'power2.out'
-      }, '+=0.3');
-    }
-
-    // Simple background image fade transition for section1
-    const section = this.section1.nativeElement;
-    section.style.backgroundImage = `url('${this.backgroundImages[this.currentBackgroundIndex]}')`;
-    section.style.backgroundSize = 'cover';
-    section.style.backgroundPosition = 'bottom center';
-    section.style.transition = 'background-image 0.5s ease-in-out';
-
-    setInterval(() => {
-      this.currentBackgroundIndex = (this.currentBackgroundIndex + 1) % this.backgroundImages.length;
-      section.style.backgroundImage = `url('${this.backgroundImages[this.currentBackgroundIndex]}')`;
-    }, 7000);
-
-
-    const tlSection2 = gsap.timeline({
-      scrollTrigger: {
-        trigger: this.section2.nativeElement,
-        start: 'top 80%',
-        once: true
-      }
-    });
-
-    if (this.title2?.nativeElement) {
-      tlSection2.from(this.title2.nativeElement, {
-        opacity: 0,
-        y: 50,
-        duration: 1.5,
-        ease: 'power2.out'
-      });
-    }
-
-    if (this.skillBoxes && this.skillBoxes.length > 0) {
-      tlSection2.from(
-        this.skillBoxes.toArray().map(el => el.nativeElement),
-        {
-          opacity: 0,
-          y: 30,
-          duration: 0.8,
-          ease: 'power2.out',
-          stagger: 0.2
-        },
-        '+=0.3'
-      );
-    }
+    this.initHeroFade();
+    this.initSectionAnimations();
   }
 
-  private generateSlug(title: string): string {
-    return title
-      .toLowerCase()
-      .replace(/\s+/g, '-');
+  /* ---------- fondu d’arrière‑plan ---------- */
+  private initHeroFade(): void {
+    const [a, b] = [this.bgA.nativeElement, this.bgB.nativeElement];
+    a.src = this.bgImages[0];
+    a.style.opacity = '1';
+
+    setInterval(() => {
+      this.current = (this.current + 1) % this.bgImages.length;
+
+      const show = this.activeLayer ? a : b;
+      const hide = this.activeLayer ? b : a;
+
+      show.src = this.bgImages[this.current];
+      show.style.opacity = '0';
+
+      requestAnimationFrame(() => {
+        show.style.opacity = '1';
+        hide.style.opacity = '0';
+        this.activeLayer = 1 - this.activeLayer;
+      });
+    }, this.delay);
+  }
+
+  /* ---------- animations GSAP ---------- */
+  private initSectionAnimations(): void {
+
+    gsap.timeline({
+      scrollTrigger: { trigger: this.section1.nativeElement, start: 'top 80%', once: true }
+    })
+    .from(this.mainTitle.nativeElement, { opacity: 0, y: 50, duration: 1.2, ease: 'power2.out' })
+    .from(this.subtitle1?.nativeElement || {}, { opacity: 0, y: 40, duration: 0.8, ease: 'power2.out' }, '-=0.6')
+    .from(this.scrollIndicator1?.nativeElement || {}, { opacity: 0, y: 10, duration: 0.3 }, '-=0.4');
+
+    const tl2 = gsap.timeline({
+      scrollTrigger: { trigger: this.section2.nativeElement, start: 'top 80%', once: true }
+    });
+
+    tl2.from(this.title2.nativeElement, { opacity: 0, y: 50, duration: 1.2, ease: 'power2.out' })
+       .from(this.skillBoxes.toArray().map(e => e.nativeElement),
+             { opacity: 0, y: 30, duration: 0.8, stagger: 0.2, ease: 'power2.out' }, '-=0.6');
+  }
+
+  private generateSlug(t: string): string {
+    return t.toLowerCase().replace(/\s+/g, '-');
   }
 
   goToSelectedSkill(slug: string): void {
-    const encodedSlug = encodeURIComponent(slug);
-    this.router.navigate(['/competence-selectionnee', encodedSlug]);
+    this.router.navigate(['/competence-selectionnee', encodeURIComponent(slug)]);
   }
 
-  scrollToSection(sectionId: string): void {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  scrollToSection(id: string): void {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   }
 }

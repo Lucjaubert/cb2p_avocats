@@ -26,12 +26,6 @@ export const routes: Routes = [
       import('./pages/selected-auction/selected-auction.component').then((m) => m.SelectedAuctionComponent),
     title: 'Infos Enchères'
   },
-  // {
-  //   path: 'le-cabinet',
-  //   loadComponent: () =>
-  //     import('./pages/office/office.component').then((m) => m.OfficeComponent),
-  //   title: 'Le cabinet'
-  // },
   {
     path: 'competence-selectionnee/:slug',
     loadComponent: () =>

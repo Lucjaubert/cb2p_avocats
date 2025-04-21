@@ -127,7 +127,7 @@
       }
 
       .recaptcha-container {
-        margin-top: 15px;
+        margin-bottom: 15px;
         display: flex;
         justify-content: flex-start;
       }
@@ -136,6 +136,47 @@
         transform: scale(1);
         transform-origin: left center;
       }
+    }
+  }
+}
+
+.success-popup {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(#000, .55);
+  z-index: 10000;
+  padding: 1rem;
+
+  .popup-content {
+    background: #fff;
+    width: clamp(260px, 90vw, 420px);
+    border-radius: 8px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(#000, .25);
+
+    p {
+      margin: 0 0 1.25rem;
+      font-weight: 600;
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      color: #2e7031;
+      word-break: break-word;
+    }
+
+    button {
+      background: #2e7031;
+      color: #fff;
+      border: none;
+      padding: .55rem 1.7rem;
+      border-radius: 4px;
+      font-size: clamp(.9rem, 2.2vw, 1rem);
+      cursor: pointer;
+      line-height: 1;
+
+      &:hover { background: darken(#2e7031, 5%); }
     }
   }
 }
@@ -162,6 +203,34 @@
 }
 
 @media (max-width: 768px) {
+
+  .first-section-left {
+    padding: 12rem 6rem !important;
+  }
+
+  .contact-wrapper[_ngcontent-ng-c3513882595] .first-section[_ngcontent-ng-c3513882595] .first-section-left[_ngcontent-ng-c3513882595] {
+    padding: 9rem 5rem;
+    text-align: center;
+  }
+
+  .contact-wrapper[_ngcontent-ng-c3434376900] .first-section[_ngcontent-ng-c3434376900] .first-section-left[_ngcontent-ng-c3434376900] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8rem 9rem;
+    text-align: center;
+   }
+
+   .contact-wrapper[_ngcontent-ng-c3434376900] .first-section[_ngcontent-ng-c3434376900] .first-section-right[_ngcontent-ng-c3434376900] {
+    background-color: #364668;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 100vh;
+    padding: 4rem 4rem;
+  }
+
   .contact-form {
     max-width: 350px;
     width: 80% !important;

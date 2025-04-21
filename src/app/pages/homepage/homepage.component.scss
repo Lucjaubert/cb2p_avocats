@@ -13,6 +13,7 @@
 .homepage-wrapper {
   width: 100%;
   perspective: 1000px;
+  overflow-y: hidden;
 
   .line {
     width: 100%;
@@ -21,13 +22,12 @@
     transform: scaleX(0);
     transform-origin: left;
     position: relative;
-    z-index: 3;
+    z-index: 1000;
   }
 
   .first-section {
     min-height: 100vh;
     position: relative;
-    overflow: hidden;
 
     .slogan-container {
       overflow-y: hidden;
@@ -103,19 +103,6 @@
         }
       }
 
-      // .scroll-indicator {
-      //   position: fixed;
-      //   bottom: 2rem;
-      //   left: 2rem;
-      //   z-index: 1000;
-      //   transform: none;
-
-      //   img {
-      //     width: 40px;
-      //     height: auto;
-      //   }
-      // }
-
       .text-box-wrapper {
         width: 100%;
         max-width: 100%;
@@ -187,19 +174,6 @@
       width: 28px;
       height: auto;
     }
-
-    // .scroll-indicator {
-    //   position: fixed;
-    //   bottom: 2rem;
-    //   left: 2rem;
-    //   z-index: 1000;
-    //   transform: none;
-
-    //   img {
-    //     width: 40px;
-    //     height: auto;
-    //   }
-    // }
   }
 
   .third-section {
@@ -309,48 +283,61 @@
     }
   }
 
-  .fourth-section {
-    position: relative;
-    height: 100vh;
+  /* ========= FOURTH‑SECTION ========= */
+.fourth-section {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: map.get(vars.$theme-colors, "light-grey");
+  padding: 5rem 0;
+
+  .container {
+    max-width: 80%;
+    text-align: center;
+  }
+
+  .row {
     display: flex;
-    align-items: center;
-    background-color: map.get(vars.$theme-colors, "light-grey");
-    padding: 5rem 0;
+    justify-content: center;
+    gap: 2rem;
+  }
 
-    .container {
-      max-width: 80%;
-      text-align: center;
+  /* --- colonne --- */
+  .text-container {
+    max-width: 30%;
+    text-align: center;
+
+    /* ligne dorée animée */
+    .line {
+      width: 100%;
+      height: 1.5px;
+      background-color: map.get(vars.$theme-colors, "gold");
+      transform: scaleX(0);
+      transform-origin: left;
     }
 
-    .row {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-    }
+    /* bloc titre + sous‑titre */
+    .title-expert {
+      margin-bottom: 1rem;
+      overflow: hidden;
 
-    .text-container {
-      max-width: 30%;
-      text-align: center;
-
-      .title-expert {
-        margin-bottom: 1rem;
-        overflow: hidden;
-
-        h5 {
-          color: map.get(vars.$theme-colors, "blue") !important;
-          font-weight: 500;
-          text-align: start;
-        }
-      }
-
-      p {
-        color: map.get(vars.$theme-colors, "blue");
+      h5 {
+        color: map.get(vars.$theme-colors, "blue") !important;
+        font-weight: 500;
         text-align: start;
-        margin-top: 5vh;
-        font-weight: 400;
       }
+    }
+
+    p {
+      color: map.get(vars.$theme-colors, "blue");
+      text-align: start;
+      margin-top: 5vh;
+      font-weight: 400;
     }
   }
+}
+
 
   @media (max-width: 768px) {
     .fourth-section {

@@ -12,13 +12,6 @@
                   <h3 *ngIf="auctionsData.subtitle" [innerHTML]="auctionsData.subtitle" #subtitle></h3>
                 </div>
               </div>
-              <!-- <div class="scroll-indicator mt-5" #scrollIndicatorFirst>
-                <img
-                  src="assets/icons/arrow_circle_down.webp"
-                  alt="Scroll Down"
-                  (click)="scrollToSection('list-section')"
-                />
-              </div> -->
             </div>
           </div>
         </div>
@@ -36,31 +29,22 @@
           >
             <div class="col-md-6 auction-text" #auctionTextElement>
               <div class="line mb-5"></div>
-              <h5 class="title" [innerHTML]="auction.title"></h5>
-              <p class="price" *ngIf="auction.price">Mise à prix {{ auction.price }}</p>
+              <h4 class="title" [innerHTML]="auction.title"></h4>
+              <p class="price" *ngIf="auction.price">
+                Mise à prix {{ auction.price }}
+              </p>
               <div class="description" [innerHTML]="auction.description"></div>
-              <a class="more-link" [routerLink]="['/ventes-aux-encheres/details', auction.id]">
+
+              <a class="btn-more mt-3" (click)="goToAuction(auction.id)">
                 Plus d’infos
               </a>
             </div>
 
             <div class="col-md-6 auction-image" #auctionImage>
-              <a [routerLink]="['/ventes-aux-encheres/details', auction.id]">
+              <a [routerLink]="['/ventes-aux-encheres', 'details', auction.id]">
                 <img [src]="auction.image" [alt]="auction.title" />
               </a>
             </div>
-
-            <!-- <div
-              class="scroll-indicator my-4 text-center"
-              *ngIf="i < auctionsData.items.length - 1"
-              #scrollIndicator
-            >
-              <img
-                src="assets/icons/arrow_circle_down.webp"
-                alt="Scroll Down"
-                (click)="scrollToNextAuction(i)"
-              />
-            </div> -->
           </div>
         </ng-container>
       </div>

@@ -40,15 +40,22 @@
         overflow: hidden;
 
         h4 {
+          display: inline-block;
+          width: auto;
+          margin: 0;
+          margin-right: 1rem;
+          vertical-align: middle;
           color: map.get(vars.$theme-colors, "white");
-          white-space: nowrap;
         }
 
         .line {
+          display: inline-block;
           flex-grow: 1;
           height: 1px;
           background-color: map.get(vars.$theme-colors, "white");
           margin-left: 1rem;
+          vertical-align: middle;
+          transform-origin: left center;
         }
       }
 

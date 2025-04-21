@@ -7,8 +7,8 @@ import cors from 'cors';
 import fetch from 'node-fetch';
 
 // Chemins de build
-const DIST_FOLDER = "/var/www/lucjaubert_c_usr14/data/www/dev.cb2p-avocats.fr/cb2p_angular/browser";
-const SSR_FOLDER  = "/var/www/lucjaubert_c_usr14/data/www/dev.cb2p-avocats.fr/cb2p_angular/server";
+const DIST_FOLDER = "/var/www/lucjaubert_c_usr14/data/www/cb2p-avocats.fr/cb2p_angular/browser";
+const SSR_FOLDER  = "/var/www/lucjaubert_c_usr14/data/www/cb2p-avocats.fr/cb2p_angular/server";
 
 const mainServer  = require(join(SSR_FOLDER, 'main.js')).default;
 
@@ -21,7 +21,7 @@ app.use(express.json());
 // Proxy vers l'API WordPress Headless (PLACÉ AVANT `app.get('*')`)
 app.use('/wp-json', async (req, res) => {
   try {
-    const response = await fetch(`https://wordpress.dev.cb2p-avocats.fr/wp-json${req.url}`);
+    const response = await fetch(`https://wordpress.cb2p-avocats.fr/wp-json${req.url}`);
     const data = await response.json();
     res.json(data);
   } catch (error) {

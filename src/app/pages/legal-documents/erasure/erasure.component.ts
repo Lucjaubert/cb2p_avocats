@@ -86,7 +86,7 @@ export class ErasureComponent implements OnInit {
     grecaptcha.ready(() => {
       grecaptcha.execute(this.siteKey, { action: 'submit' })
         .then((token: string) => {
-          this.http.post('http://dev.cb2p-avocats.fr//wp-json/cb2p/v1/verify-recaptcha', { token })
+          this.http.post('http://cb2p-avocats.fr//wp-json/cb2p/v1/verify-recaptcha', { token })
             .subscribe((res: any) => {
               if (res.status === 'success' && res.score >= 0.5) {
                 this.submitForm();
@@ -109,7 +109,7 @@ export class ErasureComponent implements OnInit {
       recaptchaToken: this.recaptchaToken
     };
 
-    this.http.post('https://dev.cb2p-avocats.fr//wp-json/cb2p/v1/send-message', postData)
+    this.http.post('https://cb2p-avocats.fr//wp-json/cb2p/v1/send-message', postData)
       .subscribe(
         () => {
           alert('Votre message a bien été envoyé !');
