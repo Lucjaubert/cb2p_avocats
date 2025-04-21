@@ -10,7 +10,7 @@ import {
   ElementRef,
   QueryList
 } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import { WordpressService } from '../../services/wordpress.service';
 import gsap from 'gsap';
@@ -61,7 +61,8 @@ export class AuctionsComponent implements OnInit, AfterViewInit, AfterViewChecke
   constructor(
     private titleService: Title,
     private metaService: Meta,
-    private wpService: WordpressService
+    private wpService: WordpressService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -116,7 +117,6 @@ export class AuctionsComponent implements OnInit, AfterViewInit, AfterViewChecke
         const textCol = item.querySelector('.auction-text');
         const imgCol = item.querySelector('.auction-image');
         const textEls = [...textCol.querySelectorAll('h5, p, div, a')];
-        // const scrollEl = item.querySelector('.scroll-indicator');
 
         gsap.set(textEls, { opacity: 0, y: 30 });
         if (imgCol) {
@@ -125,9 +125,6 @@ export class AuctionsComponent implements OnInit, AfterViewInit, AfterViewChecke
             gsap.set(imgTag, { opacity: 0, x: 50 });
           }
         }
-        // if (scrollEl) {
-        //   gsap.set(scrollEl, { opacity: 0, y: 20 });
-        // }
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -155,26 +152,16 @@ export class AuctionsComponent implements OnInit, AfterViewInit, AfterViewChecke
             }, '+=0.2');
           }
         }
-
-        // if (scrollEl) {
-        //   tl.to(scrollEl, {
-        //     opacity: 1,
-        //     y: 0,
-        //     duration: 0.5,
-        //     ease: 'power2.out'
-        //   }, '+=0.2');
-        // }
       });
 
       this.animationExecuted = true;
     }
   }
 
-  scrollToSection(sectionId: string): void {
-    const el = document.getElementById(sectionId);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
+  goToAuction(id: number): void {
+    this.router
+        .navigate(['/ventes-aux-encheres', 'details', id])
+        .then(() => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
 
   scrollToNextAuction(index: number): void {

@@ -4,7 +4,7 @@
       <div class="container-fluid px-0">
         <div class="row no-gutters">
 
-          <div class="col-md-6 first-section-left d-flex flex-column align-items-start justify-content-center mt-md-5">
+          <div class="col-md-6 first-section-left d-flex flex-column align-items-start justify-content-center">
             <h6 #teamLink (click)="goToTeam()" class="team mb-4">Équipe</h6>
             <p class="lawyer-name" #memberName>{{ displayedMember.name }}</p>
 
@@ -28,7 +28,7 @@
           </div>
 
           <div
-            class="col-md-6 mt-md-0 mt-0 first-section-right d-flex align-items-center justify-content-center"
+            class="col-md-6 mt-0 first-section-right d-flex align-items-center justify-content-center"
           >
             <img
               class="member-photo mt-5"
@@ -41,5 +41,30 @@
         </div>
       </div>
     </section>
+
+    <section class="third-section py-5 mt-5" #thirdSection>
+      <div class="container">
+        <div class="d-flex">
+          <h5 class="mb-1" #thirdTitle>Les autres membres de l’équipe</h5>
+          <div class="line ms-4" #thirdLine></div>
+        </div>
+        <div class="lawyers-row mt-5">
+          <div
+            class="lawyer-card"
+            *ngFor="let member of otherMembers"
+            #thirdCard
+            (click)="goToSelectedMember(member.id)"
+          >
+            <div class="image-container mt-3">
+              <img class="lawyer-photo" [src]="member.photo" [alt]="member.nameFuncHtml" />
+              <div class="hover-overlay">
+                <div class="hover-text" [innerHTML]="member.nameFuncHtml"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </div>
 </div>

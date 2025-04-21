@@ -134,6 +134,10 @@
         }
       }
 
+      .btn-more {
+        color: map.get(vars.$theme-colors, "gold");
+      }
+
       .line {
         width: 50%;
         height: 1px;
@@ -141,7 +145,7 @@
         margin-bottom: 1rem;
       }
 
-      h5 {
+      h4 {
         font-weight: 600;
       }
 

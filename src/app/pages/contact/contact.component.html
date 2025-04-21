@@ -4,24 +4,40 @@
       <div class="container-fluid px-0">
         <div class="row no-gutters">
 
-          <div class="col-md-6 first-section-left d-flex flex-column align-items-start justify-content-center mt-3">
+          <div class="col-md-6 first-section-left d-flex flex-column mt-3">
             <h6 #contactLeftElement class="mb-4">{{ contactData.title_2 }}</h6>
             <div #contactLeftElement class="contact-details" [innerHTML]="contactData.subtitle_1"></div>
             <div #contactLeftElement class="contact-details mt-3" [innerHTML]="contactData.subtitle_2"></div>
           </div>
 
           <div class="col-md-6 first-section-right d-flex align-items-center justify-content-center">
-            <form #contactForm class="contact-form mt-md-5 mt-0 me-5" (ngSubmit)="sendMessage()">
-              <h6 class="mb-4">Envoyez-nous un message</h6>
+            <form #contactForm="ngForm"
+                  class="contact-form mt-md-5 mt-0"
+                  (ngSubmit)="sendMessage()" >
 
-              <input type="text" name="name" placeholder="Nom & Prénom" class="form-control mb-3" [(ngModel)]="formData.name" required>
-              <input type="text" name="phone" placeholder="Téléphone" class="form-control mb-3" [(ngModel)]="formData.phone">
-              <input type="email" name="email" placeholder="E-mail" class="form-control mb-3" [(ngModel)]="formData.email" required>
-              <textarea name="message" placeholder="Message" class="form-control mb-3" [(ngModel)]="formData.message" required></textarea>
+              <h6 class="mb-4 mt-4">Envoyez-nous un message</h6>
+
+              <input type="text" name="name"               placeholder="Nom & Prénom"
+                     class="form-control mb-3"
+                     [(ngModel)]="formData.name" required>
+
+              <input type="text" name="phone"              placeholder="Téléphone"
+                     class="form-control mb-3"
+                     [(ngModel)]="formData.phone">
+
+              <input type="email" name="email"             placeholder="E-mail"
+                     class="form-control mb-3"
+                     [(ngModel)]="formData.email" required>
+
+              <textarea name="message"  placeholder="Message"
+                        class="form-control mb-3"
+                        [(ngModel)]="formData.message" required></textarea>
 
               <div class="form-group d-flex align-items-center">
                 <div class="col-3">
-                  <input type="checkbox" id="privacy" [(ngModel)]="formData.privacyAccepted" name="privacy" class="form-check-input">
+                  <input type="checkbox" id="privacy"
+                         [(ngModel)]="formData.privacyAccepted" name="privacy"
+                         class="form-check-input">
                 </div>
                 <div class="col-9">
                   <label for="privacy" class="form-check-label">
@@ -30,12 +46,22 @@
                 </div>
               </div>
 
-              <button type="submit" class="btn-submit mt-4" [disabled]="!formData.privacyAccepted">Envoyer</button>
+              <button type="submit" class="btn-submit mt-4"
+                      [disabled]="!formData.privacyAccepted">
+                Envoyer
+              </button>
             </form>
           </div>
 
         </div>
       </div>
     </section>
+  </div>
+
+  <div class="success-popup" *ngIf="isSuccess">
+    <div class="popup-content">
+      <p>✅ Votre message a bien été envoyé !</p>
+      <button (click)="isSuccess = false">OK</button>
+    </div>
   </div>
 </div>

@@ -9,7 +9,7 @@ export const environment = {
 
 // export const environment = {
 //   production: false,
-//   apiUrl: 'https://dev.cb2p-avocats.fr/wordpress/wp-json/wp/v2',
+//   apiUrl: 'https://cb2p-avocats.fr/wordpress/wp-json/wp/v2',
 //   recaptcha: {
 //     siteKey: '6Lf1GegqAAAAABOuGDe9DvE4sZFb-8ZDMXhstKXl'
 //   }
