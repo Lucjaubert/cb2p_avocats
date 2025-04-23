@@ -8,9 +8,12 @@ import { HttpClient } from '@angular/common/http';
 import gsap from 'gsap';
 
 import { WordpressService } from '../../services/wordpress.service';
-import { environment }   from '../../../environments/environment';
+import { environment }         from '../../../environments/environment';
 
 declare const grecaptcha: any;
+
+/* ------- base API WordPress ------- */
+const API_ROOT = 'https://cb2p-avocats.fr/wordpress/wp-json/cb2p/v1';
 
 @Component({
   selector   : 'app-contact',
@@ -35,7 +38,7 @@ export class ContactComponent implements OnInit, AfterViewChecked {
   siteKey       = environment.recaptcha.siteKey;
 
   /* -------- UI -------- */
-  isSuccess         = false;    // <-- manquait
+  isSuccess         = false;
   animationExecuted = false;
 
   @ViewChildren('contactLeftElement') contactLeftEls!: QueryList<ElementRef>;
@@ -62,9 +65,7 @@ export class ContactComponent implements OnInit, AfterViewChecked {
         gsap.set(form, { opacity: 0, x: 50 });
         gsap.from(lefts, {
           opacity: 0, y: 30, duration: .6, stagger: .2, ease: 'power2.out',
-          onComplete: () => {                     // <- retourne void
-            gsap.to(form, { opacity: 1, y: 0, duration: .5 });
-          }
+          onComplete: () => { gsap.to(form, { opacity: 1, y: 0, duration: .5 }); }
         });
         this.animationExecuted = true;
       }
@@ -93,7 +94,7 @@ export class ContactComponent implements OnInit, AfterViewChecked {
     grecaptcha.ready(() =>
       grecaptcha.execute(this.siteKey, { action: 'submit' })
         .then((t: string) => (this.recaptchaToken = t))
-        .catch((err: unknown) => console.error('reCAPTCHA error :', err)) // <- err typé
+        .catch((err: unknown) => console.error('reCAPTCHA error :', err))
     );
   }
 
@@ -108,7 +109,7 @@ export class ContactComponent implements OnInit, AfterViewChecked {
     grecaptcha.ready(() => {
       grecaptcha.execute(this.siteKey, { action: 'submit' })
         .then((token: string) => this.http
-          .post('https://cb2p-avocats.fr/wp-json/cb2p/v1/verify-recaptcha', { token })
+          .post(`${API_ROOT}/verify-recaptcha`, { token })
           .subscribe((r: any) => {
             (r.status === 'success' && r.score >= .5)
               ? this.submitForm()
@@ -121,7 +122,7 @@ export class ContactComponent implements OnInit, AfterViewChecked {
   private submitForm(): void {
     const postData = { ...this.formData, recaptchaToken: this.recaptchaToken };
 
-    this.http.post('https://cb2p-avocats.fr/wp-json/cb2p/v1/send-message', postData)
+    this.http.post(`${API_ROOT}/send-message`, postData)
       .subscribe(
         () => {
           this.isSuccess = true;
