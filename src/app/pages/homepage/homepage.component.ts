@@ -104,7 +104,10 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.initFirstSection();
-    window.addEventListener('load', () => ScrollTrigger.refresh());
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('load', () => ScrollTrigger.refresh());
+    }
   }
 
   private initFirstSection(): void {

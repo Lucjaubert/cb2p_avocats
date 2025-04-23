@@ -67,6 +67,8 @@ export class PaymentPopupComponent implements OnInit, OnDestroy {
   }
 
   goToPayment() {
-    window.open('https://sogecommerce.societegenerale.eu/vads-site/CB2P_AVOCATS', '_blank');
+    if (typeof window !== 'undefined') {
+      window.open('https://sogecommerce.societegenerale.eu/vads-site/CB2P_AVOCATS', '_blank');
+    }
   }
 }
