@@ -162,12 +162,12 @@
       margin: 0 0 1.25rem;
       font-weight: 600;
       font-size: clamp(1rem, 2.5vw, 1.15rem);
-      color: #2e7031;
+      color: map.get(vars.$theme-colors, "gold");
       word-break: break-word;
     }
 
     button {
-      background: #2e7031;
+      background: map.get(vars.$theme-colors, "gold");
       color: #fff;
       border: none;
       padding: .55rem 1.7rem;
@@ -176,7 +176,7 @@
       cursor: pointer;
       line-height: 1;
 
-      &:hover { background: darken(#2e7031, 5%); }
+      background: darken(map.get(vars.$theme-colors, "gold"), 10%);
     }
   }
 }
