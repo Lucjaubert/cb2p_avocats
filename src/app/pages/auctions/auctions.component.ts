@@ -160,8 +160,12 @@ export class AuctionsComponent implements OnInit, AfterViewInit, AfterViewChecke
 
   goToAuction(id: number): void {
     this.router
-        .navigate(['/ventes-aux-encheres', 'details', id])
-        .then(() => window.scrollTo({ top: 0, behavior: 'smooth' }));
+      .navigate(['/ventes-aux-encheres', 'details', id])
+      .then(() => {
+        if (typeof window !== 'undefined') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
   }
 
   scrollToNextAuction(index: number): void {

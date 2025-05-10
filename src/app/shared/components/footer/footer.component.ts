@@ -24,16 +24,19 @@ export class FooterComponent implements OnInit, OnDestroy {
 
   openLinkedIn(event: MouseEvent) {
     event.preventDefault();
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-    if (isMobile) {
-      window.location.href = 'linkedin://company/cb2pavocats';
+    if (typeof navigator !== 'undefined' && typeof window !== 'undefined') {
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-      setTimeout(() => {
+      if (isMobile) {
+        window.location.href = 'linkedin://company/cb2pavocats';
+
+        setTimeout(() => {
+          window.open('https://www.linkedin.com/company/cb2pavocats/', '_blank');
+        }, 800);
+      } else {
         window.open('https://www.linkedin.com/company/cb2pavocats/', '_blank');
-      }, 800);
-    } else {
-      window.open('https://www.linkedin.com/company/cb2pavocats/', '_blank');
+      }
     }
   }
 }

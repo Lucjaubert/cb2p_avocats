@@ -50,8 +50,6 @@ export class ContactComponent implements OnInit, AfterViewChecked {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
-  /* ----------------- cycle de vie ----------------- */
-
   ngOnInit(): void {
     this.wpService.getContactData().subscribe(d => (this.contactData = d));
     if (isPlatformBrowser(this.platformId)) this.loadRecaptchaScript();

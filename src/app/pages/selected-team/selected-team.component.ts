@@ -78,19 +78,17 @@ export class SelectedTeamComponent implements OnInit, AfterViewInit, AfterViewCh
     });
   }
 
-  /* ------------------------------------------------------------------ */
-  /* 2.  Met à jour le membre affiché + liste des autres + remonte page */
-  /* ------------------------------------------------------------------ */
   private updateMember(id: number): void {
     this.setDisplayedMember(id);
     this.buildOtherMembers(id);
-    /* remonte en haut */
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    /* relance l’animation d’entrée */
+
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
     this.animationExecuted = false;
   }
 
-  /* ---------- Construit le portrait principal ---------- */
   private setDisplayedMember(id: number): void {
     if (!this.teamData) { return; }
 
