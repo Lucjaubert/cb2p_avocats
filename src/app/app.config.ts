@@ -1,4 +1,4 @@
-import { ApplicationConfig, APP_INITIALIZER, inject } from '@angular/core'; // Importez APP_INITIALIZER et inject
+import { ApplicationConfig, APP_INITIALIZER, inject } from '@angular/core';
 import {
   provideRouter,
   withRouterConfig,

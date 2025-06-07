@@ -43,7 +43,6 @@ export class TeamComponent
 {
   @ViewChild('teamContainer') teamContainer!: ElementRef;
 
-  // Récupération des données WP
   teamData: any = null;
   lawyersList: Array<{ id: number; photo: string; nameFuncHtml: string }> = [];
   assistantsList: Array<{ id: number; photo: string; nameFuncHtml: string }> = [];
@@ -52,13 +51,11 @@ export class TeamComponent
   private hasScrolledToTop = false;
   private dataLoaded = false;
 
-  // SECTION 1
   @ViewChild('section1') section1!: ElementRef;
   @ViewChild('teamSubtitle') teamSubtitle!: ElementRef;
   @ViewChild('teamLine') teamLine!: ElementRef;
   @ViewChildren('lawyerCard') lawyerCards!: QueryList<ElementRef>;
 
-  // SECTION 2
   @ViewChild('section2') section2!: ElementRef;
   @ViewChild('assistantTitle') assistantTitle!: ElementRef;
   @ViewChild('assistantLine') assistantLine!: ElementRef;
