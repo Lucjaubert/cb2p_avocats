@@ -30,7 +30,8 @@ gsap.registerPlugin(ScrollTrigger);
 export class HomepageComponent implements OnInit, AfterViewInit {
   homepageData: any;
   officeData: any;
-  lawyersList: Array<{ photo: string; name: string; function: string }> = [];
+
+  lawyersList: Array<{ id: number; photo: string; nameFuncHtml: string }> = [];
 
   @ViewChild('logo')               logo!: ElementRef;
   @ViewChild('separator')          separator!: ElementRef;
@@ -71,24 +72,38 @@ export class HomepageComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.titleSrv.setTitle('Accueil - CB2P Avocats');
-    this.metaSrv.updateTag({ name: 'description', content: 'Avocats, contentieux, conseils à Bordeaux' });
+    this.metaSrv.updateTag({
+      name   : 'description',
+      content: 'Avocats, contentieux, conseils à Bordeaux'
+    });
+
 
     forkJoin({
       homepage: this.wp.getHomepageData(),
       office  : this.wp.getOfficeData(),
-    }).subscribe(({ homepage, office }) => {
+      team    : this.wp.getTeamData()
+    }).subscribe(({ homepage, office, team }) => {
+
       this.homepageData = homepage;
       this.officeData   = office;
 
+
+      const teamData = Array.isArray(team) && team.length > 0 ? team[0] : null;
+
       for (let i = 1; i <= 6; i++) {
-        const img = homepage?.[`image_${i}`];
-        if (img) {
-          this.lawyersList.push({
-            photo    : img,
-            name     : office?.acf?.[`lawyer_name_${i}`]     ?? '',
-            function : office?.acf?.[`lawyer_${i}_function`] ?? '',
-          });
-        }
+
+
+        const photo =
+          homepage?.[`image_${i}`] ??
+          teamData?.[`lawyer_image_${i}`] ??
+          '';
+
+        const nameFuncHtml =
+          teamData?.[`lawyer_name_function_${i}`] ??
+          `<p>${office?.acf?.[`lawyer_name_${i}`] ?? ''}</p>
+           <p>${office?.acf?.[`lawyer_${i}_function`] ?? ''}</p>`;
+
+        this.lawyersList.push({ id: i, photo, nameFuncHtml });
       }
 
       this.cdr.detectChanges();
@@ -102,6 +117,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     });
   }
 
+
   ngAfterViewInit(): void {
     this.initFirstSection();
 
@@ -114,10 +130,10 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     gsap.timeline({
       scrollTrigger: { trigger: this.logo.nativeElement, start: 'top 80%', once: true },
     })
-    .from(this.logo.nativeElement,        { opacity: 0, y: -50, duration: 1 })
-    .to(this.separator.nativeElement,     { scaleY: 1, transformOrigin: 'top', duration: 1.5 }, '-=0.4')
-    .from(this.words.nativeElement.children, { opacity: 0, y: 20, duration: 2.5, stagger: 0.7 }, '-=0.2')
-    .from(this.sectionTitle.nativeElement,  { opacity: 0, y: 20, duration: 1 });
+      .from(this.logo.nativeElement,        { opacity: 0, y: -50, duration: 1 })
+      .to  (this.separator.nativeElement,   { scaleY: 1, transformOrigin: 'top', duration: 1.5 }, '-=0.4')
+      .from(this.words.nativeElement.children, { opacity: 0, y: 20, duration: 2.5, stagger: 0.7 }, '-=0.2')
+      .from(this.sectionTitle.nativeElement,  { opacity: 0, y: 20, duration: 1 });
   }
 
   private initSecondSection(): void {
@@ -146,7 +162,8 @@ export class HomepageComponent implements OnInit, AfterViewInit {
       scrollTrigger: { trigger: this.thirdSection.nativeElement, start: 'top 80%', once: true }
     });
 
-    tl.from(this.title3.nativeElement, { opacity: 0, y: 50, duration: 0.5, ease: 'power2.out' }, '+=0.3');
+    tl.from(this.title3.nativeElement,
+            { opacity: 0, y: 50, duration: 0.5, ease: 'power2.out' }, '+=0.3');
 
     cards.forEach((el, i) => {
       tl.to(el, {
@@ -157,9 +174,9 @@ export class HomepageComponent implements OnInit, AfterViewInit {
       }, i === 0 ? '+=0.3' : '-=0.4');
     });
 
-    tl.from(this.teamCallToAction.nativeElement, { opacity: 0, y: 20, duration: 1, ease: 'power2.out' }, '>');
+    tl.from(this.teamCallToAction.nativeElement,
+            { opacity: 0, y: 20, duration: 1, ease: 'power2.out' }, '>');
   }
-
 
   private initFourthSection(): void {
     if (!this.section4) return;
@@ -170,7 +187,7 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     gsap.timeline({
       scrollTrigger: { trigger: this.section4.nativeElement, start: 'top 80%', once: true },
     })
-    .to(lines, { scaleX: 1, duration: 0.7, stagger: 0.2, ease: 'power2.out' })
+    .to  (lines, { scaleX: 1, duration: 0.7, stagger: 0.2, ease: 'power2.out' })
     .from([this.title4a.nativeElement, this.title4b.nativeElement, this.title4c.nativeElement],
           { opacity: 0, y: 40, duration: 0.5, stagger: 0.2 }, '+=0.3')
     .from([this.subtitle4a.nativeElement, this.subtitle4b.nativeElement, this.subtitle4c.nativeElement],
@@ -183,20 +200,15 @@ export class HomepageComponent implements OnInit, AfterViewInit {
     gsap.timeline({
       scrollTrigger: { trigger: this.section6.nativeElement, start: 'top 80%', once: true },
     })
-    .from(this.section6.nativeElement, {
-      opacity: 0,
-      y: 60,
-      duration: 1.2,
-      ease: 'power2.out',
-    })
-    .from(this.title6.nativeElement, {
-      opacity: 0,
-      scale: 0.8,
-      duration: 0.8,
-      ease: 'power2.out',
-    }, '-=0.6');
+    .from(this.section6.nativeElement,
+          { opacity: 0, y: 60, duration: 1.2, ease: 'power2.out' })
+    .from(this.title6.nativeElement,
+          { opacity: 0, scale: 0.8, duration: 0.8, ease: 'power2.out' }, '-=0.6');
   }
 
-  goToTeam(): void   { this.router.navigate(['/equipe']); }
-  goToSkills(): void { this.router.navigate(['/competences']); }
+  goToTeam(): void      { this.router.navigate(['/equipe']); }
+  goToSkills(): void    { this.router.navigate(['/competences']); }
+  goToSelectedMember(id: number): void {
+    this.router.navigate(['/membre-equipe', id]);
+  }
 }

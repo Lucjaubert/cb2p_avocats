@@ -1,35 +1,43 @@
 <div class="full-screen-container mt-5">
   <div class="homepage-wrapper">
 
-    <!-- ========= SECTION 1 ========= -->
+    <!-- ========= SECTION 1 ========= -->
     <section id="first-section" class="first-section" #firstSection>
       <div class="container">
         <div class="row justify-content-center">
           <div class="slogan-container col-auto d-flex flex-column align-items-center mt-2 mt-md-5">
 
             <div class="presentation d-flex align-items-center">
+              <!-- Logo -->
               <div class="col-12 col-md-6 text-center px-md-5 px-0">
-                <img #logo
-                     src="/assets/img/homepage/logo-ss-fd-cb2p.webp"
-                     alt="CB2P Avocats"
-                     class="logo px-md-5" />
+                <img
+                  #logo
+                  src="/assets/img/homepage/logo-ss-fd-cb2p.webp"
+                  alt="CB2P Avocats"
+                  class="logo px-md-5"
+                />
               </div>
 
+              <!-- Séparateur vertical -->
               <div #separator class="separator"></div>
 
+              <!-- Slogan à droite du logo -->
               <div class="col-12 col-md-6 text-center px-md-4 px-0">
                 <div class="text-box-wrapper">
-                  <h1 #words class="office-skill d-flex flex-column align-items-center text-center px-md-0 pb-md-0 px-3 pb-4">
+                  <h1
+                    #words
+                    class="office-skill d-flex flex-column align-items-center text-center px-md-0 pb-md-0 px-3 pb-4"
+                  >
                     <span>AVOCATS</span>
                     <span>CONTENTIEUX</span>
                     <span>CONSEILS</span>
-                    <span>À BORDEAUX</span>
+                    <span>À&nbsp;BORDEAUX</span>
                   </h1>
                 </div>
               </div>
             </div>
 
-            <!-- Slogan éventuel -->
+            <!-- Slogan optionnel -->
             <div class="row slogan my-5 w-120">
               <div class="slogan-box col text-center mb-5 px-5"></div>
             </div>
@@ -39,7 +47,7 @@
       </div>
     </section>
 
-    <!-- ========= SECTION 4 ========= -->
+    <!-- ========= SECTION 4 ========= -->
     <section id="fourth-section" class="fourth-section" #section4>
       <div class="container">
         <div class="row justify-content-center text-center">
@@ -72,7 +80,7 @@
       </div>
     </section>
 
-    <!-- ========= SECTION 2 ========= -->
+    <!-- ========= SECTION 2 ========= -->
     <section id="second-section" class="second-section">
       <div class="container">
         <div class="row my-md-5 px-md-5 justify-content-center">
@@ -81,59 +89,70 @@
           </div>
         </div>
 
-        <div class="row justify-content-center align-items-center"
-             style="cursor: pointer;" (click)="goToSkills()">
+        <div
+          class="row justify-content-center align-items-center"
+          style="cursor:pointer"
+          (click)="goToSkills()"
+        >
           <div class="skills col-auto d-flex align-items-center mt-3 mt-md-0">
             <p class="mb-0" #subtitle2>{{ homepageData?.subtitle_1 }}</p>
             <div class="indicator-arrow-down ms-2" #arrowRight>
-              <img src="assets/icons/arrow_right.webp" alt="arrow right" />
+              <img src="assets/icons/arrow_right.webp" alt="flèche vers la droite" />
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ========= SECTION 3 ========= -->
+    <!-- ========= SECTION 3 ========= -->
     <section id="third-section" class="third-section" #thirdSection>
       <div class="container">
-        <div class="team row my-0 px-0 my-md-5 px-md-5 justify-content-center">
+
+        <!-- Titre de la section -->
+        <div class="team row justify-content-center">
           <div class="col title-skills text-left">
             <h3 #title3>{{ homepageData?.title_3 }}</h3>
           </div>
         </div>
 
-        <div class="row gy-4">
-          <ng-container *ngFor="let lawyer of lawyersList">
-            <div class="col-12 col-sm-6 col-md-4 px-2 px-md-3">
-              <div class="image-container">
-                <img #portrait class="img-fluid"
-                     [src]="lawyer.photo"
-                     [alt]="lawyer.name" />
-
-                <div class="hover-overlay">
-                  <div class="hover-text">
-                    <p>{{ lawyer.name }}</p>
-                    <p><small>{{ lawyer.function }}</small></p>
-                  </div>
-                </div>
+        <!-- Cartes avocats (identiques au composant « team ») -->
+        <div class="lawyers-row mt-5">
+          <div
+            class="lawyer-card"
+            *ngFor="let lawyer of lawyersList"
+            (click)="goToSelectedMember(lawyer.id)"
+          >
+            <div class="image-container">
+              <img
+                class="lawyer-photo"
+                [src]="lawyer.photo"
+                alt="Avocat"
+              />
+              <div class="hover-overlay">
+                <!-- HTML complet (Nom + Fonction) injecté tel quel -->
+                <div class="hover-text" [innerHTML]="lawyer.nameFuncHtml"></div>
               </div>
-            </div>
-          </ng-container>
-        </div>
-
-        <div class="team row justify-content-center align-items-center mt-5"
-             style="cursor: pointer;" (click)="goToTeam()">
-          <div class="col-auto d-flex align-items-center" #teamCallToAction>
-            <p class="mb-0">{{ homepageData?.subtitle_2 }}</p>
-            <div class="indicator-arrow-down ms-2">
-              <img src="assets/icons/arrow-right-white.webp" alt="arrow right" />
             </div>
           </div>
         </div>
+
+        <!-- CTA vers la page équipe -->
+        <div
+          class="team row justify-content-center align-items-center mt-5"
+          (click)="goToTeam()"
+        >
+          <div class="col-auto d-flex align-items-center" #teamCallToAction>
+            <p class="mb-0">{{ homepageData?.subtitle_2 }}</p>
+            <div class="indicator-arrow-down ms-2">
+              <img src="assets/icons/arrow-right-white.webp" alt="flèche" />
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <!-- ========= SECTION 6 ========= -->
+    <!-- ========= SECTION 6 ========= -->
     <section id="sixth-section" class="sixth-section" #section6>
       <div class="container mb-5">
         <div class="row justify-content-center">
