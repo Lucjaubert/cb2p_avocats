@@ -31,7 +31,6 @@ export class RectificationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Charger reCAPTCHA script côté navigateur seulement
     if (isPlatformBrowser(this.platformId)) {
       this.loadRecaptchaScript();
     }
